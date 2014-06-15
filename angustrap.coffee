@@ -14,15 +14,20 @@ angular.module("Angustrap", [])
 
 # Glyphicons
 # ----------
-# Shortcut directive for Bootstrap's glyphicons.<br/><br/>
-# **Example**:<br/>
+# Shortcut directives for Bootstrap's glyphicons.<br/><br/>
+# **Examples**:<br/>
 # ```html
 # <glyph icon="heart"></glyph>
+# <glyph icon="qrcode">Sign-In</glyph>
+# <btn-glyph icon="heart-empty">Angustrap</glyph>
 # ```
 # <br/>
 # _For the list of all available icons, see http://getbootstrap.com/components/#glyphicons-glyphs_
 
 # ### Simple glyph icon (span)
+# **Attributes**:
+#   - icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#           See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 .directive("glyph", ->
     defObj =
         restrict: "E"
@@ -35,6 +40,25 @@ angular.module("Angustrap", [])
 )
 
 # ### Button glyphicon
+# **Attributes**:
+#   - `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#             See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
+#
+#   - `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#              The stock ones are as follows, but you can create your own in your stylesheet if you want:
+#                * _primary_
+#                * _success_
+#                * _info_
+#                * _warning_
+#                * _danger_
+#
+#             _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `.btn-default` class_
+#
+#   - `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#             Possible choice are:
+#               * _lg_
+#               * _sm_
+#               * _xs_
 .directive("btnGlyph", ($timeout) ->
     defObj =
         restrict: "E"
@@ -47,7 +71,7 @@ angular.module("Angustrap", [])
             size: "@size"
         link: (scope, el, attrs) ->
             console.log el
-            if typeof attrs.theme is "undefined" or attrs.theme is "" then attrs.theme = "default"
+            attrs.theme = attrs.theme or "default"
 
     return  defObj
 )
@@ -60,6 +84,9 @@ angular.module("Angustrap", [])
 
 # ### Dropdown Item
 # This is the `<dropdown-item>` directive used through transclusion by the other dropdown directives.
+# <br/>
+# **Attributes**:
+#   - `asHref`: the url this dropdown-item should point to
 # _Note that you can still pass the usual `.disabled` class to disable an item
 .directive("dropdownItem", ->
     defObj =
@@ -108,7 +135,7 @@ angular.module("Angustrap", [])
 # ### Single-button dropdown
 # **Example**:<br/>
 # ```html
-# <btn-dropdown as-id="myDropdown" theme="danger" size="lg">
+# <btn-dropdown theme="danger" size="lg" title="Sign-In">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </btn-dropdown>
@@ -120,28 +147,46 @@ angular.module("Angustrap", [])
         transclude: true
         templateUrl: "templates/dropdowns/btn-dropdown.html"
         scope:
-            asId: "@asId"
             theme: "@theme"
             size: "@size"
             title: "@title"
 
         link: (scope, el, attrs) ->
-            # Specifying an `as-id="someId"` attribute is mandatory, return an error if none was found or if it's empty.
-            if typeof attrs.asId is "undefined" or attrs.asId is ""
-                console.e 'Angustrap: ERROR - You must define an ID for this dropdown, using the `as-id="yourId"` attribute'
-                el.remove()
-                return
-
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
-            if typeof attrs.theme is "undefined" or attrs.theme is "" then attrs.theme = "default"
+            attrs.theme = attrs.theme or "default"
+            return
 
-            # Clean-up empty class prefix if no size attribute is specified
-            handleSize = ->
-                angular.element("#" + attrs.asId).removeClass "btn-"  if typeof attrs.size is "undefined" or attrs.size is ""
-                return
+    return defObj
 
-            # This $timeout is a workaround so that our function is not executed before the DOM is loaded
-            $timeout handleSize, 0
+# ### Split-button dropdown
+# ##### Attributes:
+#   * theme
+#   * icon
+#   * size
+#   * title
+#
+# <br/>**Example**:<br/>
+# ```html
+# <split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In">
+#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
+#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+# </btn-dropdown>
+# ```
+.directive "splitDropdown", ($timeout) ->
+    defObj =
+        restrict: "E"
+        replace: true
+        transclude: true
+        templateUrl: "templates/dropdowns/split-dropdown.html"
+        scope:
+            theme: "@theme"
+            icon: "@icon"
+            size: "@size"
+            title: "@title"
+
+        link: (scope, el, attrs) ->
+            # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
+            attrs.theme = attrs.theme or "default"
             return
 
     return defObj

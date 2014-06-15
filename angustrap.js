@@ -40,9 +40,7 @@
       },
       link: function(scope, el, attrs) {
         console.log(el);
-        if (typeof attrs.theme === "undefined" || attrs.theme === "") {
-          return attrs.theme = "default";
-        }
+        return attrs.theme = attrs.theme || "default";
       }
     };
     return defObj;
@@ -87,27 +85,30 @@
       transclude: true,
       templateUrl: "templates/dropdowns/btn-dropdown.html",
       scope: {
-        asId: "@asId",
         theme: "@theme",
         size: "@size",
         title: "@title"
       },
       link: function(scope, el, attrs) {
-        var handleSize;
-        if (typeof attrs.asId === "undefined" || attrs.asId === "") {
-          console.e('Angustrap: ERROR - You must define an ID for this dropdown, using the `as-id="yourId"` attribute');
-          el.remove();
-          return;
-        }
-        if (typeof attrs.theme === "undefined" || attrs.theme === "") {
-          attrs.theme = "default";
-        }
-        handleSize = function() {
-          if (typeof attrs.size === "undefined" || attrs.size === "") {
-            angular.element("#" + attrs.asId).removeClass("btn-");
-          }
-        };
-        $timeout(handleSize, 0);
+        attrs.theme = attrs.theme || "default";
+      }
+    };
+    return defObj;
+  }).directive("splitDropdown", function($timeout) {
+    var defObj;
+    defObj = {
+      restrict: "E",
+      replace: true,
+      transclude: true,
+      templateUrl: "templates/dropdowns/split-dropdown.html",
+      scope: {
+        theme: "@theme",
+        icon: "@icon",
+        size: "@size",
+        title: "@title"
+      },
+      link: function(scope, el, attrs) {
+        attrs.theme = attrs.theme || "default";
       }
     };
     return defObj;

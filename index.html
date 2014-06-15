@@ -6,6 +6,7 @@
         .glyphicon {
 
         }
+
         .glyphicon-heart {
             font-size: 2.5em;
             color: #1abc9c;
@@ -23,18 +24,18 @@
     </blockquote>
 
     <div class="row">
-        <div class="col-xs-2 text-center">
+        <div class="col-sm-2 text-center">
             <glyph icon="heart"></glyph>
             <br/><br/>
             <btn-glyph icon="heart-empty" theme="info" size="lg">Angustrap</btn-glyph>
         </div>
-        <div class="col-xs-8">
+        <div class="col-sm-8">
             <pre>
 &lt;glyph icon="heart"&gt;&lt;/glyph&gt;
 &lt;btn-glyph icon="heart-empty" theme="info" size="lg"&gt;Angustrap&lt;/btn-glyph&gt;
             </pre>
         </div>
-        <div class="col-xs-2"></div>
+        <div class="hidden-xs col-sm-2"></div>
     </div>
 
     <br/><br/>
@@ -43,17 +44,34 @@
     <blockquote>
         <h3>Dropdowns</h3>
     </blockquote>
-
-    <btn-dropdown as-id="myDropdown" theme="danger" title="Sign-In">
-        <dropdown-item as-href="https://google.com">Google</dropdown-item>
-        <dropdown-divider></dropdown-divider>
-        <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
-        <dropdown-divider></dropdown-divider>
-        <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
-        <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
-        <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
-    </btn-dropdown>
-
+    <div class="row">
+        <div class="col-sm-2">
+            <btn-dropdown theme="danger" title="Sign-In">
+                <dropdown-item as-href="https://google.com">Google</dropdown-item>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
+                <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
+                <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
+            </btn-dropdown>
+        </div>
+        <div class="col-sm-2">
+            <split-dropdown theme="success" size="lg" icon="qrcode" title="Sign-In">
+                <dropdown-item as-href="https://google.com">Google</dropdown-item>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
+                <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
+                <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
+            </split-dropdown>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+    </div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
