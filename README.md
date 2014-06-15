@@ -9,7 +9,7 @@ Shortcut directive for Bootstrap's glyphicons.
 
 **Example**:
 ```html
-<glyph icon="'copyright-mark'"></glyph>
+<glyph icon="heart"></glyph>
 ```
 
 _For the list of all available icons, see http://getbootstrap.com/components/#glyphicons-glyphs_
@@ -21,9 +21,16 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) component.
 
 **Example**:
 ```html
-<dropdown as-id="'myDropdown'">
-    <dropdown-item as-href="'http://google.com'">Google</dropdown-item>
-    <dropdown-item as-href="'http://twitter.com'">Twitter</dropdown-item>
+<!-- Single-Button Dropdown -->
+<btn-dropdown as-id="myDropdown" theme="danger" size="lg">
+    <dropdown-item as-href="http://google.com">Google</dropdown-item>
+    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+</btn-dropdown>
+
+<!-- Regular dropdown -->
+<dropdown as-id="myDropdown">
+    <dropdown-item as-href="http://google.com">Google</dropdown-item>
+    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 </dropdown>
 ```
 

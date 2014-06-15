@@ -10,12 +10,13 @@ angular.module('Angustrap', [])
   // <br/>
   // _For the list of all available icons, see http://getbootstrap.com/components/#glyphicons-glyphs_
   .directive('glyph', function() {
-    return {
+    var defObj = {
       restrict: 'E',
       replace: true,
-      scope: { icon: '=icon' },
+      scope: { icon: '@icon' },
       template: '<span class="glyphicon glyphicon-{{icon}}"></span>'
-    }
+    };
+    return defObj;
   })
 
   // Dropdowns
@@ -32,42 +33,63 @@ angular.module('Angustrap', [])
   // ```
   // _Note that you can still pass the usual ```dropdown-menu-right``` class to right-align the dropdown relatively to its parent_
   .directive('dropdown', function() {
-    return {
+    var defObj = {
       restrict: 'E',
       replace: true,
       transclude: true,
       templateUrl: 'templates/dropdowns/dropdown.html',
       scope: {
-        asId: '=asId'
+        asId: '@asId'
       }
-    }
+    };
+    return defObj;
   })
 
   // This is the `<dropdown-item>` directive used through transclusion by the `<dropdown>` directive
   .directive('dropdownItem', function() {
-    return {
+    var defObj = {
       restrict: 'E',
       replace: true,
       transclude: true,
       templateUrl: 'templates/dropdowns/dropdown-item.html',
-      scope: { asHref: '=asHref' }
-    }
+      scope: { asHref: '@asHref' }
+    };
+    return defObj;
   })
 
   // TODO: Dropdown divider directive
 
-  // Single-button dropdown
-  .directive('btnDropdown', function() {
-    return {
+  // ### Single-button dropdown
+  .directive('btnDropdown', function($timeout) {
+    var defObj = {
       restrict: 'E',
       replace: true,
       transclude: true,
       templateUrl: 'templates/dropdowns/button-dropdown.html',
       scope: {
-        asId: '=asId',
-        theme: '=theme'
+        asId: '@asId',
+        theme: '@theme',
+        size: '@size'
+      },
+      link: function(scope, el, attrs) {
+        // Specifying an ID is mandatory
+        if (typeof attrs.asId === 'undefined') {
+          return console.log('Angustrap: ERROR - You must define an ID for this dropdown, using the as-id="yourId" attribute');
+        }
+        // Set the theme to .btn-default if no theme attribute is specified
+        if (typeof attrs.theme === 'undefined') attrs.theme = 'default';
+
+        // Clean-up empty class prefix if no size attribute is specified
+        var handleSize = function() {
+          if (typeof attrs.size === 'undefined') {
+            angular.element('#' + attrs.asId).removeClass('btn-');
+          }
+        }
+        // This is a workaround so that our function is not executed before the DOM is loaded
+        $timeout(handleSize, 0);
       }
-    }
+    };
+    return defObj;
   })
 
 ;
