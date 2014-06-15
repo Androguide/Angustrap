@@ -36,10 +36,11 @@ angular.module("Angustrap", [])
 # ---------
 # Fully markup-driven directives to abstract
 # Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components.<br/><br/>
-# _Note that you can still pass the usual ```dropdown-menu-right``` class to right-align the dropdown relatively to its parent_
+# _Note that you can still pass the usual `.dropdown-menu-right` class to right-align the dropdown relatively to its parent_
 
 # ### Dropdown Item
 # This is the `<dropdown-item>` directive used through transclusion by the other dropdown directives.
+# _Note that you can still pass the usual `.disabled` class to disable an item
 .directive("dropdownItem", ->
     defObj =
         restrict: "E"
@@ -102,6 +103,7 @@ angular.module("Angustrap", [])
             asId: "@asId"
             theme: "@theme"
             size: "@size"
+            title: "@title"
 
         link: (scope, el, attrs) ->
             # Specifying an `as-id="someId"` attribute is mandatory, return an error if none was found or if it's empty.

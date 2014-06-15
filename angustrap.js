@@ -69,7 +69,8 @@
       scope: {
         asId: "@asId",
         theme: "@theme",
-        size: "@size"
+        size: "@size",
+        title: "@title"
       },
       link: function(scope, el, attrs) {
         var handleSize;
