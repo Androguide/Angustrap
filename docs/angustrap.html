@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>angustrap.js</title>
+  <title>angustrap.coffee</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -15,7 +15,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>angustrap.js</h1>
+                  <h1>angustrap.coffee</h1>
               </div>
           </li>
         
@@ -30,7 +30,19 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'Angustrap'</span>, [])</pre></div></div>
+            <div class="content"><div class='highlight'><pre>(<span class="hljs-function">-&gt;</span>
+    <span class="hljs-function"><span class="hljs-title">r</span> = <span class="hljs-params">(t)</span> -&gt;</span>
+        <span class="hljs-function"><span class="hljs-params">(r, i)</span> -&gt;</span>
+            e.log <span class="hljs-string">"%c"</span> + r, i + <span class="hljs-string">";color:#fff;background:"</span> + n[<span class="hljs-number">1</span>][t]
+            <span class="hljs-keyword">return</span>
+    e = <span class="hljs-built_in">console</span>
+    t = <span class="hljs-number">3</span>
+    n = [[<span class="hljs-string">"e"</span>, <span class="hljs-string">"s"</span>, <span class="hljs-string">"i"</span>], [<span class="hljs-string">"#c0392b"</span>, <span class="hljs-string">"#2ecc71"</span>, <span class="hljs-string">"#3498db"</span>]]
+    e[n[<span class="hljs-number">0</span>][t]] = r(t) <span class="hljs-keyword">while</span> t--
+    <span class="hljs-keyword">return</span>
+)()
+
+angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>, [])</pre></div></div>
             
         </li>
         
@@ -63,16 +75,6 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'glyph'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> defObj = {
-      restrict: <span class="hljs-string">'E'</span>,
-      replace: <span class="hljs-literal">true</span>,
-      scope: { icon: <span class="hljs-string">'@icon'</span> },
-      template: <span class="hljs-string">'&lt;span class="glyphicon glyphicon-{{icon}}"&gt;&lt;/span&gt;'</span>
-    };
-    <span class="hljs-keyword">return</span> defObj;
-  })</pre></div></div>
-            
         </li>
         
         
@@ -82,9 +84,20 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h2 id="dropdowns">Dropdowns</h2>
+              <h3 id="simple-glyph-icon-span-">Simple glyph icon (span)</h3>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"glyph"</span>,<span class="hljs-function"> -&gt;</span>
+    defObj =
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;span class=\"glyphicon glyphicon-{{icon}}\"&gt;&lt;/span&gt;"</span>
+        <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
+
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
             
         </li>
         
@@ -95,11 +108,28 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Fully markup-driven directives to abstract
-Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> components.<br/><br/>
-<em>Note that you can still pass the usual <code>dropdown-menu-right</code> class to right-align the dropdown relatively to its parent</em></p>
+              <h3 id="button-glyphicon">Button glyphicon</h3>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"btnGlyph"</span>, ($timeout) -&gt;
+    defObj =
+        restrict: <span class="hljs-string">"E"</span>
+        replace: <span class="hljs-literal">true</span>
+        transclude: <span class="hljs-literal">true</span>
+        templateUrl: <span class="hljs-string">"templates/dropdowns/btn-glyph.html"</span>
+        scope:
+            icon: <span class="hljs-string">"@icon"</span>
+            theme: <span class="hljs-string">"@theme"</span>
+            size: <span class="hljs-string">"@size"</span>
+        link: (scope, el, attrs) -&gt;
+            <span class="hljs-built_in">console</span>.log el
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">typeof</span> attrs.theme <span class="hljs-keyword">is</span> <span class="hljs-string">"undefined"</span> <span class="hljs-keyword">or</span> attrs.theme <span class="hljs-keyword">is</span> <span class="hljs-string">""</span> <span class="hljs-keyword">then</span> attrs.theme = <span class="hljs-string">"default"</span>
+
+    <span class="hljs-keyword">return</span>  defObj
+)</span>
+
+</span></pre></div></div>
             
         </li>
         
@@ -110,21 +140,9 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h3 id="dropdown-item">Dropdown Item</h3>
-<p>This is the <code>&lt;dropdown-item&gt;</code> directive used through transclusion by the other dropdown directives.</p>
+              <h2 id="dropdowns">Dropdowns</h2>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'dropdownItem'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> defObj = {
-      restrict: <span class="hljs-string">'E'</span>,
-      replace: <span class="hljs-literal">true</span>,
-      transclude: <span class="hljs-literal">true</span>,
-      templateUrl: <span class="hljs-string">'templates/dropdowns/dropdown-item.html'</span>,
-      scope: { asHref: <span class="hljs-string">'@asHref'</span> }
-    };
-    <span class="hljs-keyword">return</span> defObj;
-  })</pre></div></div>
             
         </li>
         
@@ -135,7 +153,9 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>TODO: Dropdown divider directive</p>
+              <p>Fully markup-driven directives to abstract
+Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> components.<br/><br/>
+<em>Note that you can still pass the usual <code>.dropdown-menu-right</code> class to right-align the dropdown relatively to its parent</em></p>
 
             </div>
             
@@ -148,6 +168,57 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
+              <h3 id="dropdown-item">Dropdown Item</h3>
+<p>This is the <code>&lt;dropdown-item&gt;</code> directive used through transclusion by the other dropdown directives.
+_Note that you can still pass the usual <code>.disabled</code> class to disable an item</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"dropdownItem"</span>,<span class="hljs-function"> -&gt;</span>
+    defObj =
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown-item.html"</span>
+        <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">asHref</span>: <span class="hljs-string">"@asHref"</span>
+
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3 id="dropdown-divider">Dropdown Divider</h3>
+<p>The <code>&lt;dropdown-divider&gt;</code> directive used through transclusion by the other dropdown directives</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"dropdownDivider"</span>,<span class="hljs-function"> -&gt;</span>
+    defObj =
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">scope</span>: {}
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;li role=\"presentation\" class=\"divider\"&gt;&lt;/li&gt;"</span>
+
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
               <h3 id="regular-dropdown">Regular Dropdown</h3>
 <p><strong>Example</strong>:<br/></p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-id</span>=<span class="hljs-value">"myDropdown"</span>&gt;</span>
@@ -158,27 +229,26 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'dropdown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> defObj = {
-      restrict: <span class="hljs-string">'E'</span>,
-      replace: <span class="hljs-literal">true</span>,
-      transclude: <span class="hljs-literal">true</span>,
-      templateUrl: <span class="hljs-string">'templates/dropdowns/dropdown.html'</span>,
-      scope: {
-        asId: <span class="hljs-string">'@asId'</span>
-      }
-    };
-    <span class="hljs-keyword">return</span> defObj;
-  })</pre></div></div>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"dropdown"</span>,<span class="hljs-function"> -&gt;</span>
+    defObj =
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown.html"</span>
+        <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
             
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <h3 id="single-button-dropdown">Single-button dropdown</h3>
 <p><strong>Example</strong>:<br/></p>
@@ -190,50 +260,19 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'btnDropdown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($timeout)</span> {</span>
-    <span class="hljs-keyword">var</span> defObj = {
-      restrict: <span class="hljs-string">'E'</span>,
-      replace: <span class="hljs-literal">true</span>,
-      transclude: <span class="hljs-literal">true</span>,
-      templateUrl: <span class="hljs-string">'templates/dropdowns/button-dropdown.html'</span>,
-      scope: {
-        asId: <span class="hljs-string">'@asId'</span>,
-        theme: <span class="hljs-string">'@theme'</span>,
-        size: <span class="hljs-string">'@size'</span>
-      },
-      link: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(scope, el, attrs)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-10">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
-              </div>
-              <p>Specifying an <code>as-id=&quot;someId&quot;</code> attribute is mandatory, return an error if none was found or if it’s empty.</p>
+            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"btnDropdown"</span>, <span class="hljs-function"><span class="hljs-params">($timeout)</span> -&gt;</span>
+    defObj =
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/btn-dropdown.html"</span>
+        <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+            <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
+            <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
+            <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> attrs.asId === <span class="hljs-string">'undefined'</span> || attrs.asId === <span class="hljs-string">''</span>) {
-          <span class="hljs-keyword">return</span> console.log(<span class="hljs-string">'Angustrap: ERROR - You must define an ID for this dropdown, using the as-id="yourId" attribute'</span>);
-        }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
-              </div>
-              <p>If no <code>theme=&quot;primary|success|info|warning|danger&quot;</code> attribute was passed, we default back to the <code>.btn-default</code> class.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> attrs.theme === <span class="hljs-string">'undefined'</span> || attrs.theme === <span class="hljs-string">''</span>) attrs.theme = <span class="hljs-string">'default'</span>;</pre></div></div>
+        <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span></pre></div></div>
             
         </li>
         
@@ -244,14 +283,14 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Clean-up empty class prefix if no size attribute is specified</p>
+              <p>Specifying an <code>as-id=&quot;someId&quot;</code> attribute is mandatory, return an error if none was found or if it’s empty.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> handleSize = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-          <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> attrs.size === <span class="hljs-string">'undefined'</span> || attrs.size === <span class="hljs-string">''</span>)
-            angular.element(<span class="hljs-string">'#'</span> + attrs.asId).removeClass(<span class="hljs-string">'btn-'</span>);
-        }</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">typeof</span> attrs.asId <span class="hljs-keyword">is</span> <span class="hljs-string">"undefined"</span> <span class="hljs-keyword">or</span> attrs.asId <span class="hljs-keyword">is</span> <span class="hljs-string">""</span>
+                <span class="hljs-built_in">console</span>.e <span class="hljs-string">'Angustrap: ERROR - You must define an ID for this dropdown, using the `as-id="yourId"` attribute'</span>
+                el.remove()
+                <span class="hljs-keyword">return</span></pre></div></div>
             
         </li>
         
@@ -262,17 +301,85 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
+              <p>If no <code>theme=&quot;primary|success|info|warning|danger&quot;</code> attribute was passed, we default back to the <code>.btn-default</code> class.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">typeof</span> attrs.theme <span class="hljs-keyword">is</span> <span class="hljs-string">"undefined"</span> <span class="hljs-keyword">or</span> attrs.theme <span class="hljs-keyword">is</span> <span class="hljs-string">""</span> <span class="hljs-keyword">then</span> attrs.theme = <span class="hljs-string">"default"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Clean-up empty class prefix if no size attribute is specified</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-function"><span class="hljs-title">handleSize</span> = -&gt;</span>
+                angular.element(<span class="hljs-string">"#"</span> + attrs.asId).removeClass <span class="hljs-string">"btn-"</span>  <span class="hljs-keyword">if</span> <span class="hljs-keyword">typeof</span> attrs.size <span class="hljs-keyword">is</span> <span class="hljs-string">"undefined"</span> <span class="hljs-keyword">or</span> attrs.size <span class="hljs-keyword">is</span> <span class="hljs-string">""</span>
+                <span class="hljs-keyword">return</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
               <p>This $timeout is a workaround so that our function is not executed before the DOM is loaded</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        $timeout(handleSize, <span class="hljs-number">0</span>);
-      }
-    };
-    <span class="hljs-keyword">return</span> defObj;
-  })
+            <div class="content"><div class='highlight'><pre>            $timeout handleSize, <span class="hljs-number">0</span>
+            <span class="hljs-keyword">return</span>
 
-;</pre></div></div>
+    <span class="hljs-keyword">return</span> defObj</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h2 id="rainbowlog">RainbowLog</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Provides colored console output: <a href="https://github.com/Androguide/RainbowLog">https://github.com/Androguide/RainbowLog</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>(<span class="hljs-function">-&gt;</span>
+    <span class="hljs-function"><span class="hljs-title">r</span> = <span class="hljs-params">(t)</span> -&gt;</span>
+        <span class="hljs-function"><span class="hljs-params">(r, i)</span> -&gt;</span>
+            e.log <span class="hljs-string">"%c"</span> + r, i + <span class="hljs-string">";color:#fff;background:"</span> + n[<span class="hljs-number">1</span>][t]
+    e = <span class="hljs-built_in">console</span>
+    t = <span class="hljs-number">3</span>
+    n = [
+        [<span class="hljs-string">"e"</span>, <span class="hljs-string">"s"</span>, <span class="hljs-string">"i"</span>],
+        [<span class="hljs-string">"#c0392b"</span>, <span class="hljs-string">"#2ecc71"</span>, <span class="hljs-string">"#3498db"</span>]
+    ]
+    e[n[<span class="hljs-number">0</span>][t]] = r(t) <span class="hljs-keyword">while</span> t--
+    <span class="hljs-keyword">return</span>)()</pre></div></div>
             
         </li>
         

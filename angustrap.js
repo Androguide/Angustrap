@@ -20,10 +20,30 @@
     defObj = {
       restrict: "E",
       replace: true,
+      template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>",
       scope: {
         icon: "@icon"
+      }
+    };
+    return defObj;
+  }).directive("btnGlyph", function($timeout) {
+    var defObj;
+    defObj = {
+      restrict: "E",
+      replace: true,
+      transclude: true,
+      templateUrl: "templates/dropdowns/btn-glyph.html",
+      scope: {
+        icon: "@icon",
+        theme: "@theme",
+        size: "@size"
       },
-      template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
+      link: function(scope, el, attrs) {
+        console.log(el);
+        if (typeof attrs.theme === "undefined" || attrs.theme === "") {
+          return attrs.theme = "default";
+        }
+      }
     };
     return defObj;
   }).directive("dropdownItem", function() {
@@ -65,7 +85,7 @@
       restrict: "E",
       replace: true,
       transclude: true,
-      templateUrl: "templates/dropdowns/button-dropdown.html",
+      templateUrl: "templates/dropdowns/btn-dropdown.html",
       scope: {
         asId: "@asId",
         theme: "@theme",

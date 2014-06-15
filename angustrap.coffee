@@ -21,15 +21,35 @@ angular.module("Angustrap", [])
 # ```
 # <br/>
 # _For the list of all available icons, see http://getbootstrap.com/components/#glyphicons-glyphs_
+
+# ### Simple glyph icon (span)
 .directive("glyph", ->
     defObj =
         restrict: "E"
         replace: true
+        template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
         scope:
             icon: "@icon"
-        template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
 
     return defObj
+)
+
+# ### Button glyphicon
+.directive("btnGlyph", ($timeout) ->
+    defObj =
+        restrict: "E"
+        replace: true
+        transclude: true
+        templateUrl: "templates/dropdowns/btn-glyph.html"
+        scope:
+            icon: "@icon"
+            theme: "@theme"
+            size: "@size"
+        link: (scope, el, attrs) ->
+            console.log el
+            if typeof attrs.theme is "undefined" or attrs.theme is "" then attrs.theme = "default"
+
+    return  defObj
 )
 
 # Dropdowns
@@ -98,7 +118,7 @@ angular.module("Angustrap", [])
         restrict: "E"
         replace: true
         transclude: true
-        templateUrl: "templates/dropdowns/button-dropdown.html"
+        templateUrl: "templates/dropdowns/btn-dropdown.html"
         scope:
             asId: "@asId"
             theme: "@theme"
