@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "dropdown-divider.js",
+  "sourceRoot": "",
+  "sources": [
+    "dropdown-divider.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAQA;AAAA,EAAA,OAAO,CAAC,MAAR,CAAe,WAAf,CAA2B,CAAC,SAA5B,CAAsC,iBAAtC,EAAyD,SAAA,GAAA;AACrD,QAAA,MAAA;AAAA,IAAA,MAAA,GACI;AAAA,MAAA,QAAA,EAAU,GAAV;AAAA,MACA,OAAA,EAAS,IADT;AAAA,MAEA,KAAA,EAAO,EAFP;AAAA,MAGA,QAAA,EAAU,mDAHV;KADJ,CAAA;AAMA,WAAO,MAAP,CAPqD;EAAA,CAAzD,CAAA,CAAA;AAAA"
+}
