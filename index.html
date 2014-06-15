@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <title>Angustrap Demo</title>
+    <style media="screen">
+      .glyphicon {
+        font-size: 2.5em;
+      }
+    </style>
+  </head>
+  <body data-ng-app="Angustrap">
+
+    <div class="container">
+      <br><br>
+
+      <!--Glyphicons-->
+      <blockquote>
+        <h3>Glyphicons</h3>
+      </blockquote>
+
+      <div class="row">
+        <div class="col-xs-1 text-center">
+          <glyph icon="'heart'"></glyph>
+        </div>
+        <div class="col-xs-6">
+          <pre>&lt;glyph icon="'heart'"&gt;</glyph></pre>
+        </div>
+        <div class="col-xs-5"></div>
+      </div>
+
+      <!-- Dropdowns -->
+      <blockquote>
+        <h3>Dropdowns</h3>
+      </blockquote>
+      <dropdown as-id="'myDropdown'">
+        <dropdown-item as-href="'http://google.com'">Google</dropdown-item>
+      </dropdown>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="directives.js"></script>
+  </body>
+</html>

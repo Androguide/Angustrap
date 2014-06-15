@@ -97,7 +97,10 @@
               <p>A fully markup-driven directive to abstract
 Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> component.<br/><br/>
 <strong>Example</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-id</span>=<span class="hljs-value">"'myDropdown'"</span> <span class="hljs-attribute">items</span>=<span class="hljs-value">"['First', 'Second', 'Third', 'Fourth', 'etc...']"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-id</span>=<span class="hljs-value">"'myDropdown'"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"'http://google.com'"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"'http://twitter.com'"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
 </code></pre>
 <p><em>Note that you can still pass the usual <code>dropdown-menu-right</code> class to right-align the dropdown relatively to its parent</em></p>
 
@@ -107,13 +110,38 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
     <span class="hljs-keyword">return</span> {
       restrict: <span class="hljs-string">'E'</span>,
       replace: <span class="hljs-literal">true</span>,
-      templateUrl: <span class="hljs-string">'dropdowns.html'</span>,
+      transclude: <span class="hljs-literal">true</span>,
+      templateUrl: <span class="hljs-string">'templates/dropdowns/dropdowns.html'</span>,
       scope: {
         asId: <span class="hljs-string">"=asId"</span>,
         items: <span class="hljs-string">"=items"</span>
       }
     }
   })</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>This is the <code>&lt;dropdown-item&gt;</code> directive used through transclusion by the <code>&lt;dropdown&gt;</code> directive</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'dropdownItem'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">return</span> {
+      restrict: <span class="hljs-string">'E'</span>,
+      replace: <span class="hljs-literal">true</span>,
+      transclude: <span class="hljs-literal">true</span>,
+      templateUrl: <span class="hljs-string">'templates/dropdowns/dropdown-item.html'</span>,
+      scope: { asHref: <span class="hljs-string">'=asHref'</span> }
+    }
+  })
+;</pre></div></div>
             
         </li>
         
