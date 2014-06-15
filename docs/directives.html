@@ -95,12 +95,13 @@
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>A fully markup-driven directive to abstract
-Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> component.<br/><br/>
+Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> components.<br/><br/>
 <strong>Example</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-id</span>=<span class="hljs-value">"'myDropdown'"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Single-button dropdown --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">btn-dropdown</span> <span class="hljs-attribute">as-id</span>=<span class="hljs-value">"'myDropdown'"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"'warning'"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"'http://google.com'"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"'http://twitter.com'"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">btn-dropdown</span>&gt;</span>
 </code></pre>
 <p><em>Note that you can still pass the usual <code>dropdown-menu-right</code> class to right-align the dropdown relatively to its parent</em></p>
 
@@ -111,10 +112,9 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
       restrict: <span class="hljs-string">'E'</span>,
       replace: <span class="hljs-literal">true</span>,
       transclude: <span class="hljs-literal">true</span>,
-      templateUrl: <span class="hljs-string">'templates/dropdowns/dropdowns.html'</span>,
+      templateUrl: <span class="hljs-string">'templates/dropdowns/dropdown.html'</span>,
       scope: {
-        asId: <span class="hljs-string">"=asId"</span>,
-        items: <span class="hljs-string">"=items"</span>
+        asId: <span class="hljs-string">'=asId'</span>
       }
     }
   })</pre></div></div>
@@ -140,7 +140,47 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
       templateUrl: <span class="hljs-string">'templates/dropdowns/dropdown-item.html'</span>,
       scope: { asHref: <span class="hljs-string">'=asHref'</span> }
     }
+  })</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>TODO: Dropdown divider directive</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Single-button dropdown</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'btnDropdown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">return</span> {
+      restrict: <span class="hljs-string">'E'</span>,
+      replace: <span class="hljs-literal">true</span>,
+      transclude: <span class="hljs-literal">true</span>,
+      templateUrl: <span class="hljs-string">'templates/dropdowns/button-dropdown.html'</span>,
+      scope: {
+        asId: <span class="hljs-string">'=asId'</span>,
+        theme: <span class="hljs-string">'=theme'</span>
+      }
+    }
   })
+
 ;</pre></div></div>
             
         </li>
