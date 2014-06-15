@@ -1,48 +1,52 @@
 <html>
-  <head>
+<head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <title>Angustrap Demo</title>
     <style media="screen">
-      .glyphicon {
-        font-size: 2.5em;
-        color: #1abc9c;
-      }
+        .glyphicon {
+            font-size: 2.5em;
+            color: #1abc9c;
+        }
     </style>
-  </head>
-  <body data-ng-app="Angustrap">
+</head>
+<body data-ng-app="Angustrap">
 
-    <div class="container">
-      <br><br>
+<div class="container">
+    <br><br>
 
-      <!--Glyphicons-->
-      <blockquote>
+    <!--Glyphicons-->
+    <blockquote>
         <h3>Glyphicons</h3>
-      </blockquote>
+    </blockquote>
 
-      <div class="row">
+    <div class="row">
         <div class="col-xs-1 text-center">
-          <glyph icon="heart"></glyph>
+            <glyph icon="heart"></glyph>
         </div>
         <div class="col-xs-6">
-          <pre>&lt;glyph icon="heart"&gt;</glyph></pre>
+            <pre>&lt;glyph icon="heart"&gt;</glyph></pre>
         </div>
         <div class="col-xs-5"></div>
-      </div>
-
-      <!-- Dropdowns -->
-      <blockquote>
-        <h3>Dropdowns</h3>
-      </blockquote>
-
-      <btn-dropdown as-id="myDropdown" theme="danger">
-        <dropdown-item as-href="http://google.com">Google</dropdown-item>
-      </btn-dropdown>
-
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="angustrap.js"></script>
-  </body>
+    <br/><br/>
+
+    <!-- Dropdowns -->
+    <blockquote>
+        <h3>Dropdowns</h3>
+    </blockquote>
+
+    <btn-dropdown as-id="myDropdown" theme="danger">
+        <dropdown-item as-href="https://google.com">Google</dropdown-item>
+        <dropdown-divider></dropdown-divider>
+        <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
+    </btn-dropdown>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="angustrap.js"></script>
+</body>
 </html>
