@@ -1,0 +1,29 @@
+{
+  "name": "Angustrap",
+  "version": "0.0.0",
+  "description": "AngularJS Directives for the CSS/Markup components of Bootstrap",
+  "main": "directives.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Androguide/Angustrap"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "bootstrap",
+    "angustrap",
+    "directives"
+  ],
+  "author": "Louis Teboul (a.k.a \"Androguide\")",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Androguide/Angustrap/issues"
+  },
+  "homepage": "https://github.com/Androguide/Angustrap",
+  "devDependencies": {
+    "docco": "^0.6.3"
+  }
+}
