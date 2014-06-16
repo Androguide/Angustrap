@@ -10,7 +10,7 @@
 # **Attributes**:
 #   - `asHref`: the url this dropdown-item should point to
 # _Note that you can still pass the usual `.disabled` class to disable an item
-angular.module("Angustrap").directive("dropdownItem", ->
+angular.module("Angustrap", []).directive("dropdownItem", ->
     defObj =
         restrict: "E"
         replace: true
@@ -18,6 +18,8 @@ angular.module("Angustrap").directive("dropdownItem", ->
         templateUrl: "templates/dropdowns/dropdown-item.html"
         scope:
             asHref: "@asHref"
+            asId: "@asId"
+            asClass: "@asClass"
 
     return defObj
 )

@@ -44,19 +44,20 @@
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 # ```
-angular.module('Angustrap').directive "dropdown", ->
+angular.module('Angustrap', []).directive "dropdown", ->
     defObj =
         restrict: "E"
         replace: true
         transclude: true
         templateUrl: "templates/dropdowns/dropdown.html"
         scope:
+            type: "@type"
             theme: "@theme"
             icon: "@icon"
             size: "@size"
             title: "@title"
-            dropup: "@dropup"
-            type: "@type"
+            dropup: "=dropup"
+            asClick: "=asClick"
 
         link:
             pre: (scope) ->

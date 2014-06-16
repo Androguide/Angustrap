@@ -6,7 +6,7 @@
 
 # ### Dropdown Divider
 # The `<dropdown-divider>` directive used through transclusion by the other dropdown directives
-angular.module("Angustrap").directive("dropdownDivider", ->
+angular.module("Angustrap", []).directive("dropdownDivider", ->
     defObj =
         restrict: "E"
         replace: true

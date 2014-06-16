@@ -30,19 +30,29 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function">-&gt;</span>
-    <span class="hljs-function"><span class="hljs-title">r</span> = <span class="hljs-params">(t)</span> -&gt;</span>
-        <span class="hljs-function"><span class="hljs-params">(r, i)</span> -&gt;</span>
-            e.log <span class="hljs-string">"%c"</span> + r, i + <span class="hljs-string">";color:#fff;background:"</span> + n[<span class="hljs-number">1</span>][t]
-            <span class="hljs-keyword">return</span>
-    e = <span class="hljs-built_in">console</span>
-    t = <span class="hljs-number">3</span>
-    n = [[<span class="hljs-string">"e"</span>, <span class="hljs-string">"s"</span>, <span class="hljs-string">"i"</span>], [<span class="hljs-string">"#c0392b"</span>, <span class="hljs-string">"#2ecc71"</span>, <span class="hljs-string">"#3498db"</span>]]
-    e[n[<span class="hljs-number">0</span>][t]] = r(t) <span class="hljs-keyword">while</span> t--
-    <span class="hljs-keyword">return</span>
-)()
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.replace = <span class="hljs-literal">false</span>
+angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>, [])
 
-angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>, [])</pre></div></div>
+.service(<span class="hljs-string">'AsRandom'</span>,<span class="hljs-function">  -&gt;</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">(x)</span> -&gt;</span>
+        s = <span class="hljs-string">""</span>
+        <span class="hljs-keyword">while</span> s.length &lt; x <span class="hljs-keyword">and</span> x &gt; <span class="hljs-number">0</span>
+            r = Math.random()
+            s += ((<span class="hljs-keyword">if</span> r &lt; <span class="hljs-number">0.1</span> <span class="hljs-keyword">then</span> Math.floor(r * <span class="hljs-number">100</span>) <span class="hljs-keyword">else</span> String.fromCharCode(Math.floor(r * <span class="hljs-number">26</span>) + ((<span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">0.5</span> <span class="hljs-keyword">then</span> <span class="hljs-number">97</span> <span class="hljs-keyword">else</span> <span class="hljs-number">65</span>)))))
+        s
+)
+
+.service<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'CleanUp'</span>, ($timeout) -&gt;
+    <span class="hljs-keyword">return</span> (scope) -&gt;
+        $timeout -&gt;
+            <span class="hljs-keyword">if</span> scope.asId
+                classes = $(<span class="hljs-string">'#'</span> + scope.asId).attr <span class="hljs-string">'class'</span>
+                $(<span class="hljs-string">'#'</span> + scope.asId).attr <span class="hljs-string">'class'</span>, classes.trim()
+        , <span class="hljs-number">0</span>
+)</span>
+
+
+</span></pre></div></div>
             
         </li>
         
@@ -99,9 +109,11 @@ angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Ang
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;span class=\"glyphicon glyphicon-{{icon}}\"&gt;&lt;/span&gt;"</span>
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"&gt;&lt;/span&gt;"</span>
         <span class="hljs-attribute">scope</span>:
             <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
+            <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+            <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
 
     <span class="hljs-keyword">return</span> defObj
 )</pre></div></div>
@@ -152,7 +164,6 @@ angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Ang
             theme: <span class="hljs-string">"@theme"</span>
             size: <span class="hljs-string">"@size"</span>
         link: (scope, el, attrs) -&gt;
-            <span class="hljs-built_in">console</span>.log el
             attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
 
     <span class="hljs-keyword">return</span>  defObj
@@ -208,7 +219,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"dropdownItem"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"listItem"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -234,7 +245,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"dropdownDivider"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"listDivider"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -309,7 +320,7 @@ If set to false or not specified, the element will drop <em>down</em></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"dropdown"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"dropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -327,7 +338,6 @@ If set to false or not specified, the element will drop <em>down</em></p>
         <span class="hljs-attribute">link</span>:
             <span class="hljs-attribute">pre</span>: <span class="hljs-function"><span class="hljs-params">(scope)</span> -&gt;</span>
                 <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span> <span class="hljs-keyword">else</span> scope.directionClass = <span class="hljs-string">"dropdown"</span>
-                <span class="hljs-built_in">console</span>.log <span class="hljs-string">"type: "</span>, scope.type
                 <span class="hljs-keyword">if</span> scope.type == <span class="hljs-string">"split"</span>
                     scope.isSplit = <span class="hljs-literal">true</span>
                     scope.btnGroup = <span class="hljs-string">"btn-group"</span>
@@ -342,7 +352,8 @@ If set to false or not specified, the element will drop <em>down</em></p>
                     scope.isSplit = <span class="hljs-literal">false</span>
                     scope.btnGroup = <span class="hljs-string">""</span>
 
-    <span class="hljs-keyword">return</span> defObj</pre></div></div>
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
             
         </li>
         
@@ -401,7 +412,7 @@ If set to false or not specified, the element will drop <em>down</em>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"btnDropdown"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"btnDropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -433,7 +444,8 @@ If set to false or not specified, the element will drop <em>down</em>
             <span class="hljs-built_in">console</span>.e <span class="hljs-string">"The &lt;btn-dropdown&gt; directive is now deprecated. Please use &lt;dropdown type='btn'&gt; instead"</span>
             <span class="hljs-keyword">return</span>
 
-    <span class="hljs-keyword">return</span> defObj</pre></div></div>
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
             
         </li>
         
@@ -492,7 +504,7 @@ If set to false or not specified, the element will drop <em>down</em>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"splitDropdown"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"splitDropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -525,7 +537,8 @@ If set to false or not specified, the element will drop <em>down</em>
             <span class="hljs-built_in">console</span>.e <span class="hljs-string">"The &lt;split-dropdown&gt; directive is now deprecated. Please use &lt;dropdown type='split'&gt; instead"</span>
             <span class="hljs-keyword">return</span>
 
-    <span class="hljs-keyword">return</span> defObj</pre></div></div>
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
             
         </li>
         
@@ -536,7 +549,7 @@ If set to false or not specified, the element will drop <em>down</em>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <h2 id="rainbowlog">RainbowLog</h2>
+              <h1 id="navigation-bar">Navigation Bar</h1>
 
             </div>
             
@@ -548,6 +561,182 @@ If set to false or not specified, the element will drop <em>down</em>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Bootstrap’s navigation bar in just 2 lines of markup.
+<br/></p>
+<h4 id="example-">Example:</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">navbar-list</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"right"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">navbar-dropdown</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Dropdown item 1<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Dropdown item 2<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-title">navbar-dropdown</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">navbar-list</span>&gt;</span>
+</code></pre>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h2 id="navbar-navbar-">Navbar <code>&lt;navbar&gt;</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h4 id="attributes-">Attributes:</h4>
+<ul>
+<li><code>theme</code>: Can be either <code>default</code> or <code>inverse</code>. If none is specified, Angustrap will fallback to <code>default</code>.</li>
+<li><code>title</code>: The navigation bar title, usually your brand name.</li>
+<li><code>titleHref</code>: The URL the navbar <code>title</code> link should point to</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"navbar"</span>, [<span class="hljs-string">'AsRandom'</span>, (AsRandom) -&gt;
+        restrict: <span class="hljs-string">"E"</span>
+        replace: <span class="hljs-literal">true</span>
+        transclude: <span class="hljs-literal">true</span>
+        templateUrl: <span class="hljs-string">"templates/navbar.html"</span>
+        scope:
+            theme: <span class="hljs-string">"=?"</span>
+            title: <span class="hljs-string">"@title"</span>
+            titleHref: <span class="hljs-string">"@titleHref"</span>
+            fixed: <span class="hljs-string">"@fixed"</span>
+            asId: <span class="hljs-string">"@asId"</span>
+            asClass: <span class="hljs-string">"@asClass"</span>
+
+        controller: ($scope, $timeout, CleanUp) -&gt;
+            $scope.random = <span class="hljs-string">'#'</span> + AsRandom <span class="hljs-number">12</span>
+            <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
+            <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"bottom"</span>
+                $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"top"</span>
+                $scope.fixedWildcard = <span class="hljs-string">"navbar-static-"</span>
+            <span class="hljs-keyword">else</span>
+                $scope.fixedWildcard = <span class="hljs-string">""</span>
+
+</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Remove possible trailing spaces in class attribute</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            CleanUp $scope
+    ])</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h3 id="navbar-list">Navbar List</h3>
+<h5 id="attributes-">Attributes:</h5>
+<ul>
+<li>side: whether this list should be aligned to the <code>left</code> or to the <code>right</code> inside its parent <code>&lt;navbar&gt;</code></li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"navbarList"</span>,<span class="hljs-function"> -&gt;</span>
+    <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+    <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude&gt;&lt;/ul&gt;"</span>
+    <span class="hljs-attribute">scope</span>:
+        <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+        <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
+        <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+
+    <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
+        <span class="hljs-keyword">if</span> $scope.side <span class="hljs-keyword">then</span> $scope.wildcard = <span class="hljs-string">"navbar-"</span> <span class="hljs-keyword">else</span> $scope.wildcard = <span class="hljs-string">""</span>
+        CleanUp $scope
+)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h3 id="navbar-dropdown">Navbar Dropdown</h3>
+<h5 id="attributes-">Attributes:</h5>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"navbarDropdown"</span>,<span class="hljs-function"> -&gt;</span>
+    <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+    <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">scope</span>:
+        <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+        <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
+        <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
+
+    <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
+        CleanUp $scope
+
+    <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
+        &lt;li class="dropdown {{asClass}}" id="{{asId}}"&gt;
+            &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;{{title}} &lt;b class="caret"&gt;&lt;/b&gt;&lt;/a&gt;
+            &lt;ul class="dropdown-menu" data-ng-transclude&gt;&lt;/ul&gt;
+        &lt;/li&gt;
+        """</span>
+)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h2 id="rainbowlog">RainbowLog</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Provides colored console output: <a href="https://github.com/Androguide/RainbowLog">https://github.com/Androguide/RainbowLog</a></p>
 

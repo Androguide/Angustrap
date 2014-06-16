@@ -5,9 +5,11 @@
     defObj = {
       restrict: "E",
       replace: true,
-      template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>",
+      template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>",
       scope: {
-        icon: "@icon"
+        icon: "@icon",
+        asId: "@asId",
+        asClass: "@asClass"
       }
     };
     return defObj;

@@ -24,11 +24,6 @@
               </a>
             
               
-              <a class="source" href="btn-glyph.html">
-                btn-glyph.coffee
-              </a>
-            
-              
               <a class="source" href="dropdown-divider.html">
                 dropdown-divider.coffee
               </a>
@@ -44,13 +39,33 @@
               </a>
             
               
+              <a class="source" href="split-dropdown.html">
+                split-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="btn-glyph.html">
+                btn-glyph.coffee
+              </a>
+            
+              
               <a class="source" href="glyph.html">
                 glyph.coffee
               </a>
             
               
-              <a class="source" href="split-dropdown.html">
-                split-dropdown.coffee
+              <a class="source" href="navbar-dropdown.html">
+                navbar-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar-list.html">
+                navbar-list.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar.html">
+                navbar.coffee
               </a>
             
           </div>
@@ -129,19 +144,20 @@ If set to false or not specified, the element will drop <em>down</em></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">'Angustrap'</span>).directive <span class="hljs-string">"dropdown"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">'Angustrap'</span>, []).directive <span class="hljs-string">"dropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown.html"</span>
         <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
             <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
             <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
             <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
             <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
-            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"@dropup"</span>
-            <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
+            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"=dropup"</span>
+            <span class="hljs-attribute">asClick</span>: <span class="hljs-string">"=asClick"</span>
 
         <span class="hljs-attribute">link</span>:
             <span class="hljs-attribute">pre</span>: <span class="hljs-function"><span class="hljs-params">(scope)</span> -&gt;</span>

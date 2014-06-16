@@ -45,7 +45,7 @@
 # ```
 #<br/>
 # **N.B**: this directive is now deprecated, use `<dropdown type="btn">` instead
-angular.module("Angustrap").directive "btnDropdown", ->
+angular.module("Angustrap", []).directive "btnDropdown", ->
     defObj =
         restrict: "E"
         replace: true

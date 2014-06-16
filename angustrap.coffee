@@ -1,16 +1,24 @@
-(->
-    r = (t) ->
-        (r, i) ->
-            e.log "%c" + r, i + ";color:#fff;background:" + n[1][t]
-            return
-    e = console
-    t = 3
-    n = [["e", "s", "i"], ["#c0392b", "#2ecc71", "#3498db"]]
-    e[n[0][t]] = r(t) while t--
-    return
-)()
-
+window.replace = false
 angular.module("Angustrap", [])
+
+.service('AsRandom',  ->
+    return (x) ->
+        s = ""
+        while s.length < x and x > 0
+            r = Math.random()
+            s += ((if r < 0.1 then Math.floor(r * 100) else String.fromCharCode(Math.floor(r * 26) + ((if r > 0.5 then 97 else 65)))))
+        s
+)
+
+.service('CleanUp', ($timeout) ->
+    return (scope) ->
+        $timeout ->
+            if scope.asId
+                classes = $('#' + scope.asId).attr 'class'
+                $('#' + scope.asId).attr 'class', classes.trim()
+        , 0
+)
+
 
 # Glyphicons
 # ----------
@@ -32,9 +40,11 @@ angular.module("Angustrap", [])
     defObj =
         restrict: "E"
         replace: true
-        template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
+        template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
         scope:
             icon: "@icon"
+            asId: "@asId"
+            asClass: "@asClass"
 
     return defObj
 )
@@ -70,7 +80,6 @@ angular.module("Angustrap", [])
             theme: "@theme"
             size: "@size"
         link: (scope, el, attrs) ->
-            console.log el
             attrs.theme = attrs.theme or "default"
 
     return  defObj
@@ -88,7 +97,7 @@ angular.module("Angustrap", [])
 # **Attributes**:
 #   - `asHref`: the url this dropdown-item should point to
 # _Note that you can still pass the usual `.disabled` class to disable an item
-.directive("dropdownItem", ->
+.directive("listItem", ->
     defObj =
         restrict: "E"
         replace: true
@@ -102,7 +111,7 @@ angular.module("Angustrap", [])
 
 # ### Dropdown Divider
 # The `<dropdown-divider>` directive used through transclusion by the other dropdown directives
-.directive("dropdownDivider", ->
+.directive("listDivider", ->
     defObj =
         restrict: "E"
         replace: true
@@ -158,7 +167,7 @@ angular.module("Angustrap", [])
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 # ```
-.directive "dropdown", ->
+.directive("dropdown", ->
     defObj =
         restrict: "E"
         replace: true
@@ -176,7 +185,6 @@ angular.module("Angustrap", [])
         link:
             pre: (scope) ->
                 if scope.dropup then scope.directionClass = "dropup" else scope.directionClass = "dropdown"
-                console.log "type: ", scope.type
                 if scope.type == "split"
                     scope.isSplit = true
                     scope.btnGroup = "btn-group"
@@ -192,6 +200,8 @@ angular.module("Angustrap", [])
                     scope.btnGroup = ""
 
     return defObj
+)
+
 
 # ### Single-button dropdown **(DEPRECATED)**
 # #### Attributes:
@@ -233,7 +243,7 @@ angular.module("Angustrap", [])
 # ```
 #<br/>
 # **N.B**: this directive is now deprecated, use `<dropdown type="btn">` instead
-.directive "btnDropdown", ->
+.directive("btnDropdown", ->
     defObj =
         restrict: "E"
         replace: true
@@ -253,6 +263,8 @@ angular.module("Angustrap", [])
             return
 
     return defObj
+)
+
 
 # ### Split-button dropdown **(DEPRECATED)**
 # ##### Attributes:
@@ -294,7 +306,7 @@ angular.module("Angustrap", [])
 # ```
 # <br/>
 # **N.B**: this directive is now deprecated, use `<dropdown type="split">` instead
-.directive "splitDropdown", ->
+.directive("splitDropdown", ->
     defObj =
         restrict: "E"
         replace: true
@@ -315,7 +327,102 @@ angular.module("Angustrap", [])
             return
 
     return defObj
+)
 
+
+# Navigation Bar
+# ==============
+# 
+# Bootstrap's navigation bar in just 2 lines of markup.
+# <br/>
+# ####Example:
+# ```html
+# <navbar-list side="right">
+#     <list-item as-href="#">Item 1</list-item>
+#     <list-item as-href="#">Item 2</list-item>
+#     <list-item as-href="#">Item 3</list-item>
+#    <navbar-dropdown title="Sign-In">
+#        <list-item as-href="#">Dropdown item 1</list-item>
+#        <list-item as-href="#">Dropdown item 2</list-item>
+#    </navbar-dropdown>
+# </navbar-list>
+# ```
+
+# Navbar `<navbar>`
+# -----------------
+# #### Attributes:
+# * `theme`: Can be either `default` or `inverse`. If none is specified, Angustrap will fallback to `default`.
+# * `title`: The navigation bar title, usually your brand name.
+# * `titleHref`: The URL the navbar `title` link should point to
+.directive("navbar", ['AsRandom', (AsRandom) ->
+        restrict: "E"
+        replace: true
+        transclude: true
+        templateUrl: "templates/navbar.html"
+        scope:
+            theme: "=?"
+            title: "@title"
+            titleHref: "@titleHref"
+            fixed: "@fixed"
+            asId: "@asId"
+            asClass: "@asClass"
+
+        controller: ($scope, $timeout, CleanUp) ->
+            $scope.random = '#' + AsRandom 12
+            if !$scope.theme then  $scope.theme = "default"
+            if $scope.fixed is "bottom"
+                $scope.fixedWildcard = "navbar-fixed-"
+            else if $scope.fixed is "top"
+                $scope.fixedWildcard = "navbar-static-"
+            else
+                $scope.fixedWildcard = ""
+
+            # Remove possible trailing spaces in class attribute
+            CleanUp $scope
+    ])
+
+# ###Navbar List
+# ##### Attributes:
+# * side: whether this list should be aligned to the `left` or to the `right` inside its parent `<navbar>`
+.directive("navbarList", ->
+    restrict: "E"
+    replace: true
+    transclude: true
+    template: "<ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude></ul>"
+    scope:
+        asId: "@asId"
+        asClass: "@asClass"
+        side: "@side"
+
+    controller: ($scope, CleanUp) ->
+        if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""
+        CleanUp $scope
+)
+
+# NavbarDropdown `<navbar-dropdown>`
+# -----------------
+#
+# #### Attributes:
+# * `title`: The title of the dropdown list item. Has the same appearance as a `<list-item>`
+.directive("navbarDropdown", ->
+    restrict: "E"
+    replace: true
+    transclude: true
+    scope:
+        asId: "@asId"
+        asClass: "@asClass"
+        title: "@title"
+
+    controller: ($scope, CleanUp) ->
+        CleanUp $scope
+
+    template: """
+        <li class="dropdown {{asClass}}" id="{{asId}}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
+            <ul class="dropdown-menu" data-ng-transclude></ul>
+        </li>
+        """
+)
 
 # RainbowLog
 # ----------

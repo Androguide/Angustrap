@@ -24,11 +24,6 @@
               </a>
             
               
-              <a class="source" href="btn-glyph.html">
-                btn-glyph.coffee
-              </a>
-            
-              
               <a class="source" href="dropdown-divider.html">
                 dropdown-divider.coffee
               </a>
@@ -44,13 +39,33 @@
               </a>
             
               
+              <a class="source" href="split-dropdown.html">
+                split-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="btn-glyph.html">
+                btn-glyph.coffee
+              </a>
+            
+              
               <a class="source" href="glyph.html">
                 glyph.coffee
               </a>
             
               
-              <a class="source" href="split-dropdown.html">
-                split-dropdown.coffee
+              <a class="source" href="navbar-dropdown.html">
+                navbar-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar-list.html">
+                navbar-list.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar.html">
+                navbar.coffee
               </a>
             
           </div>
@@ -112,7 +127,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>).directive(<span class="hljs-string">"dropdownItem"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>, []).directive(<span class="hljs-string">"dropdownItem"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -120,6 +135,8 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
         <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown-item.html"</span>
         <span class="hljs-attribute">scope</span>:
             <span class="hljs-attribute">asHref</span>: <span class="hljs-string">"@asHref"</span>
+            <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+            <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
 
     <span class="hljs-keyword">return</span> defObj
 )</pre></div></div>

@@ -1,22 +1,24 @@
 Glyphicons
 ----------
-Shortcut directives for Bootstrap's glyphicons.<br/><br/>
-**Examples**:<br/>
-```html
-<glyph icon="heart"></glyph>
-<glyph icon="qrcode">Sign-In</glyph>
-<btn-glyph icon="heart-empty">Angustrap</glyph>
-```
-<br/>
+Shortcut directives for Bootstrap's glyphicons.
+
 _For the list of all available icons, see http://getbootstrap.com/components/#glyphicons-glyphs_
 
-###Simple glyph icon (span)
-**Attributes**:
+
+###Simple glyph icon (span) `<glyph>`
+#####Attributes:
   - icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).<br/>
   _See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list._
+  
+#####Example:
+```html
+<!-- Heart icon -->
+<glyph icon="heart"></glyph>
+```
+&nbsp;
 
-###Button glyphicon
-**Attributes**:
+###Button glyphicon `<btn-glyph>`
+#####Attributes:
   - `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
   _See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list._
 
@@ -35,120 +37,166 @@ _For the list of all available icons, see http://getbootstrap.com/components/#gl
      * _lg_
      * _sm_
      * _xs_
-<br/><br/>
 
-Dropdowns
----------
-Fully markup-driven directives to abstract
-Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components.<br/><br/>
-_Note that you can still pass the usual `.dropdown-menu-right` class to right-align the dropdown relatively to its parent_
-<br/>
-
-###Dropdown Item
-This is the `<dropdown-item>` directive used through transclusion by the other dropdown directives.
-<br/>
-**Attributes**:
-  - `asHref`: the url this dropdown-item should point to
-_Note that you can still pass the usual `.disabled` class to disable an item
-<br/>
-
-###Dropdown Divider
-The `<dropdown-divider>` directive used through transclusion by the other dropdown directives
-<br/>
-
-###Regular Dropdown
-####Attributes:
-  * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
-  If set to false or not specified, the element will drop _down_
-
-**Example**:<br/>
+#####Example:
 ```html
-<dropdown>
-    <dropdown-item as-href="http://google.com">Google</dropdown-item>
-    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-</dropdown>
-#
-<!-- Dropup -->
-<dropdown dropup="true">
-    <dropdown-item as-href="http://google.com">Google</dropdown-item>
-    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-</dropdown>
+<!-- A large orange button with a heart in it -->
+<btn-glyph icon="heart" theme="warning" size="lg"></glyph>
 ```
-<br/>
 
-###Single-button dropdown
-####Attributes:
-  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
-      - `primary`
-      - `success`
-      - `info`
-      - `warning`
-      - `danger`
 
-  * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
-    See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
+&nbsp;
 
-  * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
-    Possible choice are:
-      - `lg`
-      - `sm`
-      - `xs`
+-------------
 
-  * title: The string to display inside the action button of the split dropdown
+&nbsp;
 
-  * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
-  If set to false or not specified, the element will drop _down_
 
-**Example**:<br/>
+Dropdown `<dropdown>`
+---------
+A single directive to abstract all of 
+Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components.
+> One Directive to rule them all,<br/>
+> One Directive to find them,<br/>
+> One Directive to bring them all and in the darkness 2-way data-bind them,<br/>
+> In the Land of Mordor where the Shadow-DOM lie
+
+&nbsp;
+
+####Examples:
+    
+
+#####Single-button dropdown
 ```html
-<btn-dropdown theme="danger" size="lg" title="Sign-In">
+<dropdown type="btn" theme="danger" size="lg" icon="heart" title="Dropdown">
     <dropdown-item as-href="http://google.com">Google</dropdown-item>
     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-</btn-dropdown>
+</dropdown>
 
 <!-- Drop up -->
-<btn-dropdown theme="danger" size="lg" title="Sign-In" dropup="true">
+<dropdown type="btn" theme="success" size="sm" icon="qrcode"  dropup="true" title="Dropup">
     <dropdown-item as-href="http://google.com">Google</dropdown-item>
     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-</btn-dropdown>
+</dropdown>
 ```
-<br/>
 
-###Split-button dropdown
-#####Attributes:
-  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+&nbsp;
+
+#####Split-button dropdown
+```html
+<dropdown type="split" theme="danger" size="lg" icon="heart" title="Sign-In">
+    <dropdown-item as-href="http://google.com">Google</dropdown-item>
+    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+</dropdown>
+
+<!-- Drop up -->
+<dropdown type="split" theme="info" size="xs" icon="qrcode" title="Sign-In" dropup="true">
+    <dropdown-item as-href="http://google.com">Google</dropdown-item>
+    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+</dropdown>
+```
+
+&nbsp;
+
+####Attributes:
+  * `type`: the type of the dropdown. can be either `btn` or `split`
+   &nbsp;
+
+  * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
-      * `primary`
-      * `success`
-      * `info`
-      * `warning`
-      * `danger`
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`
 
-  * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+  * `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 
-  * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+  * `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
     Possible choice are:
       * `lg`
       * `sm`
       * `xs`
 
-  * title: The string to display inside the action button of the split dropdown
+  * `title`: The string to display inside the action button of the split dropdown
 
-  * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+  * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
   If set to false or not specified, the element will drop _down_
 
-**Example**:<br/>
-```html
-<split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In">
-    <dropdown-item as-href="http://google.com">Google</dropdown-item>
-    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-</split-dropdown>
+&nbsp;
 
-<!-- Drop up -->
-<split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In" dropup="true">
-    <dropdown-item as-href="http://google.com">Google</dropdown-item>
-    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-</split-dropdown>
+=======
+
+&nbsp;
+
+###List Item `<list-item>`
+This is the `<list-item>` directive used through transclusion by the dropdown & navbar directives.
+<br/>
+
+#####Attributes:
+  - `asHref`: the url this dropdown-item should point to
+_Note that you can still pass the usual `.disabled` class to disable an item
+<br/>
+
+&nbsp;
+
+=======
+
+&nbsp;
+
+###List Divider `<list-divider>`
+The `<list-divider>` directive used through transclusion by the dropdown & navbar directives
+
+&nbsp;
+
+-------------
+
+&nbsp;
+
+Navigation Bar  
+==============
+
+Bootstrap's navigation bar in just 1 line of markup (without the content).
+<br/> 
+
+####Example:
+```html
+<navbar as-id="navbar" fixed="top" title="Angustrap" title-href="#">
+    <navbar-list side="right">
+        <list-item as-href="#">Item 1</list-item>
+        <list-item as-href="#">Item 2</list-item>
+        <list-item as-href="#">Item 3</list-item>
+        <navbar-dropdown title="Sign-In">
+            <list-item as-href="#">Dropdown item 1</list-item>
+            <list-item as-href="#">Dropdown item 2</list-item>
+        </navbar-dropdown>
+    </navbar-list>
+</navbar>
 ```
+
+Navbar `<navbar>`
+-----------------
+
+#### Attributes:
+ * `theme`: Can be either `default` or `inverse`. If none is specified, Angustrap will fallback to `default`.
+ 
+ * `title`: The navigation bar title, usually your brand name.
+ 
+ * `titleHref`: The URL the navbar `title` link should point to.
+ 
+ <br/>
+ 
+NavbarList `<navbar-list>`
+-----------------
+
+#### Attributes:
+* `side`: Whether the list should be aligned to the `left` or to the `right` inside its `<navbar>` parent.
+
+<br/>
+ 
+NavbarDropdown `<navbar-dropdown>`
+-----------------
+
+#### Attributes:
+* `title`: The title of the dropdown list item. Has the same appearance as a `<list-item>`

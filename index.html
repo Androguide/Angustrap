@@ -15,6 +15,18 @@
 </head>
 <body data-ng-app="Angustrap">
 
+<navbar as-id="navbar" fixed="top" title="Angustrap" title-href="#">
+    <navbar-list side="right">
+        <list-item as-href="#">Item 1</list-item>
+        <list-item as-href="#">Item 2</list-item>
+        <list-item as-href="#">Item 3</list-item>
+        <navbar-dropdown title="Sign-In">
+            <list-item as-href="#">Dropdown item 1</list-item>
+            <list-item as-href="#">Dropdown item 2</list-item>
+        </navbar-dropdown>
+    </navbar-list>
+</navbar>
+
 <div class="container">
     <br><br>
 
@@ -47,35 +59,35 @@
     <div class="row">
         <div class="col-sm-2">
             <dropdown type="split" title="Dropdown" theme="warning" id="test" size="sm" icon="qrcode" dropup="true" as-click="alert('YEP')">
-                <dropdown-item as-href="https://google.com">Google</dropdown-item>
-                <dropdown-divider></dropdown-divider>
-                <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
-                <dropdown-divider></dropdown-divider>
-                <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
-                <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
-                <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+                <list-item as-href="" class="disabled">Instagram</list-item>
+                <list-item as-href="" class="disabled">Linked-in</list-item>
             </dropdown>
         </div>
         <div class="col-sm-2">
             <btn-dropdown theme="danger" title="Sign-In" dropup="true">
-                <dropdown-item as-href="https://google.com">Google</dropdown-item>
-                <dropdown-divider></dropdown-divider>
-                <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
-                <dropdown-divider></dropdown-divider>
-                <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
-                <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
-                <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+                <list-item as-href="" class="disabled">Instagram</list-item>
+                <list-item as-href="" class="disabled">Linked-in</list-item>
             </btn-dropdown>
         </div>
         <div class="col-sm-2">
             <split-dropdown theme="success" size="lg" icon="qrcode" title="Sign-In">
-                <dropdown-item as-href="https://google.com">Google</dropdown-item>
-                <dropdown-divider></dropdown-divider>
-                <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
-                <dropdown-divider></dropdown-divider>
-                <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
-                <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
-                <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+                <list-item as-href="" class="disabled">Instagram</list-item>
+                <list-item as-href="" class="disabled">Linked-in</list-item>
             </split-dropdown>
         </div>
         <div class="col-sm-2"></div>

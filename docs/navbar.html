@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Navigation Bar</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="btn-dropdown.html">
+                btn-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown-divider.html">
+                dropdown-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown-item.html">
+                dropdown-item.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown.html">
+                dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="split-dropdown.html">
+                split-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="btn-glyph.html">
+                btn-glyph.coffee
+              </a>
+            
+              
+              <a class="source" href="glyph.html">
+                glyph.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar-dropdown.html">
+                navbar-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar-list.html">
+                navbar-list.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar.html">
+                navbar.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="navigation-bar">Navigation Bar</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Bootstrap’s navigation bar in just 2 lines of markup.
+<br/></p>
+<h4 id="example-">Example:</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">navbar-list</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"right"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">navbar-dropdown</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Dropdown item 1<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">list-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"#"</span>&gt;</span>Dropdown item 2<span class="hljs-tag">&lt;/<span class="hljs-title">list-item</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-title">navbar-dropdown</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">navbar-list</span>&gt;</span>
+</code></pre>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="navbar-navbar-">Navbar <code>&lt;navbar&gt;</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h4 id="attributes-">Attributes:</h4>
+<ul>
+<li><code>theme</code>: Can be either <code>default</code> or <code>inverse</code>. If none is specified, Angustrap will fallback to <code>default</code>.</li>
+<li><code>title</code>: The navigation bar title, usually your brand name.</li>
+<li><code>titleHref</code>: The URL the navbar <code>title</code> link should point to</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"Angustrap"</span>)</span>.<span class="hljs-title">directive</span><span class="hljs-params">(<span class="hljs-string">"navbar"</span>, [<span class="hljs-string">'AsRandom'</span>, (AsRandom) -&gt;
+    restrict: <span class="hljs-string">"E"</span>
+    replace: <span class="hljs-literal">true</span>
+    transclude: <span class="hljs-literal">true</span>
+    templateUrl: <span class="hljs-string">"templates/navbar.html"</span>
+    scope:
+        theme: <span class="hljs-string">"=?"</span>
+        title: <span class="hljs-string">"@title"</span>
+        titleHref: <span class="hljs-string">"@titleHref"</span>
+        fixed: <span class="hljs-string">"@fixed"</span>
+        asId: <span class="hljs-string">"@asId"</span>
+        asClass: <span class="hljs-string">"@asClass"</span>
+
+    controller: ($scope, $timeout, CleanUp) -&gt;
+        $scope.random = <span class="hljs-string">'#'</span> + AsRandom <span class="hljs-number">12</span>
+        <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
+        <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"bottom"</span>
+            $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"top"</span>
+            $scope.fixedWildcard = <span class="hljs-string">"navbar-static-"</span>
+        <span class="hljs-keyword">else</span>
+            $scope.fixedWildcard = <span class="hljs-string">""</span>
+
+</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Remove possible trailing spaces in class attribute</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        CleanUp $scope
+])</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
