@@ -193,7 +193,7 @@ angular.module("Angustrap", [])
 
     return defObj
 
-# ### Single-button dropdown
+# ### Single-button dropdown **(DEPRECATED)**
 # #### Attributes:
 #   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
@@ -231,6 +231,8 @@ angular.module("Angustrap", [])
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </btn-dropdown>
 # ```
+#<br/>
+# **N.B**: this directive is now deprecated, use `<dropdown type="btn">` instead
 .directive "btnDropdown", ->
     defObj =
         restrict: "E"
@@ -247,11 +249,12 @@ angular.module("Angustrap", [])
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
             attrs.theme = attrs.theme or "default"
             if scope.dropup then scope.directionClass = "dropup"
+            console.e "The <btn-dropdown> directive is now deprecated. Please use <dropdown type='btn'> instead"
             return
 
     return defObj
 
-# ### Split-button dropdown
+# ### Split-button dropdown **(DEPRECATED)**
 # ##### Attributes:
 #   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
@@ -281,8 +284,16 @@ angular.module("Angustrap", [])
 # <split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-# </btn-dropdown>
+# </split-dropdown>
+#
+# <!-- Drop up -->
+# <split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In" dropup="true">
+#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
+#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+# </split-dropdown>
 # ```
+# <br/>
+# **N.B**: this directive is now deprecated, use `<dropdown type="split">` instead
 .directive "splitDropdown", ->
     defObj =
         restrict: "E"
@@ -300,6 +311,7 @@ angular.module("Angustrap", [])
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
             attrs.theme = attrs.theme or "default"
             if scope.dropup then scope.directionClass = "dropup"
+            console.e "The <split-dropdown> directive is now deprecated. Please use <dropdown type='split'> instead"
             return
 
     return defObj

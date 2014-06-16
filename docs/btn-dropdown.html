@@ -90,7 +90,7 @@
 Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> components.<br/><br/>
 <em>Note that you can still pass the usual <code>.dropdown-menu-right</code> class to right-align the dropdown relatively to its parent</em>
 <br/></p>
-<h3 id="single-button-dropdown">Single-button dropdown</h3>
+<h3 id="single-button-dropdown-deprecated-">Single-button dropdown <strong>(DEPRECATED)</strong></h3>
 <h4 id="attributes-">Attributes:</h4>
 <ul>
 <li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
@@ -117,15 +117,24 @@ Possible choice are:</p>
 <li><p>title: The string to display inside the action button of the split dropdown</p>
 </li>
 <li><p>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
-If set to false or not specified, the element will drop <em>down</em></p>
+If set to false or not specified, the element will drop <em>down</em>
+<br/></p>
 </li>
 </ul>
-<p><br/><strong>Example</strong>:<br/></p>
+<p><strong>Example</strong>:<br/></p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">btn-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">btn-dropdown</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Drop up --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">btn-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span> <span class="hljs-attribute">dropup</span>=<span class="hljs-value">"true"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">btn-dropdown</span>&gt;</span>
 </code></pre>
+<p><br/>
+<strong>N.B</strong>: this directive is now deprecated, use <code>&lt;dropdown type=&quot;btn&quot;&gt;</code> instead</p>
 
             </div>
             
@@ -158,6 +167,7 @@ If set to false or not specified, the element will drop <em>down</em></p>
             
             <div class="content"><div class='highlight'><pre>            attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
             <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span>
+            <span class="hljs-built_in">console</span>.e <span class="hljs-string">"The &lt;btn-dropdown&gt; directive is now deprecated. Please use &lt;dropdown type='btn'&gt; instead"</span>
             <span class="hljs-keyword">return</span>
 
     <span class="hljs-keyword">return</span> defObj</pre></div></div>
