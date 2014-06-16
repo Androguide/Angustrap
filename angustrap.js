@@ -73,13 +73,34 @@
       transclude: true,
       templateUrl: "templates/dropdowns/dropdown.html",
       scope: {
-        dropup: "=dropup"
+        type: "@type",
+        theme: "@theme",
+        icon: "@icon",
+        size: "@size",
+        title: "@title",
+        dropup: "=dropup",
+        asClick: "=asClick"
       },
-      link: function(scope) {
-        if (scope.dropup) {
-          return scope.directionClass = "dropup";
-        } else {
-          return scope.directionClass = "dropdown";
+      link: {
+        pre: function(scope) {
+          if (scope.dropup) {
+            scope.directionClass = "dropup";
+          } else {
+            scope.directionClass = "dropdown";
+          }
+          console.log("type: ", scope.type);
+          if (scope.type === "split") {
+            scope.isSplit = true;
+            return scope.btnGroup = "btn-group";
+          } else if (scope.type === "btn") {
+            scope.isSplit = false;
+            scope.srOnly = "";
+            return scope.btnGroup = "";
+          } else if (!scope.type) {
+            scope.srOnly = "sr-only";
+            scope.isSplit = false;
+            return scope.btnGroup = "";
+          }
         }
       }
     };

@@ -1,7 +1,7 @@
-<div class="{{directionClass}}">
-  <button class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" type="button" id="{{asId}}" data-toggle="dropdown">
-    {{title}}
+<div class="{{btnGroup}} {{directionClass}}">
+  <button class="btn btn-{{theme}} btn-{{size}}" type="button" data-toggle="dropdown">
+      <glyph icon="{{icon}}"></glyph> {{title}}
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="{{asId}}" data-ng-transclude></ul>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="{{id}}" data-ng-transclude></ul>
 </div>

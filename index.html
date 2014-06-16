@@ -46,6 +46,17 @@
     </blockquote>
     <div class="row">
         <div class="col-sm-2">
+            <dropdown type="split" title="Dropdown" theme="warning" id="test" size="sm" icon="qrcode" dropup="true" as-click="alert('YEP')">
+                <dropdown-item as-href="https://google.com">Google</dropdown-item>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-item as-href="https://twitter.com">Twitter</dropdown-item>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-item as-href="" class="disabled">Facebook</dropdown-item>
+                <dropdown-item as-href="" class="disabled">Instagram</dropdown-item>
+                <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
+            </dropdown>
+        </div>
+        <div class="col-sm-2">
             <btn-dropdown theme="danger" title="Sign-In" dropup="true">
                 <dropdown-item as-href="https://google.com">Google</dropdown-item>
                 <dropdown-divider></dropdown-divider>
@@ -67,7 +78,6 @@
                 <dropdown-item as-href="" class="disabled">Linked-in</dropdown-item>
             </split-dropdown>
         </div>
-        <div class="col-sm-2"></div>
         <div class="col-sm-2"></div>
         <div class="col-sm-2"></div>
         <div class="col-sm-2"></div>

@@ -1,7 +1,11 @@
-<div class="{{directionClass}}">
-  <button class="btn dropdown-toggle sr-only" type="button" id="{{asId}}" data-toggle="dropdown">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="{{asId}}" data-ng-transclude></ul>
+<div class="{{btnGroup}} {{directionClass}}">
+    <button type="button" class="btn btn-{{theme}} {{srOnly}}" data-toggle="{{isSplit && '' || 'dropdown' }}" ng-click="if()">
+        <glyph icon="{{icon}}"></glyph> {{title}}
+        <span class="caret" data-ng-hide="isSplit"></span>
+    </button>
+    <button type="button" class="btn btn-{{theme}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">
+        <span class="caret"></span>
+        <span class="sr-only" style="position: relative"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
 </div>
