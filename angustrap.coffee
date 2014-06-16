@@ -46,19 +46,19 @@ angular.module("Angustrap", [])
 #
 #   - `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #              The stock ones are as follows, but you can create your own in your stylesheet if you want:
-#                * _primary_
-#                * _success_
-#                * _info_
-#                * _warning_
-#                * _danger_
+#                * `primary`
+#                * `success`
+#                * `info`
+#                * `warning`
+#                * `danger`
 #
 #             _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `.btn-default` class_
 #
 #   - `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
 #             Possible choice are:
-#               * _lg_
-#               * _sm_
-#               * _xs_
+#               * `lg_
+#               * `sm`
+#               * `xs`
 .directive("btnGlyph", ($timeout) ->
     defObj =
         restrict: "E"
@@ -113,9 +113,20 @@ angular.module("Angustrap", [])
 )
 
 # ### Regular Dropdown
+# #### Attributes:
+#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+#   If set to false or not specified, the element will drop _down_
+# <br/>
+#
 # **Example**:<br/>
 # ```html
-# <dropdown as-id="myDropdown">
+# <dropdown>
+#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
+#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+# </dropdown>
+#
+# <!-- Dropup -->
+# <dropdown dropup="true">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
@@ -127,20 +138,52 @@ angular.module("Angustrap", [])
         transclude: true
         templateUrl: "templates/dropdowns/dropdown.html"
         scope:
-            asId: "@asId"
+            dropup: "=dropup"
+        link: (scope) ->
+            if scope.dropup then scope.directionClass = "dropup" else scope.directionClass = "dropdown"
 
     return defObj
 )
 
 # ### Single-button dropdown
+# #### Attributes:
+#   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+#       * `primary`
+#       * `success`
+#       * `info`
+#       * `warning`
+#       * `danger`
+#
+#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
+#
+#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#     Possible choice are:
+#       * `lg`
+#       * `sm`
+#       * `xs`
+#
+#   * title: The string to display inside the action button of the split dropdown
+#
+#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+#   If set to false or not specified, the element will drop _down_
+# <br/>
+#
 # **Example**:<br/>
 # ```html
 # <btn-dropdown theme="danger" size="lg" title="Sign-In">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </btn-dropdown>
+#
+# <!-- Drop up -->
+# <btn-dropdown theme="danger" size="lg" title="Sign-In" dropup="true">
+#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
+#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+# </btn-dropdown>
 # ```
-.directive "btnDropdown", ($timeout) ->
+.directive "btnDropdown", ->
     defObj =
         restrict: "E"
         replace: true
@@ -150,29 +193,49 @@ angular.module("Angustrap", [])
             theme: "@theme"
             size: "@size"
             title: "@title"
+            dropup: "=dropup"
 
         link: (scope, el, attrs) ->
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
             attrs.theme = attrs.theme or "default"
+            if scope.dropup then scope.directionClass = "dropup"
             return
 
     return defObj
 
 # ### Split-button dropdown
 # ##### Attributes:
-#   * theme
-#   * icon
-#   * size
-#   * title
+#   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+#       * `primary`
+#       * `success`
+#       * `info`
+#       * `warning`
+#       * `danger`
 #
-# <br/>**Example**:<br/>
+#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
+#
+#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#     Possible choice are:
+#       * `lg`
+#       * `sm`
+#       * `xs`
+#
+#   * title: The string to display inside the action button of the split dropdown
+#
+#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+#   If set to false or not specified, the element will drop _down_
+# <br/>
+#
+# **Example**:<br/>
 # ```html
 # <split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </btn-dropdown>
 # ```
-.directive "splitDropdown", ($timeout) ->
+.directive "splitDropdown", ->
     defObj =
         restrict: "E"
         replace: true
@@ -183,10 +246,12 @@ angular.module("Angustrap", [])
             icon: "@icon"
             size: "@size"
             title: "@title"
+            dropup: "=dropup"
 
         link: (scope, el, attrs) ->
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
             attrs.theme = attrs.theme or "default"
+            if scope.dropup then scope.directionClass = "dropup"
             return
 
     return defObj

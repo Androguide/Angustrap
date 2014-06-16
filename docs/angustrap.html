@@ -123,19 +123,19 @@ angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Ang
 </code></pre></li>
 <li><p><code>theme</code>: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).</p>
 <pre><code>     The stock ones are as follows, but you can create your own <span class="hljs-keyword">in</span> your stylesheet <span class="hljs-keyword">if</span> you <span class="hljs-attribute">want</span>:
-       * _primary_
-       * _success_
-       * _info_
-       * _warning_
-       * _danger_
+       * `<span class="javascript">primary</span>`
+       * `<span class="javascript">success</span>`
+       * `<span class="javascript">info</span>`
+       * `<span class="javascript">warning</span>`
+       * `<span class="javascript">danger</span>`
 
     _**Note**: If <span class="hljs-literal">no</span> `<span class="javascript">theme</span>` attribute <span class="hljs-keyword">is</span> specified, Angustrap will <span class="hljs-reserved">default</span>-back to Bootstrap<span class="hljs-string">'s `.btn-default` class_</span>
 </code></pre></li>
 <li><p><code>size</code>: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).</p>
 <pre><code>    Possible choice <span class="hljs-attribute">are</span>:
-      * _lg_
-      * _sm_
-      * _xs_
+      * `<span class="javascript">lg_
+      * </span>`sm`<span class="javascript">
+      * </span>`xs`<span class="javascript"></span>
 </code></pre></li>
 </ul>
 
@@ -254,8 +254,19 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <h3 id="regular-dropdown">Regular Dropdown</h3>
-<p><strong>Example</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-id</span>=<span class="hljs-value">"myDropdown"</span>&gt;</span>
+<h4 id="attributes-">Attributes:</h4>
+<ul>
+<li>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
+If set to false or not specified, the element will drop <em>down</em></li>
+</ul>
+<p><br/><strong>Example</strong>:<br/></p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Dropup --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">dropup</span>=<span class="hljs-value">"true"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
@@ -270,7 +281,9 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown.html"</span>
         <span class="hljs-attribute">scope</span>:
-            <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"@dropup"</span>
+        <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope)</span> -&gt;</span>
+            <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span> <span class="hljs-keyword">else</span> scope.directionClass = <span class="hljs-string">"dropdown"</span>
 
     <span class="hljs-keyword">return</span> defObj
 )</pre></div></div>
@@ -285,7 +298,36 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <h3 id="single-button-dropdown">Single-button dropdown</h3>
-<p><strong>Example</strong>:<br/></p>
+<h4 id="attributes-">Attributes:</h4>
+<ul>
+<li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
+The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
+<ul>
+<li><code>primary</code></li>
+<li><code>success</code></li>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>danger</code></li>
+</ul>
+</li>
+<li><p>icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).
+See <a href="http://getbootstrap.com/components/#glyphicons-glyphs">here</a> for the full list.</p>
+</li>
+<li><p>size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).
+Possible choice are:</p>
+<ul>
+<li><code>lg</code></li>
+<li><code>sm</code></li>
+<li><code>xs</code></li>
+</ul>
+</li>
+<li><p>title: The string to display inside the action button of the split dropdown</p>
+</li>
+<li><p>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
+If set to false or not specified, the element will drop <em>down</em></p>
+</li>
+</ul>
+<p><br/><strong>Example</strong>:<br/></p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">btn-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
@@ -294,7 +336,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"btnDropdown"</span>, <span class="hljs-function"><span class="hljs-params">($timeout)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"btnDropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -304,6 +346,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
             <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
             <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
             <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
+            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"@dropup"</span>
 
         <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span></pre></div></div>
             
@@ -321,6 +364,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
             </div>
             
             <div class="content"><div class='highlight'><pre>            attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
+            <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span>
             <span class="hljs-keyword">return</span>
 
     <span class="hljs-keyword">return</span> defObj</pre></div></div>
@@ -337,10 +381,32 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
               <h3 id="split-button-dropdown">Split-button dropdown</h3>
 <h5 id="attributes-">Attributes:</h5>
 <ul>
-<li>theme</li>
-<li>icon</li>
-<li>size</li>
-<li>title</li>
+<li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
+The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
+<ul>
+<li><code>primary</code></li>
+<li><code>success</code></li>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>danger</code></li>
+</ul>
+</li>
+<li><p>icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).
+See <a href="http://getbootstrap.com/components/#glyphicons-glyphs">here</a> for the full list.</p>
+</li>
+<li><p>size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).
+Possible choice are:</p>
+<ul>
+<li><code>lg</code></li>
+<li><code>sm</code></li>
+<li><code>xs</code></li>
+</ul>
+</li>
+<li><p>title: The string to display inside the action button of the split dropdown</p>
+</li>
+<li><p>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
+If set to false or not specified, the element will drop <em>down</em></p>
+</li>
 </ul>
 <p><br/><strong>Example</strong>:<br/></p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">split-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
@@ -351,7 +417,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"splitDropdown"</span>, <span class="hljs-function"><span class="hljs-params">($timeout)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive <span class="hljs-string">"splitDropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
@@ -362,6 +428,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
             <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
             <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
             <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
+            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"@dropup"</span>
 
         <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span></pre></div></div>
             
@@ -379,6 +446,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
             </div>
             
             <div class="content"><div class='highlight'><pre>            attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
+            <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span>
             <span class="hljs-keyword">return</span>
 
     <span class="hljs-keyword">return</span> defObj</pre></div></div>

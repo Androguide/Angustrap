@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>dropdown.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="btn-dropdown.html">
+                btn-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="btn-glyph.html">
+                btn-glyph.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown-divider.html">
+                dropdown-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown-item.html">
+                dropdown-item.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown.html">
+                dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="glyph.html">
+                glyph.coffee
+              </a>
+            
+              
+              <a class="source" href="split-dropdown.html">
+                split-dropdown.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>dropdown.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="regular-dropdown">Regular Dropdown</h3>
+<h4 id="attributes-">Attributes:</h4>
+<ul>
+<li>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
+If set to false or not specified, the element will drop <em>down</em>
+<br/>
+<strong>Example</strong>:<br/>
+```html<dropdown>
+<dropdown-item as-href="http://google.com">Google</dropdown-item>
+<dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+</dropdown>
+
+</li>
+</ul>
+<p><!-- Dropup --></p>
+<p><dropdown dropup="true">
+    <dropdown-item as-href="http://google.com">Google</dropdown-item>
+    <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
+</dropdown>
+```</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">'Angustrap'</span>).directive <span class="hljs-string">"dropdown"</span>,<span class="hljs-function"> -&gt;</span>
+    defObj =
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown.html"</span>
+        <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"@dropup"</span>
+        <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope)</span> -&gt;</span>
+            <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span> <span class="hljs-keyword">else</span> scope.directionClass = <span class="hljs-string">"dropdown"</span>
+
+    <span class="hljs-keyword">return</span> defObj</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
