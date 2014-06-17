@@ -200,3 +200,47 @@ NavbarDropdown `<navbar-dropdown>`
 
 #### Attributes:
 * `title`: The title of the dropdown list item. Has the same appearance as a `<list-item>`
+
+&nbsp;
+
+-------------
+
+&nbsp;
+
+Input Groups
+============
+
+InputGroup `<input-group>`
+--------------------------
+A single directive to abstract all of Bootstrap's input-group components.
+
+####Examples:
+```html
+<!-- Left-aligned <span> add-on with text input -->
+<input-group title="@" type="span" side="left" input-type="text"></input-group>
+
+<!-- Right-aligned blue <button> add-on with email input -->
+<input-group title="@" type="btn" side="right" input-type="email" theme="primary"></input-group>
+```
+
+&nbsp;
+
+####Attributes:
+* `title`: The text to display inside of the input add-on (span, button... depending on the `type` attribute)
+
+* `type`: The type of the add-on. Can be on of the following:
+  * `span`: Will result in a `<span>` add-on
+  * `btn`: Will result in a `<button>` add-on
+
+* `input-type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
+
+* `side`: Whether the add-on should be on the `left` or on the `right` of the `<input>`
+
+* `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._
+    The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`

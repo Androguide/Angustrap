@@ -1,0 +1,18 @@
+<div id="{{asId}}" class="input-group {{asClass}}">
+    <!-- Left Span Add-on -->
+    <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">{{title}}</span>
+    <!-- Left Button Add-on -->
+    <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'">
+        <button class="btn btn-{{theme}}" type="button">{{title}}</button>
+    </span>
+
+    <!-- The input -->
+    <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
+
+    <!-- Right Span Add-on -->
+    <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">{{title}}</span>
+    <!-- Right Button Add-on -->
+    <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'">
+        <button class="btn btn-{{theme}}" type="button">{{title}}</button>
+    </span>
+</div>
