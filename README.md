@@ -184,6 +184,9 @@ Navbar `<navbar>`
  * `title`: The navigation bar title, usually your brand name.
  
  * `titleHref`: The URL the navbar `title` link should point to.
+
+ * `fixed`: Whether the navbar should be fixed to the `top` or `bottom` of the page.
+    If this attribute is not specified or set to `static`, the navbar will be at the top of the screen and scroll with the content (`.navbar-static-top`).
  
  <br/>
  

@@ -354,13 +354,15 @@ angular.module("Angustrap", [])
 # * `theme`: Can be either `default` or `inverse`. If none is specified, Angustrap will fallback to `default`.
 # * `title`: The navigation bar title, usually your brand name.
 # * `titleHref`: The URL the navbar `title` link should point to
+# * `fixed`: Whether the navbar should be fixed to the `top` or `bottom` of the page.
+#   If this attribute is not specified or set to `static`, the navbar will be at the top of the screen and scroll with the content (`.navbar-static-top`).
 .directive("navbar", ['AsRandom', (AsRandom) ->
         restrict: "E"
         replace: true
         transclude: true
         templateUrl: "templates/navbar.html"
         scope:
-            theme: "=?"
+            theme: "@theme"
             title: "@title"
             titleHref: "@titleHref"
             fixed: "@fixed"
@@ -370,12 +372,8 @@ angular.module("Angustrap", [])
         controller: ($scope, $timeout, CleanUp) ->
             $scope.random = '#' + AsRandom 12
             if !$scope.theme then  $scope.theme = "default"
-            if $scope.fixed is "bottom"
-                $scope.fixedWildcard = "navbar-fixed-"
-            else if $scope.fixed is "top"
-                $scope.fixedWildcard = "navbar-static-"
-            else
-                $scope.fixedWildcard = ""
+            if $scope.fixed then $scope.fixedWildcard = "navbar-fixed-"
+            if !$scope.fixed or scope.fixed is "static" then $scope.fixedWildcard = "navbar-static-top"
 
             # Remove possible trailing spaces in class attribute
             CleanUp $scope

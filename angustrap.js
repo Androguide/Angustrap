@@ -165,7 +165,7 @@
         transclude: true,
         templateUrl: "templates/navbar.html",
         scope: {
-          theme: "=?",
+          theme: "@theme",
           title: "@title",
           titleHref: "@titleHref",
           fixed: "@fixed",
@@ -177,12 +177,11 @@
           if (!$scope.theme) {
             $scope.theme = "default";
           }
-          if ($scope.fixed === "bottom") {
+          if ($scope.fixed) {
             $scope.fixedWildcard = "navbar-fixed-";
-          } else if ($scope.fixed === "top") {
-            $scope.fixedWildcard = "navbar-static-";
-          } else {
-            $scope.fixedWildcard = "";
+          }
+          if (!$scope.fixed || scope.fixed === "static") {
+            $scope.fixedWildcard = "navbar-static-top";
           }
           return CleanUp($scope);
         }

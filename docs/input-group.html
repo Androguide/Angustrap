@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>input-group.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="btn-dropdown.html">
+                btn-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown-divider.html">
+                dropdown-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown-item.html">
+                dropdown-item.coffee
+              </a>
+            
+              
+              <a class="source" href="dropdown.html">
+                dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="split-dropdown.html">
+                split-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="btn-glyph.html">
+                btn-glyph.coffee
+              </a>
+            
+              
+              <a class="source" href="glyph.html">
+                glyph.coffee
+              </a>
+            
+              
+              <a class="source" href="input-group.html">
+                input-group.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar-dropdown.html">
+                navbar-dropdown.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar-list.html">
+                navbar-list.coffee
+              </a>
+            
+              
+              <a class="source" href="navbar.html">
+                navbar.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>input-group.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h2 id="inputgroup-input-group-">InputGroup <code>&lt;input-group&gt;</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>A single directive to abstract all of Bootstrap’s input-group components.</p>
+<h1 id="-examples-">####Examples:</h1>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Left-aligned &lt;span&gt; add-on with text input --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"span"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"left"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Right-aligned blue &lt;button&gt; add-on with email input --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"right"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"email"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"primary"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
+</code></pre>
+<h4 id="attributes-">Attributes:</h4>
+<ul>
+<li><p><code>title</code>: The text to display inside of the input add-on (span, button… depending on the <code>type</code> attribute)</p>
+</li>
+<li><p><code>type</code>: The type of the add-on. Can be on of the following:</p>
+<ul>
+<li><code>span</code>: Will result in a <code>&lt;span&gt;</code> add-on</li>
+<li><code>btn</code>: Will result in a <code>&lt;button&gt;</code> add-on</li>
+</ul>
+</li>
+<li><p><code>input-type</code>: The HTML5 <code>type</code> attribute of the <code>&lt;input&gt;</code> (“text”, “tel”, “number”, “email”, etc…)</p>
+</li>
+<li><p><code>side</code>: Whether the add-on should be on the <code>left</code> or on the <code>right</code> of the <code>&lt;input&gt;</code></p>
+</li>
+<li><p><code>theme</code>: <em>Only valid for button input-groups (<code>&lt;input-group type=&quot;btn&quot;&gt;</code>).</em>
+  The variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
+  The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
+<ul>
+<li><code>primary</code></li>
+<li><code>success</code></li>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>danger</code></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>).directive(<span class="hljs-string">"inputGroup"</span>,<span class="hljs-function"> -&gt;</span>
+    <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+    <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/inputs/input-group.html"</span>
+    <span class="hljs-attribute">scope</span>:
+        <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
+        <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
+        <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
+        <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
+        <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
+        <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+        <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
+)</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
