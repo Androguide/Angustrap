@@ -110,7 +110,19 @@
 Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> components.<br/><br/>
 <em>Note that you can still pass the usual <code>.dropdown-menu-right</code> class to right-align the dropdown relatively to its parent</em>
 <br/></p>
-<h3 id="single-button-dropdown-deprecated-">Single-button dropdown <strong>(DEPRECATED)</strong></h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h3 id="single-button-dropdown-deprecated-">Single-button dropdown <strong>(DEPRECATED)</strong></h3>
 <h4 id="attributes-">Attributes:</h4>
 <ul>
 <li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
@@ -158,28 +170,36 @@ If set to false or not specified, the element will drop <em>down</em>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>, []).directive <span class="hljs-string">"btnDropdown"</span>,<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"btnDropdown"</span>,<span class="hljs-function"> -&gt;</span>
     defObj =
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/btn-dropdown.html"</span>
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
+        &lt;div class="{{btnGroup}} {{directionClass}}"&gt;
+          &lt;button class="btn btn-{{theme}} btn-{{size}}" type="button" data-toggle="dropdown"&gt;
+              &lt;glyph icon="{{icon}}"&gt;&lt;/glyph&gt; {{title}}
+            &lt;span class="caret"&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;ul class="dropdown-menu" role="menu" aria-labelledby="{{id}}" data-ng-transclude&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+        """</span>
         <span class="hljs-attribute">scope</span>:
             <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
             <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
             <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
-            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"@dropup"</span>
+            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"=dropup"</span>
 
         <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>If no <code>theme=&quot;primary|success|info|warning|danger&quot;</code> attribute was passed, we default back to the <code>.btn-default</code> class.</p>
 
@@ -190,7 +210,8 @@ If set to false or not specified, the element will drop <em>down</em>
             <span class="hljs-built_in">console</span>.e <span class="hljs-string">"The &lt;btn-dropdown&gt; directive is now deprecated. Please use &lt;dropdown type='btn'&gt; instead"</span>
             <span class="hljs-keyword">return</span>
 
-    <span class="hljs-keyword">return</span> defObj</pre></div></div>
+    <span class="hljs-keyword">return</span> defObj
+)</pre></div></div>
             
         </li>
         

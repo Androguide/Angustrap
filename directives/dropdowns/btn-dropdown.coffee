@@ -4,7 +4,7 @@
 # Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components.<br/><br/>
 # _Note that you can still pass the usual `.dropdown-menu-right` class to right-align the dropdown relatively to its parent_
 #<br/>
-#
+
 # ### Single-button dropdown **(DEPRECATED)**
 # #### Attributes:
 #   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
@@ -45,17 +45,25 @@
 # ```
 #<br/>
 # **N.B**: this directive is now deprecated, use `<dropdown type="btn">` instead
-angular.module("Angustrap", []).directive "btnDropdown", ->
+.directive("btnDropdown", ->
     defObj =
         restrict: "E"
         replace: true
         transclude: true
-        templateUrl: "templates/dropdowns/btn-dropdown.html"
+        template: """
+        <div class="{{btnGroup}} {{directionClass}}">
+          <button class="btn btn-{{theme}} btn-{{size}}" type="button" data-toggle="dropdown">
+              <glyph icon="{{icon}}"></glyph> {{title}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="{{id}}" data-ng-transclude></ul>
+        </div>
+        """
         scope:
             theme: "@theme"
             size: "@size"
             title: "@title"
-            dropup: "@dropup"
+            dropup: "=dropup"
 
         link: (scope, el, attrs) ->
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
@@ -65,3 +73,5 @@ angular.module("Angustrap", []).directive "btnDropdown", ->
             return
 
     return defObj
+)
+

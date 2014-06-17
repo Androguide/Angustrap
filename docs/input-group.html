@@ -131,6 +131,8 @@
 If none is specified, the medium size is used.</li>
 </ul>
 </li>
+<li><p><code>icon</code>: Allows to define a glyphicon for the input add-on</p>
+</li>
 <li><p><code>input-type</code>: The HTML5 <code>type</code> attribute of the <code>&lt;input&gt;</code> (“text”, “tel”, “number”, “email”, etc…)</p>
 </li>
 <li><p><code>side</code>: Whether the add-on should be on the <code>left</code> or on the <code>right</code> of the <code>&lt;input&gt;</code></p>
@@ -153,19 +155,21 @@ If none is specified, the medium size is used.</li>
             <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>).directive(<span class="hljs-string">"inputGroup"</span>,<span class="hljs-function"> -&gt;</span>
     <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
     <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
     <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/inputs/input-group.html"</span>
     <span class="hljs-attribute">scope</span>:
         <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
         <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
         <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
         <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
-        <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
         <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+        <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
         <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
         <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
+        <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
 
     <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
-        $scope.sizeWildcard = <span class="hljs-string">"input-group-"</span>
+        $scope.sizeWildcard = <span class="hljs-string">"input-group-"</span> <span class="hljs-keyword">unless</span> !$scope.size
         CleanUp $scope
 )</pre></div></div>
             

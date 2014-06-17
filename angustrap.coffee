@@ -74,13 +74,20 @@ angular.module("Angustrap", [])
         restrict: "E"
         replace: true
         transclude: true
-        templateUrl: "templates/dropdowns/btn-glyph.html"
         scope:
             icon: "@icon"
             theme: "@theme"
             size: "@size"
+
         link: (scope, el, attrs) ->
             attrs.theme = attrs.theme or "default"
+
+        template: """
+        <button type="button" class="btn btn-{{theme}} btn-{{size}}">
+            <span class="glyphicon glyphicon-{{icon}}"></span>
+            <span data-ng-transclude></span>
+        </button>
+        """
 
     return  defObj
 )
@@ -102,9 +109,14 @@ angular.module("Angustrap", [])
         restrict: "E"
         replace: true
         transclude: true
-        templateUrl: "templates/dropdowns/dropdown-item.html"
         scope:
             asHref: "@asHref"
+
+        template: """
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a>
+        </li>
+        """
 
     return defObj
 )
@@ -116,7 +128,7 @@ angular.module("Angustrap", [])
         restrict: "E"
         replace: true
         scope: {}
-        template: "<li role=\"presentation\" class=\"divider\"></li>"
+        template: """<li role="presentation" class="divider"></li>"""
 
     return defObj
 )
@@ -172,7 +184,6 @@ angular.module("Angustrap", [])
         restrict: "E"
         replace: true
         transclude: true
-        templateUrl: "templates/dropdowns/dropdown.html"
         scope:
             type: "@type"
             theme: "@theme"
@@ -181,6 +192,20 @@ angular.module("Angustrap", [])
             title: "@title"
             dropup: "=dropup"
             asClick: "=asClick"
+
+        template: """
+        <div class="{{btnGroup}} {{directionClass}}" id="">
+            <button type="button" class="btn btn-{{theme}} {{srOnly}}" data-toggle="{{isSplit && '' || 'dropdown' }}">
+                <glyph icon="{{icon}}"></glyph> {{title}}
+                <span class="caret" data-ng-hide="isSplit"></span>
+            </button>
+            <button type="button" class="btn btn-{{theme}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">
+                <span class="caret"></span>
+                <span class="sr-only" style="position: relative"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
+        </div>
+        """
 
         link:
             pre: (scope) ->
@@ -201,134 +226,6 @@ angular.module("Angustrap", [])
 
     return defObj
 )
-
-
-# ### Single-button dropdown **(DEPRECATED)**
-# #### Attributes:
-#   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-#     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
-#       * `primary`
-#       * `success`
-#       * `info`
-#       * `warning`
-#       * `danger`
-#
-#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
-#     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
-#
-#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
-#     Possible choice are:
-#       * `lg`
-#       * `sm`
-#       * `xs`
-#
-#   * title: The string to display inside the action button of the split dropdown
-#
-#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
-#   If set to false or not specified, the element will drop _down_
-# <br/>
-#
-# **Example**:<br/>
-# ```html
-# <btn-dropdown theme="danger" size="lg" title="Sign-In">
-#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
-#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-# </btn-dropdown>
-#
-# <!-- Drop up -->
-# <btn-dropdown theme="danger" size="lg" title="Sign-In" dropup="true">
-#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
-#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-# </btn-dropdown>
-# ```
-#<br/>
-# **N.B**: this directive is now deprecated, use `<dropdown type="btn">` instead
-.directive("btnDropdown", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        transclude: true
-        templateUrl: "templates/dropdowns/btn-dropdown.html"
-        scope:
-            theme: "@theme"
-            size: "@size"
-            title: "@title"
-            dropup: "=dropup"
-
-        link: (scope, el, attrs) ->
-            # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
-            attrs.theme = attrs.theme or "default"
-            if scope.dropup then scope.directionClass = "dropup"
-            console.e "The <btn-dropdown> directive is now deprecated. Please use <dropdown type='btn'> instead"
-            return
-
-    return defObj
-)
-
-
-# ### Split-button dropdown **(DEPRECATED)**
-# ##### Attributes:
-#   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-#     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
-#       * `primary`
-#       * `success`
-#       * `info`
-#       * `warning`
-#       * `danger`
-#
-#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
-#     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
-#
-#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
-#     Possible choice are:
-#       * `lg`
-#       * `sm`
-#       * `xs`
-#
-#   * title: The string to display inside the action button of the split dropdown
-#
-#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
-#   If set to false or not specified, the element will drop _down_
-# <br/>
-#
-# **Example**:<br/>
-# ```html
-# <split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In">
-#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
-#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-# </split-dropdown>
-#
-# <!-- Drop up -->
-# <split-dropdown theme="danger" size="lg" icon="qrcode" title="Sign-In" dropup="true">
-#     <dropdown-item as-href="http://google.com">Google</dropdown-item>
-#     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
-# </split-dropdown>
-# ```
-# <br/>
-# **N.B**: this directive is now deprecated, use `<dropdown type="split">` instead
-.directive("splitDropdown", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        transclude: true
-        templateUrl: "templates/dropdowns/split-dropdown.html"
-        scope:
-            theme: "@theme"
-            icon: "@icon"
-            size: "@size"
-            title: "@title"
-            dropup: "=dropup"
-
-        link: (scope, el, attrs) ->
-            # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
-            attrs.theme = attrs.theme or "default"
-            if scope.dropup then scope.directionClass = "dropup"
-            console.e "The <split-dropdown> directive is now deprecated. Please use <dropdown type='split'> instead"
-            return
-
-    return defObj
-)
-
 
 # Navigation Bar
 # ==============
@@ -356,28 +253,52 @@ angular.module("Angustrap", [])
 # * `titleHref`: The URL the navbar `title` link should point to
 # * `fixed`: Whether the navbar should be fixed to the `top` or `bottom` of the page.
 #   If this attribute is not specified or set to `static`, the navbar will be at the top of the screen and scroll with the content (`.navbar-static-top`).
-.directive("navbar", ['AsRandom', (AsRandom) ->
-        restrict: "E"
-        replace: true
-        transclude: true
-        templateUrl: "templates/navbar.html"
-        scope:
-            theme: "@theme"
-            title: "@title"
-            titleHref: "@titleHref"
-            fixed: "@fixed"
-            asId: "@asId"
-            asClass: "@asClass"
+# * `center`: Whether the navbar content & title should be centered (i.e: inside a `div.container`)
+.directive("navbar", ["AsRandom", (AsRandom) ->
+    restrict: "E"
+    replace: true
+    transclude: true
 
-        controller: ($scope, $timeout, CleanUp) ->
-            $scope.random = '#' + AsRandom 12
-            if !$scope.theme then  $scope.theme = "default"
-            if $scope.fixed then $scope.fixedWildcard = "navbar-fixed-"
-            if !$scope.fixed or scope.fixed is "static" then $scope.fixedWildcard = "navbar-static-top"
+    scope:
+        asId: "@asId"
+        asClass: "@asClass"
+        theme: "@theme"
+        title: "@title"
+        titleHref: "@titleHref"
+        fixed: "@fixed"
+        center: "=center"
 
-            # Remove possible trailing spaces in class attribute
-            CleanUp $scope
-    ])
+    template: """
+    <nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation">
+        <div class="{{container}}">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-href="{{titleHref}}">{{title}}</a>
+            </div>
+            <div class="collapse navbar-collapse" id="{{random}}">
+                <div class="{{center && 'container' || '' }}" data-ng-transclude></div>
+            </div>
+        </div>
+    </nav>
+    """
+
+    controller: ($scope, $timeout, CleanUp) ->
+        $scope.random = "#" + AsRandom 12
+        $scope.hashRandom = "#" + $scope.random
+        $scope.container = "container"
+        if !$scope.center then $scope.container = "container-fluid"
+        if !$scope.theme then  $scope.theme = "default"
+        if $scope.fixed then $scope.fixedWildcard = "navbar-fixed-"
+        if !$scope.fixed or scope.fixed is "static" then $scope.fixedWildcard = "navbar-static-top"
+
+        # Remove possible trailing spaces in class attribute
+        CleanUp $scope
+])
 
 # ###Navbar List
 # ##### Attributes:
@@ -386,7 +307,7 @@ angular.module("Angustrap", [])
     restrict: "E"
     replace: true
     transclude: true
-    template: "<ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude></ul>"
+    template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
     scope:
         asId: "@asId"
         asClass: "@asClass"
@@ -463,7 +384,6 @@ angular.module("Angustrap", [])
     restrict: "E"
     replace: true
     transclude: true
-    templateUrl: "templates/inputs/input-group.html"
     scope:
         asId: "@asId"
         asClass: "@asClass"
@@ -478,6 +398,35 @@ angular.module("Angustrap", [])
     controller: ($scope, CleanUp) ->
         $scope.sizeWildcard = "input-group-" unless !$scope.size
         CleanUp $scope
+
+    template: """
+    <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
+        <!-- Left Span Add-on -->
+        <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">
+            <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+        </span>
+        <!-- Left Button Add-on -->
+        <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'">
+            <button class="btn btn-{{theme}}" type="button">
+                <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+            </button>
+        </span>
+
+        <!-- The input -->
+        <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
+
+        <!-- Right Span Add-on -->
+        <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">
+            <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+        </span>
+        <!-- Right Button Add-on -->
+        <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'">
+            <button class="btn btn-{{theme}}" type="button">
+                <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+            </button>
+        </span>
+    </div>
+    """
 )
 
 # RainbowLog

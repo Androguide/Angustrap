@@ -4,7 +4,7 @@
 # Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components.<br/><br/>
 # _Note that you can still pass the usual `.dropdown-menu-right` class to right-align the dropdown relatively to its parent_
 #<br/>
-#
+
 # ### Split-button dropdown **(DEPRECATED)**
 # ##### Attributes:
 #   * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
@@ -45,18 +45,29 @@
 # ```
 # <br/>
 # **N.B**: this directive is now deprecated, use `<dropdown type="split">` instead
-angular.module("Angustrap").directive "splitDropdown", ->
+.directive("splitDropdown", ->
     defObj =
         restrict: "E"
         replace: true
         transclude: true
-        templateUrl: "templates/dropdowns/split-dropdown.html"
+        template: """
+        <div class="btn-group {{directionClass}}">
+            <button type="button" class="btn btn-{{theme}}">
+                <glyph icon="{{icon}}"></glyph> {{title}}
+            </button>
+            <button type="button" class="btn btn-{{theme}} dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only" style="position: relative"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
+        </div>
+        """
         scope:
             theme: "@theme"
             icon: "@icon"
             size: "@size"
             title: "@title"
-            dropup: "@dropup"
+            dropup: "=dropup"
 
         link: (scope, el, attrs) ->
             # If no `theme="primary|success|info|warning|danger"` attribute was passed, we default back to the `.btn-default` class.
@@ -66,3 +77,5 @@ angular.module("Angustrap").directive "splitDropdown", ->
             return
 
     return defObj
+)
+

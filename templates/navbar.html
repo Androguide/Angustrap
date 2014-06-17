@@ -1,6 +1,5 @@
 <nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{random}}">
                 <span class="sr-only">Toggle navigation</span>
@@ -11,9 +10,6 @@
             <a class="navbar-brand" ng-href="{{titleHref}}">{{title}}</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="{{random}}" data-ng-transclude>
-            <!-- TODO: <navbar-list align="left"><navbar-item as-href="#">Test</navbar-item></navbar-list> -->
-        </div>
+        <div class="collapse navbar-collapse" id="{{random}}" data-ng-transclude></div>
     </div>
 </nav>

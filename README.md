@@ -188,6 +188,8 @@ Navbar `<navbar>`
  * `fixed`: Whether the navbar should be fixed to the `top` or `bottom` of the page.
     If this attribute is not specified or set to `static`, the navbar will be at the top of the screen and scroll with the content (`.navbar-static-top`).
  
+ * `center`: Whether the navbar content & title should be centered (i.e: inside a `div.container`)
+ 
  <br/>
  
 NavbarList `<navbar-list>`

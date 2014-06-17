@@ -158,13 +158,20 @@ angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Ang
         restrict: <span class="hljs-string">"E"</span>
         replace: <span class="hljs-literal">true</span>
         transclude: <span class="hljs-literal">true</span>
-        templateUrl: <span class="hljs-string">"templates/dropdowns/btn-glyph.html"</span>
         scope:
             icon: <span class="hljs-string">"@icon"</span>
             theme: <span class="hljs-string">"@theme"</span>
             size: <span class="hljs-string">"@size"</span>
+
         link: (scope, el, attrs) -&gt;
             attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
+
+        template: <span class="hljs-string">"""
+        &lt;button type="button" class="btn btn-{{theme}} btn-{{size}}"&gt;
+            &lt;span class="glyphicon glyphicon-{{icon}}"&gt;&lt;/span&gt;
+            &lt;span data-ng-transclude&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        """</span>
 
     <span class="hljs-keyword">return</span>  defObj
 )</span>
@@ -224,9 +231,14 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown-item.html"</span>
         <span class="hljs-attribute">scope</span>:
             <span class="hljs-attribute">asHref</span>: <span class="hljs-string">"@asHref"</span>
+
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
+        &lt;li role="presentation"&gt;
+          &lt;a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude&gt;&lt;/a&gt;
+        &lt;/li&gt;
+        """</span>
 
     <span class="hljs-keyword">return</span> defObj
 )</pre></div></div>
@@ -250,7 +262,7 @@ _Note that you can still pass the usual <code>.disabled</code> class to disable 
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">scope</span>: {}
-        <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;li role=\"presentation\" class=\"divider\"&gt;&lt;/li&gt;"</span>
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"""&lt;li role="presentation" class="divider"&gt;&lt;/li&gt;"""</span>
 
     <span class="hljs-keyword">return</span> defObj
 )</pre></div></div>
@@ -325,7 +337,6 @@ If set to false or not specified, the element will drop <em>down</em></p>
         <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
         <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown.html"</span>
         <span class="hljs-attribute">scope</span>:
             <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
             <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
@@ -334,6 +345,20 @@ If set to false or not specified, the element will drop <em>down</em></p>
             <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
             <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"=dropup"</span>
             <span class="hljs-attribute">asClick</span>: <span class="hljs-string">"=asClick"</span>
+
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
+        &lt;div class="{{btnGroup}} {{directionClass}}" id=""&gt;
+            &lt;button type="button" class="btn btn-{{theme}} {{srOnly}}" data-toggle="{{isSplit &amp;&amp; '' || 'dropdown' }}"&gt;
+                &lt;glyph icon="{{icon}}"&gt;&lt;/glyph&gt; {{title}}
+                &lt;span class="caret" data-ng-hide="isSplit"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;button type="button" class="btn btn-{{theme}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit"&gt;
+                &lt;span class="caret"&gt;&lt;/span&gt;
+                &lt;span class="sr-only" style="position: relative"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;ul class="dropdown-menu" role="menu" data-ng-transclude&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+        """</span>
 
         <span class="hljs-attribute">link</span>:
             <span class="hljs-attribute">pre</span>: <span class="hljs-function"><span class="hljs-params">(scope)</span> -&gt;</span>
@@ -364,67 +389,9 @@ If set to false or not specified, the element will drop <em>down</em></p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <h3 id="single-button-dropdown-deprecated-">Single-button dropdown <strong>(DEPRECATED)</strong></h3>
-<h4 id="attributes-">Attributes:</h4>
-<ul>
-<li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
-The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
-<ul>
-<li><code>primary</code></li>
-<li><code>success</code></li>
-<li><code>info</code></li>
-<li><code>warning</code></li>
-<li><code>danger</code></li>
-</ul>
-</li>
-<li><p>icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).
-See <a href="http://getbootstrap.com/components/#glyphicons-glyphs">here</a> for the full list.</p>
-</li>
-<li><p>size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).
-Possible choice are:</p>
-<ul>
-<li><code>lg</code></li>
-<li><code>sm</code></li>
-<li><code>xs</code></li>
-</ul>
-</li>
-<li><p>title: The string to display inside the action button of the split dropdown</p>
-</li>
-<li><p>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
-If set to false or not specified, the element will drop <em>down</em>
-<br/></p>
-</li>
-</ul>
-<p><strong>Example</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">btn-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">btn-dropdown</span>&gt;</span>
-
-<span class="hljs-comment">&lt;!-- Drop up --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">btn-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span> <span class="hljs-attribute">dropup</span>=<span class="hljs-value">"true"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">btn-dropdown</span>&gt;</span>
-</code></pre>
-<p><br/>
-<strong>N.B</strong>: this directive is now deprecated, use <code>&lt;dropdown type=&quot;btn&quot;&gt;</code> instead</p>
+              <h1 id="navigation-bar">Navigation Bar</h1>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"btnDropdown"</span>,<span class="hljs-function"> -&gt;</span>
-    defObj =
-        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
-        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/btn-dropdown.html"</span>
-        <span class="hljs-attribute">scope</span>:
-            <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
-            <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
-            <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
-            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"=dropup"</span>
-
-        <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span></pre></div></div>
             
         </li>
         
@@ -434,133 +401,6 @@ If set to false or not specified, the element will drop <em>down</em>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
-              </div>
-              <p>If no <code>theme=&quot;primary|success|info|warning|danger&quot;</code> attribute was passed, we default back to the <code>.btn-default</code> class.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
-            <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span>
-            <span class="hljs-built_in">console</span>.e <span class="hljs-string">"The &lt;btn-dropdown&gt; directive is now deprecated. Please use &lt;dropdown type='btn'&gt; instead"</span>
-            <span class="hljs-keyword">return</span>
-
-    <span class="hljs-keyword">return</span> defObj
-)</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
-              <h3 id="split-button-dropdown-deprecated-">Split-button dropdown <strong>(DEPRECATED)</strong></h3>
-<h5 id="attributes-">Attributes:</h5>
-<ul>
-<li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
-The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
-<ul>
-<li><code>primary</code></li>
-<li><code>success</code></li>
-<li><code>info</code></li>
-<li><code>warning</code></li>
-<li><code>danger</code></li>
-</ul>
-</li>
-<li><p>icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).
-See <a href="http://getbootstrap.com/components/#glyphicons-glyphs">here</a> for the full list.</p>
-</li>
-<li><p>size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).
-Possible choice are:</p>
-<ul>
-<li><code>lg</code></li>
-<li><code>sm</code></li>
-<li><code>xs</code></li>
-</ul>
-</li>
-<li><p>title: The string to display inside the action button of the split dropdown</p>
-</li>
-<li><p>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
-If set to false or not specified, the element will drop <em>down</em>
-<br/></p>
-</li>
-</ul>
-<p><strong>Example</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">split-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">split-dropdown</span>&gt;</span>
-
-<span class="hljs-comment">&lt;!-- Drop up --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">split-dropdown</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Sign-In"</span> <span class="hljs-attribute">dropup</span>=<span class="hljs-value">"true"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">split-dropdown</span>&gt;</span>
-</code></pre>
-<p><br/>
-<strong>N.B</strong>: this directive is now deprecated, use <code>&lt;dropdown type=&quot;split&quot;&gt;</code> instead</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"splitDropdown"</span>,<span class="hljs-function"> -&gt;</span>
-    defObj =
-        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
-        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/split-dropdown.html"</span>
-        <span class="hljs-attribute">scope</span>:
-            <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
-            <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
-            <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
-            <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
-            <span class="hljs-attribute">dropup</span>: <span class="hljs-string">"=dropup"</span>
-
-        <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>If no <code>theme=&quot;primary|success|info|warning|danger&quot;</code> attribute was passed, we default back to the <code>.btn-default</code> class.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
-            <span class="hljs-keyword">if</span> scope.dropup <span class="hljs-keyword">then</span> scope.directionClass = <span class="hljs-string">"dropup"</span>
-            <span class="hljs-built_in">console</span>.e <span class="hljs-string">"The &lt;split-dropdown&gt; directive is now deprecated. Please use &lt;dropdown type='split'&gt; instead"</span>
-            <span class="hljs-keyword">return</span>
-
-    <span class="hljs-keyword">return</span> defObj
-)</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <h1 id="navigation-bar">Navigation Bar</h1>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Bootstrap’s navigation bar in just 2 lines of markup.
 <br/></p>
@@ -581,11 +421,11 @@ If set to false or not specified, the element will drop <em>down</em>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <h2 id="navbar-navbar-">Navbar <code>&lt;navbar&gt;</code></h2>
 
@@ -594,11 +434,11 @@ If set to false or not specified, the element will drop <em>down</em>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <h4 id="attributes-">Attributes:</h4>
 <ul>
@@ -607,55 +447,79 @@ If set to false or not specified, the element will drop <em>down</em>
 <li><code>titleHref</code>: The URL the navbar <code>title</code> link should point to</li>
 <li><code>fixed</code>: Whether the navbar should be fixed to the <code>top</code> or <code>bottom</code> of the page.
 If this attribute is not specified or set to <code>static</code>, the navbar will be at the top of the screen and scroll with the content (<code>.navbar-static-top</code>).</li>
+<li><code>center</code>: Whether the navbar content &amp; title should be centered (i.e: inside a <code>div.container</code>)</li>
 </ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>.directive<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"navbar"</span>, [<span class="hljs-string">'AsRandom'</span>, (AsRandom) -&gt;
-        restrict: <span class="hljs-string">"E"</span>
-        replace: <span class="hljs-literal">true</span>
-        transclude: <span class="hljs-literal">true</span>
-        templateUrl: <span class="hljs-string">"templates/navbar.html"</span>
-        scope:
-            theme: <span class="hljs-string">"@theme"</span>
-            title: <span class="hljs-string">"@title"</span>
-            titleHref: <span class="hljs-string">"@titleHref"</span>
-            fixed: <span class="hljs-string">"@fixed"</span>
-            asId: <span class="hljs-string">"@asId"</span>
-            asClass: <span class="hljs-string">"@asClass"</span>
+            <div class="content"><div class='highlight'><pre>.directive<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"navbar"</span>, [<span class="hljs-string">"AsRandom"</span>, (AsRandom) -&gt;
+    restrict: <span class="hljs-string">"E"</span>
+    replace: <span class="hljs-literal">true</span>
+    transclude: <span class="hljs-literal">true</span>
 
-        controller: ($scope, $timeout, CleanUp) -&gt;
-            $scope.random = <span class="hljs-string">'#'</span> + AsRandom <span class="hljs-number">12</span>
-            <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
-            <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
-            <span class="hljs-keyword">if</span> !$scope.fixed <span class="hljs-keyword">or</span> scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"static"</span> <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-static-top"</span>
+    scope:
+        asId: <span class="hljs-string">"@asId"</span>
+        asClass: <span class="hljs-string">"@asClass"</span>
+        theme: <span class="hljs-string">"@theme"</span>
+        title: <span class="hljs-string">"@title"</span>
+        titleHref: <span class="hljs-string">"@titleHref"</span>
+        fixed: <span class="hljs-string">"@fixed"</span>
+        center: <span class="hljs-string">"=center"</span>
+
+    template: <span class="hljs-string">"""
+    &lt;nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation"&gt;
+        &lt;div class="{{container}}"&gt;
+            &lt;div class="navbar-header"&gt;
+                &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}"&gt;
+                    &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+                    &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                    &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                    &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;a class="navbar-brand" ng-href="{{titleHref}}"&gt;{{title}}&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="collapse navbar-collapse" id="{{random}}"&gt;
+                &lt;div class="{{center &amp;&amp; 'container' || '' }}" data-ng-transclude&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+    """</span>
+
+    controller: ($scope, $timeout, CleanUp) -&gt;
+        $scope.random = <span class="hljs-string">"#"</span> + AsRandom <span class="hljs-number">12</span>
+        $scope.hashRandom = <span class="hljs-string">"#"</span> + $scope.random
+        $scope.container = <span class="hljs-string">"container"</span>
+        <span class="hljs-keyword">if</span> !$scope.center <span class="hljs-keyword">then</span> $scope.container = <span class="hljs-string">"container-fluid"</span>
+        <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
+        <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
+        <span class="hljs-keyword">if</span> !$scope.fixed <span class="hljs-keyword">or</span> scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"static"</span> <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-static-top"</span>
 
 </span></span></pre></div></div>
             
         </li>
         
         
-        <li id="section-19">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Remove possible trailing spaces in class attribute</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            CleanUp $scope
-    ])</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        CleanUp $scope
+])</pre></div></div>
             
         </li>
         
         
-        <li id="section-20">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <h3 id="navbar-list">Navbar List</h3>
 <h5 id="attributes-">Attributes:</h5>
@@ -669,7 +533,7 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
     <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
     <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
     <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-    <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude&gt;&lt;/ul&gt;"</span>
+    <span class="hljs-attribute">template</span>: <span class="hljs-string">"""&lt;ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude&gt;&lt;/ul&gt;"""</span>
     <span class="hljs-attribute">scope</span>:
         <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
         <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
@@ -683,11 +547,11 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
         </li>
         
         
-        <li id="section-21">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <h2 id="navbardropdown-navbar-dropdown-">NavbarDropdown <code>&lt;navbar-dropdown&gt;</code></h2>
 
@@ -696,11 +560,11 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
         </li>
         
         
-        <li id="section-22">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <h4 id="attributes-">Attributes:</h4>
 <ul>
@@ -732,11 +596,11 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
         </li>
         
         
-        <li id="section-23">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <h2 id="inputgroup-input-group-">InputGroup <code>&lt;input-group&gt;</code></h2>
 
@@ -745,11 +609,11 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
         </li>
         
         
-        <li id="section-24">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>A single directive to abstract all of Bootstrap’s input-group components.</p>
 <h1 id="-examples-">####Examples:</h1>
@@ -798,30 +662,60 @@ If none is specified, the default size is used.</li>
             <div class="content"><div class='highlight'><pre>.directive(<span class="hljs-string">"inputGroup"</span>,<span class="hljs-function"> -&gt;</span>
     <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
     <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-    <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/inputs/input-group.html"</span>
+    <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
     <span class="hljs-attribute">scope</span>:
         <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
         <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
         <span class="hljs-attribute">title</span>: <span class="hljs-string">"@title"</span>
         <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
-        <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
         <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+        <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
         <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
         <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
+        <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
 
     <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
         $scope.sizeWildcard = <span class="hljs-string">"input-group-"</span> <span class="hljs-keyword">unless</span> !$scope.size
         CleanUp $scope
+
+    <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
+    &lt;div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}"&gt;
+        &lt;!-- Left Span Add-on --&gt;
+        &lt;span class="input-group-addon" data-ng-show="type == 'span' &amp;&amp; side == 'left'"&gt;
+            &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
+        &lt;/span&gt;
+        &lt;!-- Left Button Add-on --&gt;
+        &lt;span class="input-group-btn" data-ng-show="type == 'btn' &amp;&amp; side == 'left'"&gt;
+            &lt;button class="btn btn-{{theme}}" type="button"&gt;
+                &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
+            &lt;/button&gt;
+        &lt;/span&gt;
+
+        &lt;!-- The input --&gt;
+        &lt;input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}"&gt;
+
+        &lt;!-- Right Span Add-on --&gt;
+        &lt;span class="input-group-addon" data-ng-show="type == 'span' &amp;&amp; side == 'right'"&gt;
+            &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
+        &lt;/span&gt;
+        &lt;!-- Right Button Add-on --&gt;
+        &lt;span class="input-group-btn" data-ng-show="type == 'btn' &amp;&amp; side == 'right'"&gt;
+            &lt;button class="btn btn-{{theme}}" type="button"&gt;
+                &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
+            &lt;/button&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+    """</span>
 )</pre></div></div>
             
         </li>
         
         
-        <li id="section-25">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <h2 id="rainbowlog">RainbowLog</h2>
 
@@ -830,11 +724,11 @@ If none is specified, the default size is used.</li>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Provides colored console output: <a href="https://github.com/Androguide/RainbowLog">https://github.com/Androguide/RainbowLog</a></p>
 
