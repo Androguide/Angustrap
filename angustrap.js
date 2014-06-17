@@ -226,16 +226,18 @@
     return {
       restrict: "E",
       replace: true,
+      transclude: true,
       templateUrl: "templates/inputs/input-group.html",
       scope: {
         asId: "@asId",
         asClass: "@asClass",
         title: "@title",
         type: "@type",
-        inputType: "@inputType",
         side: "@side",
+        icon: "@icon",
         size: "@size",
-        theme: "@theme"
+        theme: "@theme",
+        inputType: "@inputType"
       },
       controller: function($scope, CleanUp) {
         if (!!$scope.size) {

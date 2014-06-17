@@ -23,6 +23,8 @@
 #   * `sm`
 #  If none is specified, the medium size is used.
 #
+# * `icon`: Allows to define a glyphicon for the input add-on
+#
 # * `input-type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
 #
 # * `side`: Whether the add-on should be on the `left` or on the `right` of the `<input>`
@@ -38,18 +40,20 @@
 angular.module("Angustrap").directive("inputGroup", ->
     restrict: "E"
     replace: true
+    transclude: true
     templateUrl: "templates/inputs/input-group.html"
     scope:
         asId: "@asId"
         asClass: "@asClass"
         title: "@title"
         type: "@type"
-        inputType: "@inputType"
         side: "@side"
+        icon: "@icon"
         size: "@size"
         theme: "@theme"
+        inputType: "@inputType"
 
     controller: ($scope, CleanUp) ->
-        $scope.sizeWildcard = "input-group-"
+        $scope.sizeWildcard = "input-group-" unless !$scope.size
         CleanUp $scope
 )

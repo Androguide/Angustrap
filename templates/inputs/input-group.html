@@ -1,18 +1,26 @@
 <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
     <!-- Left Span Add-on -->
-    <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">{{title}}</span>
+    <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">
+        <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+    </span>
     <!-- Left Button Add-on -->
     <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'">
-        <button class="btn btn-{{theme}}" type="button">{{title}}</button>
+        <button class="btn btn-{{theme}}" type="button">
+            <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+        </button>
     </span>
 
     <!-- The input -->
     <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
 
     <!-- Right Span Add-on -->
-    <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">{{title}}</span>
+    <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">
+        <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+    </span>
     <!-- Right Button Add-on -->
     <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'">
-        <button class="btn btn-{{theme}}" type="button">{{title}}</button>
+        <button class="btn btn-{{theme}}" type="button">
+            <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+        </button>
     </span>
 </div>

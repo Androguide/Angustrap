@@ -462,16 +462,18 @@ angular.module("Angustrap", [])
 .directive("inputGroup", ->
     restrict: "E"
     replace: true
+    transclude: true
     templateUrl: "templates/inputs/input-group.html"
     scope:
         asId: "@asId"
         asClass: "@asClass"
         title: "@title"
         type: "@type"
-        inputType: "@inputType"
         side: "@side"
+        icon: "@icon"
         size: "@size"
         theme: "@theme"
+        inputType: "@inputType"
 
     controller: ($scope, CleanUp) ->
         $scope.sizeWildcard = "input-group-" unless !$scope.size
