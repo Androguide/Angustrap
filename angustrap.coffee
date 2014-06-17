@@ -428,8 +428,8 @@ angular.module("Angustrap", [])
 #
 # # ####Examples:
 # ```html
-# <!-- Left-aligned <span> add-on with text input -->
-# <input-group title="@" type="span" side="left" input-type="text"></input-group>
+# <!-- Left-aligned large <span> add-on with text input -->
+# <input-group title="@" type="span" size="lg" side="left" input-type="text"></input-group>
 #
 # <!-- Right-aligned blue <button> add-on with email input -->
 # <input-group title="@" type="btn" side="right" input-type="email" theme="primary"></input-group>
@@ -445,6 +445,11 @@ angular.module("Angustrap", [])
 # * `input-type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
 #
 # * `side`: Whether the add-on should be on the `left` or on the `right` of the `<input>`
+#
+# * `size`: Defines the size of the input-group. Accepted values are:
+#   * `lg`
+#   * `sm`
+#  If none is specified, the default size is used.
 #
 # * `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._
 #     The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
@@ -465,7 +470,12 @@ angular.module("Angustrap", [])
         type: "@type"
         inputType: "@inputType"
         side: "@side"
+        size: "@size"
         theme: "@theme"
+
+    controller: ($scope, CleanUp) ->
+        $scope.sizeWildcard = "input-group-" unless !$scope.size
+        CleanUp $scope
 )
 
 # RainbowLog

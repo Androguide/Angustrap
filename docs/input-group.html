@@ -108,8 +108,8 @@
               </div>
               <p>A single directive to abstract all of Bootstrap’s input-group components.</p>
 <h1 id="-examples-">####Examples:</h1>
-<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Left-aligned &lt;span&gt; add-on with text input --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"span"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"left"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Left-aligned large &lt;span&gt; add-on with text input --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"span"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"left"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- Right-aligned blue &lt;button&gt; add-on with email input --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"right"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"email"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"primary"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
@@ -122,6 +122,13 @@
 <ul>
 <li><code>span</code>: Will result in a <code>&lt;span&gt;</code> add-on</li>
 <li><code>btn</code>: Will result in a <code>&lt;button&gt;</code> add-on</li>
+</ul>
+</li>
+<li><p><code>size</code>: Defines the size of the input-group. Accepted values are:</p>
+<ul>
+<li><code>lg</code></li>
+<li><code>sm</code>
+If none is specified, the medium size is used.</li>
 </ul>
 </li>
 <li><p><code>input-type</code>: The HTML5 <code>type</code> attribute of the <code>&lt;input&gt;</code> (“text”, “tel”, “number”, “email”, etc…)</p>
@@ -154,7 +161,12 @@
         <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
         <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
         <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+        <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
         <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
+
+    <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
+        $scope.sizeWildcard = <span class="hljs-string">"input-group-"</span>
+        CleanUp $scope
 )</pre></div></div>
             
         </li>

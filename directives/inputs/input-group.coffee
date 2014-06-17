@@ -4,8 +4,8 @@
 #
 # # ####Examples:
 # ```html
-# <!-- Left-aligned <span> add-on with text input -->
-# <input-group title="@" type="span" side="left" input-type="text"></input-group>
+# <!-- Left-aligned large <span> add-on with text input -->
+# <input-group title="@" type="span" size="lg" side="left" input-type="text"></input-group>
 #
 # <!-- Right-aligned blue <button> add-on with email input -->
 # <input-group title="@" type="btn" side="right" input-type="email" theme="primary"></input-group>
@@ -17,6 +17,11 @@
 # * `type`: The type of the add-on. Can be on of the following:
 #   * `span`: Will result in a `<span>` add-on
 #   * `btn`: Will result in a `<button>` add-on
+#
+# * `size`: Defines the size of the input-group. Accepted values are:
+#   * `lg`
+#   * `sm`
+#  If none is specified, the medium size is used.
 #
 # * `input-type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
 #
@@ -41,5 +46,10 @@ angular.module("Angustrap").directive("inputGroup", ->
         type: "@type"
         inputType: "@inputType"
         side: "@side"
+        size: "@size"
         theme: "@theme"
+
+    controller: ($scope, CleanUp) ->
+        $scope.sizeWildcard = "input-group-"
+        CleanUp $scope
 )

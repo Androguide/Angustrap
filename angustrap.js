@@ -234,7 +234,14 @@
         type: "@type",
         inputType: "@inputType",
         side: "@side",
+        size: "@size",
         theme: "@theme"
+      },
+      controller: function($scope, CleanUp) {
+        if (!!$scope.size) {
+          $scope.sizeWildcard = "input-group-";
+        }
+        return CleanUp($scope);
       }
     };
   });

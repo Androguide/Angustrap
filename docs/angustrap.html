@@ -605,6 +605,8 @@ If set to false or not specified, the element will drop <em>down</em>
 <li><code>theme</code>: Can be either <code>default</code> or <code>inverse</code>. If none is specified, Angustrap will fallback to <code>default</code>.</li>
 <li><code>title</code>: The navigation bar title, usually your brand name.</li>
 <li><code>titleHref</code>: The URL the navbar <code>title</code> link should point to</li>
+<li><code>fixed</code>: Whether the navbar should be fixed to the <code>top</code> or <code>bottom</code> of the page.
+If this attribute is not specified or set to <code>static</code>, the navbar will be at the top of the screen and scroll with the content (<code>.navbar-static-top</code>).</li>
 </ul>
 
             </div>
@@ -615,7 +617,7 @@ If set to false or not specified, the element will drop <em>down</em>
         transclude: <span class="hljs-literal">true</span>
         templateUrl: <span class="hljs-string">"templates/navbar.html"</span>
         scope:
-            theme: <span class="hljs-string">"=?"</span>
+            theme: <span class="hljs-string">"@theme"</span>
             title: <span class="hljs-string">"@title"</span>
             titleHref: <span class="hljs-string">"@titleHref"</span>
             fixed: <span class="hljs-string">"@fixed"</span>
@@ -625,12 +627,8 @@ If set to false or not specified, the element will drop <em>down</em>
         controller: ($scope, $timeout, CleanUp) -&gt;
             $scope.random = <span class="hljs-string">'#'</span> + AsRandom <span class="hljs-number">12</span>
             <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
-            <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"bottom"</span>
-                $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
-            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"top"</span>
-                $scope.fixedWildcard = <span class="hljs-string">"navbar-static-"</span>
-            <span class="hljs-keyword">else</span>
-                $scope.fixedWildcard = <span class="hljs-string">""</span>
+            <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
+            <span class="hljs-keyword">if</span> !$scope.fixed <span class="hljs-keyword">or</span> scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"static"</span> <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-static-top"</span>
 
 </span></span></pre></div></div>
             
@@ -755,8 +753,8 @@ If set to false or not specified, the element will drop <em>down</em>
               </div>
               <p>A single directive to abstract all of Bootstrap’s input-group components.</p>
 <h1 id="-examples-">####Examples:</h1>
-<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Left-aligned &lt;span&gt; add-on with text input --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"span"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"left"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Left-aligned large &lt;span&gt; add-on with text input --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"span"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"lg"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"left"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- Right-aligned blue &lt;button&gt; add-on with email input --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">input-group</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"@"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">side</span>=<span class="hljs-value">"right"</span> <span class="hljs-attribute">input-type</span>=<span class="hljs-value">"email"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"primary"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">input-group</span>&gt;</span>
@@ -774,6 +772,13 @@ If set to false or not specified, the element will drop <em>down</em>
 <li><p><code>input-type</code>: The HTML5 <code>type</code> attribute of the <code>&lt;input&gt;</code> (“text”, “tel”, “number”, “email”, etc…)</p>
 </li>
 <li><p><code>side</code>: Whether the add-on should be on the <code>left</code> or on the <code>right</code> of the <code>&lt;input&gt;</code></p>
+</li>
+<li><p><code>size</code>: Defines the size of the input-group. Accepted values are:</p>
+<ul>
+<li><code>lg</code></li>
+<li><code>sm</code>
+If none is specified, the default size is used.</li>
+</ul>
 </li>
 <li><p><code>theme</code>: <em>Only valid for button input-groups (<code>&lt;input-group type=&quot;btn&quot;&gt;</code>).</em>
   The variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
@@ -801,7 +806,12 @@ If set to false or not specified, the element will drop <em>down</em>
         <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
         <span class="hljs-attribute">inputType</span>: <span class="hljs-string">"@inputType"</span>
         <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+        <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
         <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
+
+    <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
+        $scope.sizeWildcard = <span class="hljs-string">"input-group-"</span> <span class="hljs-keyword">unless</span> !$scope.size
+        CleanUp $scope
 )</pre></div></div>
             
         </li>

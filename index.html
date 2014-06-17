@@ -56,7 +56,7 @@
         <h3>Dropdowns</h3>
     </blockquote>
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <dropdown type="split" title="Dropdown" theme="warning" id="test" size="sm" icon="qrcode" dropup="true" as-click="alert('YEP')">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
@@ -67,7 +67,7 @@
                 <list-item as-href="" class="disabled">Linked-in</list-item>
             </dropdown>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <btn-dropdown theme="danger" title="Sign-In" dropup="true">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
@@ -78,7 +78,7 @@
                 <list-item as-href="" class="disabled">Linked-in</list-item>
             </btn-dropdown>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <split-dropdown theme="success" size="lg" icon="qrcode" title="Sign-In">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
@@ -89,11 +89,6 @@
                 <list-item as-href="" class="disabled">Linked-in</list-item>
             </split-dropdown>
         </div>
-        <div class="col-sm-2">
-
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2"></div>
     </div>
 
     <br/><br/><br/><br/>
@@ -104,12 +99,20 @@
     </blockquote>
     <div class="row">
         <div class="col-sm-4">
-            <h4>Left &lt;span&gt; add-on</h4>
-            <input-group title="@" type="span" side="left" input-type="text"></input-group>
+            <h4>Left &lt;span&gt; add-ons</h4>
+            <input-group title="LARGE" type="span" size="lg" side="left" input-type="text"></input-group>
+            <br/>
+            <input-group title="MEDIUM" type="span" side="left" input-type="text"></input-group>
+            <br/>
+            <input-group title="SMALL" type="span" size="sm" side="left" input-type="text"></input-group>
         </div>
         <div class="col-sm-4">
-            <h4>Right &lt;button&gt; add-on</h4>
-            <input-group title="@" type="btn" side="right" input-type="text" theme="primary"></input-group>
+            <h4>Right &lt;button&gt; add-ons</h4>
+            <input-group title="LARGE" type="btn" size="lg" side="right" theme="warning" input-type="text"></input-group>
+            <br/>
+            <input-group title="MEDIUM" type="btn" side="right" theme="primary" input-type="text"></input-group>
+            <br/>
+            <input-group title="SMALL" type="btn" size="sm" side="right" theme="success" input-type="text"></input-group>
         </div>
         <div class="col-sm-4"></div>
     </div>
