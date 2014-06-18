@@ -7,7 +7,7 @@
 
         }
 
-        .glyphicon-heart {
+        #glyph-heart {
             font-size: 2.5em;
             color: #1abc9c;
         }
@@ -36,7 +36,7 @@
 
     <div class="row">
         <div class="col-sm-2 text-center">
-            <glyph icon="heart"></glyph>
+            <glyph id="glyph-heart" icon="heart"></glyph>
             <br/><br/>
             <btn-glyph icon="heart-empty" theme="info" size="lg">Angustrap</btn-glyph>
         </div>
@@ -56,38 +56,90 @@
         <h3>Dropdowns</h3>
     </blockquote>
     <div class="row">
-        <div class="col-sm-4">
-            <dropdown type="split" title="Dropdown" theme="warning" size="sm" icon="qrcode" dropup="true" as-click="alert('YEP')">
+
+        <!-- Button Dropdowns-->
+        <div class="col-sm-6 col-md-3">
+            <!-- Dropdowns -->
+            <dropdown type="btn" title="Small Dropdown" theme="danger" size="sm">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="https://twitter.com">Twitter</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="" class="disabled">Facebook</list-item>
-                <list-item as-href="" class="disabled">Instagram</list-item>
-                <list-item as-href="" class="disabled">Linked-in</list-item>
             </dropdown>
-        </div>
-        <div class="col-sm-4">
-            <dropdown type="btn" title="Dropdown" theme="warning" size="sm" icon="tint" dropup="true" as-click="alert('YEP')">
+            <br/>
+            <dropdown type="btn" title="Dropdown" theme="warning" icon="eye-open">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="https://twitter.com">Twitter</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="" class="disabled">Facebook</list-item>
-                <list-item as-href="" class="disabled">Instagram</list-item>
-                <list-item as-href="" class="disabled">Linked-in</list-item>
             </dropdown>
-        </div>
-        <div class="col-sm-4">
-            <split-dropdown theme="success" size="lg" icon="eye-open" title="Sign-In">
+            <br/>
+            <dropdown type="btn" title="Big Dropdown" size="lg" theme="success" icon="tint">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="https://twitter.com">Twitter</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="" class="disabled">Facebook</list-item>
-                <list-item as-href="" class="disabled">Instagram</list-item>
-                <list-item as-href="" class="disabled">Linked-in</list-item>
-            </split-dropdown>
+            </dropdown>
+            <br/>
+        </div>
+
+        <!-- Split Dropdowns -->
+        <div class="col-sm-6 col-md-3">
+            <!-- Dropdowns -->
+            <dropdown type="split" title="Small Split Dropdown" theme="primary" size="sm" icon="heart-empty">
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+            </dropdown>
+            <br/><br/>
+            <dropdown type="split" title="Split Dropdown" theme="info" icon="magnet">
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+            </dropdown>
+            <br/><br/>
+            <dropdown type="split" title="Big Split Dropdown" size="lg" theme="default" icon="thumbs-up">
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+            </dropdown>
+            <br/><br/>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <!-- Dropups -->
+            <dropdown type="btn" title="Small Dropup" theme="default" size="sm" icon="filter" dropup="true">
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+            </dropdown>
+            <br/>
+            <dropdown type="btn" title="Dropup" theme="info" icon="hdd" dropup="true">
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+            </dropdown>
+            <br/>
+            <dropdown type="btn" title="Big Dropdup" size="lg" theme="primary" icon="gift" dropup="true">
+                <list-item as-href="https://google.com">Google</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="https://twitter.com">Twitter</list-item>
+                <list-divider></list-divider>
+                <list-item as-href="" class="disabled">Facebook</list-item>
+            </dropdown>
         </div>
     </div>
 
@@ -121,7 +173,6 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="angustrap.js"></script>
-<script src="angustrap.js"></script>
+<script src="angustrap.min.js"></script>
 </body>
 </html>

@@ -1,24 +1,26 @@
 window.replace = false
+
 angular.module("Angustrap", [])
 
-.service('AsRandom',  ->
-    return (x) ->
-        s = ""
-        while s.length < x and x > 0
-            r = Math.random()
-            s += ((if r < 0.1 then Math.floor(r * 100) else String.fromCharCode(Math.floor(r * 26) + ((if r > 0.5 then 97 else 65)))))
-        s
+.service('AsRandom', [ ->
+        return (x) ->
+            s = ""
+            while s.length < x and x > 0
+                r = Math.random()
+                s += ((if r < 0.1 then ~~(r * 100) else String.fromCharCode(~~(r * 26) + ((if r > 0.5 then 97 else 65)))))
+            return s
+    ]
 )
 
-.service('CleanUp', ($timeout) ->
-    return (scope) ->
-        $timeout ->
-            if scope.asId
-                classes = $('#' + scope.asId).attr 'class'
-                $('#' + scope.asId).attr 'class', classes.trim()
-        , 0
+.service('CleanUp', ['$timeout', ($timeout) ->
+        return (scope) ->
+            $timeout ->
+                if scope.asId
+                    classes = $('#' + scope.asId).attr 'class'
+                    $('#' + scope.asId).attr 'class', classes.trim()
+            , 0
+    ]
 )
-
 
 # Glyphicons
 # ----------
@@ -36,17 +38,18 @@ angular.module("Angustrap", [])
 # **Attributes**:
 #   - icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #           See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
-.directive("glyph", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
-        scope:
-            icon: "@icon"
-            asId: "@asId"
-            asClass: "@asClass"
+.directive("glyph", [ ->
+        defObj =
+            restrict: "E"
+            replace: window.replace
+            template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
+            scope:
+                icon: "@icon"
+                asId: "@asId"
+                asClass: "@asClass"
 
-    return defObj
+        return defObj
+    ]
 )
 
 # ### Button glyphicon
@@ -69,27 +72,28 @@ angular.module("Angustrap", [])
 #               * `lg_
 #               * `sm`
 #               * `xs`
-.directive("btnGlyph", ($timeout) ->
-    defObj =
-        restrict: "E"
-        replace: true
-        transclude: true
-        scope:
-            icon: "@icon"
-            theme: "@theme"
-            size: "@size"
+.directive("btnGlyph", [($timeout) ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            scope:
+                icon: "@icon"
+                theme: "@theme"
+                size: "@size"
 
-        link: (scope, el, attrs) ->
-            attrs.theme = attrs.theme or "default"
+            link: (scope, el, attrs) ->
+                attrs.theme = attrs.theme or "default"
 
-        template: """
+            template: """
         <button type="button" class="btn btn-{{theme}} btn-{{size}}">
             <span class="glyphicon glyphicon-{{icon}}"></span>
             <span data-ng-transclude></span>
         </button>
         """
 
-    return  defObj
+        return  defObj
+    ]
 )
 
 # Dropdowns
@@ -104,33 +108,34 @@ angular.module("Angustrap", [])
 # **Attributes**:
 #   - `asHref`: the url this dropdown-item should point to
 # _Note that you can still pass the usual `.disabled` class to disable an item
-.directive("listItem", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        transclude: true
-        scope:
-            asHref: "@asHref"
+.directive("listItem", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            scope:
+                asHref: "@asHref"
 
-        template: """
+            template: """
         <li role="presentation">
           <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a>
         </li>
         """
 
-    return defObj
-)
+        return defObj
+    ])
 
 # ### Dropdown Divider
 # The `<dropdown-divider>` directive used through transclusion by the other dropdown directives
-.directive("listDivider", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        scope: {}
-        template: """<li role="presentation" class="divider"></li>"""
+.directive("listDivider", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            scope: {}
+            template: """<li role="presentation" class="divider"></li>"""
 
-    return defObj
+        return defObj
+    ]
 )
 
 # ### Mutable Dropdown
@@ -179,52 +184,53 @@ angular.module("Angustrap", [])
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 # ```
-.directive("dropdown", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        transclude: true
-        scope:
-            type: "@type"
-            theme: "@theme"
-            icon: "@icon"
-            size: "@size"
-            title: "@title"
-            dropup: "=dropup"
-            asClick: "=asClick"
+.directive("dropdown", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            scope:
+                type: "@type"
+                theme: "@theme"
+                icon: "@icon"
+                size: "@size"
+                title: "@title"
+                dropup: "=dropup"
+                asClick: "=asClick"
 
-        template: """
-        <div class="{{btnGroup}} {{directionClass}}" id="">
-            <button type="button" class="btn btn-{{theme}} {{srOnly}}" data-toggle="{{isSplit && '' || 'dropdown' }}">
-                <glyph icon="{{icon}}"></glyph> {{title}}
-                <span class="caret" data-ng-hide="isSplit"></span>
-            </button>
-            <button type="button" class="btn btn-{{theme}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">
-                <span class="caret"></span>
-                <span class="sr-only" style="position: relative"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
-        </div>
-        """
+            template: """
+            <div class="{{btnGroup}} {{directionClass}}">
+                <button type="button" class="btn btn-{{theme}} btn-{{size}} {{srOnly}}" data-toggle="{{isSplit && '' || 'dropdown' }}">
+                    <glyph icon="{{icon}}"></glyph> {{title}}
+                    <span class="caret" data-ng-hide="isSplit"></span>
+                </button>
+                <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">
+                    <span class="caret"></span>
+                    <span class="sr-only" style="position: relative"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
+            </div>
+            """
 
-        link:
-            pre: (scope) ->
-                if scope.dropup then scope.directionClass = "dropup" else scope.directionClass = "dropdown"
-                if scope.type == "split"
-                    scope.isSplit = true
-                    scope.btnGroup = "btn-group"
+            controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+                if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = "dropdown"
+                if $scope.type == "split"
+                    $scope.isSplit = true
+                    $scope.btnGroup = "btn-group"
 
-                else if scope.type == "btn"
-                    scope.isSplit = false
-                    scope.srOnly = ""
-                    scope.btnGroup = ""
+                else if $scope.type == "btn"
+                    $scope.isSplit = false
+                    $scope.btnGroup = ""
 
-                else if !scope.type
-                    scope.srOnly = "sr-only"
-                    scope.isSplit = false
-                    scope.btnGroup = ""
+                else if !$scope.type
+                    $scope.isSplit = false
+                    $scope.btnGroup = ""
 
-    return defObj
+                CleanUp $scope
+            ]
+
+        return defObj
+    ]
 )
 
 # Navigation Bar
@@ -255,20 +261,20 @@ angular.module("Angustrap", [])
 #   If this attribute is not specified or set to `static`, the navbar will be at the top of the screen and scroll with the content (`.navbar-static-top`).
 # * `center`: Whether the navbar content & title should be centered (i.e: inside a `div.container`)
 .directive("navbar", ["AsRandom", (AsRandom) ->
-    restrict: "E"
-    replace: true
-    transclude: true
+        restrict: "E"
+        replace: true
+        transclude: true
 
-    scope:
-        asId: "@asId"
-        asClass: "@asClass"
-        theme: "@theme"
-        title: "@title"
-        titleHref: "@titleHref"
-        fixed: "@fixed"
-        center: "=center"
+        scope:
+            asId: "@asId"
+            asClass: "@asClass"
+            theme: "@theme"
+            title: "@title"
+            titleHref: "@titleHref"
+            fixed: "@fixed"
+            center: "=center"
 
-    template: """
+        template: """
     <nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation">
         <div class="{{container}}">
             <div class="navbar-header">
@@ -287,35 +293,39 @@ angular.module("Angustrap", [])
     </nav>
     """
 
-    controller: ($scope, $timeout, CleanUp) ->
-        $scope.random = "#" + AsRandom 12
-        $scope.hashRandom = "#" + $scope.random
-        $scope.container = "container"
-        if !$scope.center then $scope.container = "container-fluid"
-        if !$scope.theme then  $scope.theme = "default"
-        if $scope.fixed then $scope.fixedWildcard = "navbar-fixed-"
-        if !$scope.fixed or scope.fixed is "static" then $scope.fixedWildcard = "navbar-static-top"
+        controller: ['$scope', '$timeout', 'CleanUp', ($scope, $timeout, CleanUp) ->
+            $scope.random = "#" + AsRandom 12
+            $scope.hashRandom = "#" + $scope.random
+            $scope.container = "container"
+            if !$scope.center then $scope.container = "container-fluid"
+            if !$scope.theme then  $scope.theme = "default"
+            if $scope.fixed then $scope.fixedWildcard = "navbar-fixed-"
+            if !$scope.fixed or scope.fixed is "static" then $scope.fixedWildcard = "navbar-static-top"
 
-        # Remove possible trailing spaces in class attribute
-        CleanUp $scope
-])
+            # Remove possible trailing spaces in class attribute
+            CleanUp $scope
+        ]
+    ]
+)
 
 # ###Navbar List
 # ##### Attributes:
 # * side: whether this list should be aligned to the `left` or to the `right` inside its parent `<navbar>`
-.directive("navbarList", ->
-    restrict: "E"
-    replace: true
-    transclude: true
-    template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
-    scope:
-        asId: "@asId"
-        asClass: "@asClass"
-        side: "@side"
+.directive("navbarList", [ ->
+        restrict: "E"
+        replace: true
+        transclude: true
+        template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
+        scope:
+            asId: "@asId"
+            asClass: "@asClass"
+            side: "@side"
 
-    controller: ($scope, CleanUp) ->
-        if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""
-        CleanUp $scope
+        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+            if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""
+            CleanUp $scope
+        ]
+    ]
 )
 
 # NavbarDropdown `<navbar-dropdown>`
@@ -323,24 +333,26 @@ angular.module("Angustrap", [])
 #
 # #### Attributes:
 # * `title`: The title of the dropdown list item. Has the same appearance as a `<list-item>`
-.directive("navbarDropdown", ->
-    restrict: "E"
-    replace: true
-    transclude: true
-    scope:
-        asId: "@asId"
-        asClass: "@asClass"
-        title: "@title"
+.directive("navbarDropdown", [ ->
+        restrict: "E"
+        replace: true
+        transclude: true
+        scope:
+            asId: "@asId"
+            asClass: "@asClass"
+            title: "@title"
 
-    controller: ($scope, CleanUp) ->
-        CleanUp $scope
+        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+            CleanUp $scope
+        ]
 
-    template: """
+        template: """
         <li class="dropdown {{asClass}}" id="{{asId}}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
             <ul class="dropdown-menu" data-ng-transclude></ul>
         </li>
         """
+    ]
 )
 
 # InputGroup `<input-group>`
@@ -380,53 +392,55 @@ angular.module("Angustrap", [])
 #     * `info`
 #     * `warning`
 #     * `danger`
-.directive("inputGroup", ->
-    restrict: "E"
-    replace: true
-    transclude: true
-    scope:
-        asId: "@asId"
-        asClass: "@asClass"
-        title: "@title"
-        type: "@type"
-        side: "@side"
-        icon: "@icon"
-        size: "@size"
-        theme: "@theme"
-        inputType: "@inputType"
+.directive("inputGroup", [ ->
+        restrict: "E"
+        replace: true
+        transclude: true
+        scope:
+            asId: "@asId"
+            asClass: "@asClass"
+            title: "@title"
+            type: "@type"
+            side: "@side"
+            icon: "@icon"
+            size: "@size"
+            theme: "@theme"
+            inputType: "@inputType"
 
-    controller: ($scope, CleanUp) ->
-        $scope.sizeWildcard = "input-group-" unless !$scope.size
-        CleanUp $scope
+        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+            CleanUp $scope
+        ]
 
-    template: """
-    <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
-        <!-- Left Span Add-on -->
-        <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">
-            <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
-        </span>
-        <!-- Left Button Add-on -->
-        <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'">
-            <button class="btn btn-{{theme}}" type="button">
+
+        template: """
+        <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
+            <!-- Left Span Add-on -->
+            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
-            </button>
-        </span>
+            </span>
+            <!-- Left Button Add-on -->
+            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'">
+                <button class="btn btn-{{theme}}" type="button">
+                    <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+                </button>
+            </span>
 
-        <!-- The input -->
-        <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
+            <!-- The input -->
+            <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
 
-        <!-- Right Span Add-on -->
-        <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">
-            <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
-        </span>
-        <!-- Right Button Add-on -->
-        <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'">
-            <button class="btn btn-{{theme}}" type="button">
+            <!-- Right Span Add-on -->
+            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
-            </button>
-        </span>
-    </div>
-    """
+            </span>
+            <!-- Right Button Add-on -->
+            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'">
+                <button class="btn btn-{{theme}}" type="button">
+                    <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
+                </button>
+            </span>
+        </div>
+        """
+    ]
 )
 
 # RainbowLog
