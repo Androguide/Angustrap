@@ -1,4 +1,4 @@
-angular.module("Angustrap", []).service('CleanUp', ['$timeout', ($timeout) ->
+service('CleanUp', ['$timeout', ($timeout) ->
         return (scope) ->
             $timeout ->
                 if scope.asId

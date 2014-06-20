@@ -2,7 +2,7 @@
   "name": "angustrap",
   "version": "0.0.0",
   "description": "AngularJS Directives for the CSS/Markup components of Bootstrap",
-  "main": "directives.js",
+  "main": "dist/angustrap.min.js",
   "moduleType": [
     "amd"
   ],

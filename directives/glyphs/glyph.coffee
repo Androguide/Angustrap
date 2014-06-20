@@ -17,12 +17,10 @@
 directive("glyph", [ ->
         defObj =
             restrict: "E"
-            replace: window.replace
-            template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
+            replace: true
+            template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
             scope:
                 icon: "@icon"
-                asId: "@asId"
-                asClass: "@asClass"
 
         return defObj
     ]

@@ -15,14 +15,15 @@
           icon: "@icon",
           size: "@size",
           theme: "@theme",
-          inputType: "@inputType"
+          inputType: "@inputType",
+          asClick: "=asClick"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
             return CleanUp($scope);
           }
         ],
-        template: "<div id=\"{{asId}}\" class=\"input-group {{sizeWildcard}}{{size}} {{asClass}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'left'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'left'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{inputType}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'right'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'right'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
+        template: "<div id=\"{{asId}}\" class=\"input-group {{sizeWildcard}}{{size}} {{asClass}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'left'\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'left'\" data-ng-click=\"{{asClick}}\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{inputType}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'right'\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'right'\" data-ng-click=\"{{asClick}}\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
       };
     }
   ]);

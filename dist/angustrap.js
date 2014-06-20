@@ -1,42 +1,29 @@
 (function() {
-  angular.module("Angustrap", []).directive("btnDropdown", function() {
-    var defObj;
-    defObj = {
-      restrict: "E",
-      replace: true,
-      transclude: true,
-      template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n  <button class=\"btn btn-{{theme}} btn-{{size}}\" type=\"button\" data-toggle=\"dropdown\">\n      <glyph icon=\"{{icon}}\"></glyph> {{title}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"{{id}}\" data-ng-transclude></ul>\n</div>",
-      scope: {
-        theme: "@theme",
-        size: "@size",
-        title: "@title",
-        dropup: "=dropup"
-      },
-      link: function(scope, el, attrs) {
-        attrs.theme = attrs.theme || "default";
-        if (scope.dropup) {
-          scope.directionClass = "dropup";
-        }
-        console.e("The <btn-dropdown> directive is now deprecated. Please use <dropdown type='btn'> instead");
-      }
-    };
-    return defObj;
-  });
-
-  angustrap.module("Angustrap", []).directive("listDivider", [
+  angular.module("Angustrap", []).service('AsRandom', [
     function() {
-      var defObj;
-      defObj = {
-        restrict: "E",
-        replace: true,
-        scope: {},
-        template: "<li role=\"presentation\" class=\"divider\"></li>"
+      return function(x) {
+        var r, s;
+        s = "";
+        while (s.length < x && x > 0) {
+          r = Math.random();
+          s += (r < 0.1 ? ~~(r * 100) : String.fromCharCode(~~(r * 26) + (r > 0.5 ? 97 : 65)));
+        }
+        return s;
       };
-      return defObj;
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("dropdown", [
+  ]).service('CleanUp', [
+    '$timeout', function($timeout) {
+      return function(scope) {
+        return $timeout(function() {
+          var classes;
+          if (scope.asId) {
+            classes = $('#' + scope.asId).attr('class');
+            return $('#' + scope.asId).attr('class', classes.trim());
+          }
+        }, 0);
+      };
+    }
+  ]).directive("dropdown", [
     function() {
       var defObj;
       defObj = {
@@ -52,13 +39,16 @@
           dropup: "=dropup",
           asClick: "=asClick"
         },
-        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\">\n        <glyph icon=\"{{icon}}\"></glyph> {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
+        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" ng-show=\"isSplit\" style=\"font-size: 0.95em\"></glyph>\n        <glyph icon=\"{{icon}}\" ng-hide=\"isSplit\"></glyph>\n         {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
+            if (!$scope.size) {
+              $scope.size = "";
+            }
             if ($scope.dropup) {
               $scope.directionClass = "dropup";
             } else {
-              $scope.directionClass = "dropdown";
+              $scope.directionClass = "";
             }
             if ($scope.type === "split") {
               $scope.isSplit = true;
@@ -75,9 +65,18 @@
       };
       return defObj;
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("listItem", [
+  ]).directive("listDivider", [
+    function() {
+      var defObj;
+      defObj = {
+        restrict: "E",
+        replace: true,
+        scope: {},
+        template: "<li role=\"presentation\" class=\"divider\"></li>"
+      };
+      return defObj;
+    }
+  ]).directive("listItem", [
     function() {
       var defObj;
       defObj = {
@@ -85,40 +84,14 @@
         replace: true,
         transclude: true,
         scope: {
-          asHref: "@asHref"
+          asHref: "@asHref",
+          asClick: "=asClick"
         },
-        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-transclude></a>\n</li>"
+        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-click=\"{{asClick}}\" data-ng-transclude></a>\n</li>"
       };
       return defObj;
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("splitDropdown", function() {
-    var defObj;
-    defObj = {
-      restrict: "E",
-      replace: true,
-      transclude: true,
-      template: "<div class=\"btn-group {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}}\">\n        <glyph icon=\"{{icon}}\"></glyph> {{title}}\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} dropdown-toggle\" data-toggle=\"dropdown\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
-      scope: {
-        theme: "@theme",
-        icon: "@icon",
-        size: "@size",
-        title: "@title",
-        dropup: "=dropup"
-      },
-      link: function(scope, el, attrs) {
-        attrs.theme = attrs.theme || "default";
-        if (scope.dropup) {
-          scope.directionClass = "dropup";
-        }
-        console.e("The <split-dropdown> directive is now deprecated. Please use <dropdown type='split'> instead");
-      }
-    };
-    return defObj;
-  });
-
-  angular.module("Angustrap", []).directive("btnGlyph", [
+  ]).directive("btnGlyph", [
     function($timeout) {
       var defObj;
       defObj = {
@@ -128,35 +101,30 @@
         scope: {
           icon: "@icon",
           theme: "@theme",
-          size: "@size"
+          size: "@size",
+          asClick: "=asClick"
         },
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
         },
-        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
+        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-ng-click=\"{{asClick}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
       };
       return defObj;
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("glyph", [
+  ]).directive("glyph", [
     function() {
       var defObj;
       defObj = {
         restrict: "E",
-        replace: window.replace,
-        template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>",
+        replace: true,
+        template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>",
         scope: {
-          icon: "@icon",
-          asId: "@asId",
-          asClass: "@asClass"
+          icon: "@icon"
         }
       };
       return defObj;
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("inputGroup", [
+  ]).directive("inputGroup", [
     function() {
       return {
         restrict: "E",
@@ -171,40 +139,30 @@
           icon: "@icon",
           size: "@size",
           theme: "@theme",
-          inputType: "@inputType"
+          inputType: "@inputType",
+          asClick: "=asClick"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
             return CleanUp($scope);
           }
         ],
-        template: "<div id=\"{{asId}}\" class=\"input-group {{sizeWildcard}}{{size}} {{asClass}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'left'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'left'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{inputType}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'right'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'right'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
+        template: "<div id=\"{{asId}}\" class=\"input-group {{sizeWildcard}}{{size}} {{asClass}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'left'\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'left'\" data-ng-click=\"{{asClick}}\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{inputType}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"type == 'span' && side == 'right'\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"type == 'btn' && side == 'right'\" data-ng-click=\"{{asClick}}\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
       };
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("navbarDropdown", [
+  ]).directive("navbarDropdown", [
     function() {
       return {
         restrict: "E",
         replace: true,
         transclude: true,
         scope: {
-          asId: "@asId",
-          asClass: "@asClass",
           title: "@title"
         },
-        controller: [
-          '$scope', 'CleanUp', function($scope, CleanUp) {
-            return CleanUp($scope);
-          }
-        ],
-        template: "<li class=\"dropdown {{asClass}}\" id=\"{{asId}}\">\n    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{title}} <b class=\"caret\"></b></a>\n    <ul class=\"dropdown-menu\" data-ng-transclude></ul>\n</li>"
+        template: "<li class=\"dropdown\">\n    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{title}} <b class=\"caret\"></b></a>\n    <ul class=\"dropdown-menu\" data-ng-transclude></ul>\n</li>"
       };
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("navbarList", [
+  ]).directive("navbarList", [
     function() {
       return {
         restrict: "E",
@@ -212,8 +170,6 @@
         transclude: true,
         template: "<ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude></ul>",
         scope: {
-          asId: "@asId",
-          asClass: "@asClass",
           side: "@side"
         },
         controller: [
@@ -228,24 +184,20 @@
         ]
       };
     }
-  ]);
-
-  angular.module("Angustrap", []).directive("navbar", [
+  ]).directive("navbar", [
     "AsRandom", function(AsRandom) {
       return {
         restrict: "E",
         replace: true,
         transclude: true,
         scope: {
-          asId: "@asId",
-          asClass: "@asClass",
           theme: "@theme",
           title: "@title",
           titleHref: "@titleHref",
           fixed: "@fixed",
           center: "=center"
         },
-        template: "<nav id=\"{{asId}}\" class=\"navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}\" role=\"navigation\">\n    <div class=\"{{container}}\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"{{hashRandom}}\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" ng-href=\"{{titleHref}}\">{{title}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"{{random}}\">\n            <div class=\"{{center && 'container' || '' }}\" data-ng-transclude></div>\n        </div>\n    </div>\n</nav>",
+        template: "<nav class=\"navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}\" role=\"navigation\">\n    <div class=\"{{container}}\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"{{hashRandom}}\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" ng-href=\"{{titleHref}}\">{{title}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"{{random}}\">\n            <div class=\"{{center && 'container' || '' }}\" data-ng-transclude></div>\n        </div>\n    </div>\n</nav>",
         controller: [
           '$scope', '$timeout', 'CleanUp', function($scope, $timeout, CleanUp) {
             $scope.random = "#" + AsRandom(12);
@@ -269,20 +221,5 @@
       };
     }
   ]);
-
-  (function() {
-    var e, n, r, t;
-    r = function(t) {
-      return function(r, i) {
-        return e.log("%c" + r, i + ";color:#fff;background:" + n[1][t]);
-      };
-    };
-    e = console;
-    t = 3;
-    n = [["e", "s", "i"], ["#c0392b", "#2ecc71", "#3498db"]];
-    while (t--) {
-      e[n[0][t]] = r(t);
-    }
-  })();
 
 }).call(this);

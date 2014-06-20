@@ -8,8 +8,8 @@ module.exports = function(grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'app/<%= pkg.name %>.js',
-                dest: 'app/<%= pkg.name %>.min.js'
+                src: 'dist/<%= pkg.name %>.js',
+                dest: 'dist/<%= pkg.name %>.min.js'
             }
         },
 
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 separator: '.\n\n'
             },
             dist: {
-                src: ['directives/module.coffee', 'directives/*/*.coffee'],
+                src: ['directives/module.coffee', 'services/*.coffee', 'directives/*/*.coffee'],
                 dest: '<%= pkg.name %>.combined.coffee'
             }
         },
@@ -29,14 +29,14 @@ module.exports = function(grunt) {
                   join: true
                 },
                 files: {
-                  'app/<%= pkg.name %>.js': '<%= pkg.name %>.combined.coffee' // 1:1 compile
+                  'dist/<%= pkg.name %>.js': '<%= pkg.name %>.combined.coffee' // 1:1 compile
                 }
             }
         },
 
         watch: {
           scripts: {
-            files: ['directives/*/*.coffee'],
+            files: ['directives/*/*.coffee', 'services/*.coffee'],
             tasks: ['concat', 'coffee', 'uglify']
           }
         }

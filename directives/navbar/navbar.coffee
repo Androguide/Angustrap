@@ -31,8 +31,6 @@ directive("navbar", ["AsRandom", (AsRandom) ->
         transclude: true
 
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             theme: "@theme"
             title: "@title"
             titleHref: "@titleHref"
@@ -40,7 +38,7 @@ directive("navbar", ["AsRandom", (AsRandom) ->
             center: "=center"
 
         template: """
-        <nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation">
+        <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">
             <div class="{{container}}">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}">

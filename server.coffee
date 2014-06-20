@@ -12,10 +12,11 @@ app.get "/", (req, res) ->
 
 app.use methodOverride()
 app.use bodyParser()
-app.use express.static(__dirname + "/app")
+app.use express.static(__dirname + "/dist")
 app.use errorHandler(
     dumpExceptions: true
     showStack: true
 )
+
 app.listen port
 console.log "Server listening on port: " + port

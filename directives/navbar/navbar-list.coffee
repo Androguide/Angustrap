@@ -25,8 +25,6 @@ directive("navbarList", [ ->
         transclude: true
         template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             side: "@side"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->

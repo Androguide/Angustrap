@@ -7,16 +7,9 @@
         replace: true,
         transclude: true,
         scope: {
-          asId: "@asId",
-          asClass: "@asClass",
           title: "@title"
         },
-        controller: [
-          '$scope', 'CleanUp', function($scope, CleanUp) {
-            return CleanUp($scope);
-          }
-        ],
-        template: "<li class=\"dropdown {{asClass}}\" id=\"{{asId}}\">\n    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{title}} <b class=\"caret\"></b></a>\n    <ul class=\"dropdown-menu\" data-ng-transclude></ul>\n</li>"
+        template: "<li class=\"dropdown\">\n    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{title}} <b class=\"caret\"></b></a>\n    <ul class=\"dropdown-menu\" data-ng-transclude></ul>\n</li>"
       };
     }
   ]);

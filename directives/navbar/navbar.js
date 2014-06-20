@@ -7,15 +7,13 @@
         replace: true,
         transclude: true,
         scope: {
-          asId: "@asId",
-          asClass: "@asClass",
           theme: "@theme",
           title: "@title",
           titleHref: "@titleHref",
           fixed: "@fixed",
           center: "=center"
         },
-        template: "<nav id=\"{{asId}}\" class=\"navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}\" role=\"navigation\">\n    <div class=\"{{container}}\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"{{hashRandom}}\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" ng-href=\"{{titleHref}}\">{{title}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"{{random}}\">\n            <div class=\"{{center && 'container' || '' }}\" data-ng-transclude></div>\n        </div>\n    </div>\n</nav>",
+        template: "<nav class=\"navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}\" role=\"navigation\">\n    <div class=\"{{container}}\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"{{hashRandom}}\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" ng-href=\"{{titleHref}}\">{{title}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"{{random}}\">\n            <div class=\"{{center && 'container' || '' }}\" data-ng-transclude></div>\n        </div>\n    </div>\n</nav>",
         controller: [
           '$scope', '$timeout', 'CleanUp', function($scope, $timeout, CleanUp) {
             $scope.random = "#" + AsRandom(12);

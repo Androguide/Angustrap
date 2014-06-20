@@ -1,8 +1,29 @@
 angular.module("Angustrap", []).
 
+service('AsRandom', [ ->
+        return (x) ->
+            s = ""
+            while s.length < x and x > 0
+                r = Math.random()
+                s += ((if r < 0.1 then ~~(r * 100) else String.fromCharCode(~~(r * 26) + ((if r > 0.5 then 97 else 65)))))
+            return s
+    ]
+).
+
+service('CleanUp', ['$timeout', ($timeout) ->
+        return (scope) ->
+            $timeout ->
+                if scope.asId
+                    classes = $('#' + scope.asId).attr 'class'
+                    $('#' + scope.asId).attr 'class', classes.trim()
+            , 0
+    ]
+)
+.
+
 # ### Mutable Dropdown
 # #### Attributes:
-#  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#  * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
 #       * `primary`
 #       * `success`
@@ -10,21 +31,23 @@ angular.module("Angustrap", []).
 #       * `warning`
 #       * `danger`
 #
-#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#   * `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 #
-#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#   * `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
 #     Possible choice are:
 #       * `lg`
 #       * `sm`
 #       * `xs`
 #
-#   * title: the string to display inside the action button of the split dropdown
+#   * `title`: the string to display inside the action button of the split dropdown
 #
-#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+#   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
 #   If set to false or not specified, the element will drop _down_
 #
-#   * type: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
+#   * `type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
+#
+#   * `as-click`: **only relevant for split dropdowns**<br/> a piece of JavaScript to execute when the left button is clicked
 #
 # **Example**:<br/>
 # ```html
@@ -62,7 +85,7 @@ directive("dropdown", [ ->
 
             template: """
             <div class="{{btnGroup}} {{directionClass}}">
-                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}">
+                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}" data-ng-click="{{asClick}}">
                     <glyph icon="{{icon}}" ng-show="isSplit" style="font-size: 0.95em"></glyph>
                     <glyph icon="{{icon}}" ng-hide="isSplit"></glyph>
                      {{title}}
@@ -119,8 +142,10 @@ directive("listDivider", [ ->
 # This is the `<dropdown-item>` directive used through transclusion by the other dropdown directives.
 # <br/>
 # **Attributes**:
-#   - `asHref`: the url this dropdown-item should point to
-# _Note that you can still pass the usual `.disabled` class to disable an item
+#   - `as-href`: the url this dropdown-item should point to
+#   - `as-click`: a piece of JavaScript code to execute when the link is clicked
+#
+# _Note that you can still pass Bootstrap's usual `.disabled` class to disable an item
 directive("listItem", [ ->
     defObj =
         restrict: "E"
@@ -128,10 +153,11 @@ directive("listItem", [ ->
         transclude: true
         scope:
             asHref: "@asHref"
+            asClick: "=asClick"
 
         template: """
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a>
+          <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-click="{{asClick}}" data-ng-transclude></a>
         </li>
         """
 
@@ -168,12 +194,13 @@ directive("btnGlyph", [($timeout) ->
                 icon: "@icon"
                 theme: "@theme"
                 size: "@size"
+                asClick: "=asClick"
 
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"
 
             template: """
-        <button type="button" class="btn btn-{{theme}} btn-{{size}}">
+        <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-ng-click="{{asClick}}">
             <span class="glyphicon glyphicon-{{icon}}"></span>
             <span data-ng-transclude></span>
         </button>
@@ -202,12 +229,10 @@ directive("btnGlyph", [($timeout) ->
 directive("glyph", [ ->
         defObj =
             restrict: "E"
-            replace: window.replace
-            template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
+            replace: true
+            template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
             scope:
                 icon: "@icon"
-                asId: "@asId"
-                asClass: "@asClass"
 
         return defObj
     ]
@@ -250,6 +275,8 @@ directive("glyph", [ ->
 #     * `info`
 #     * `warning`
 #     * `danger`
+#
+# * `as-click`: A piece of JavaScript to execute when the input add-on is clicked
 directive("inputGroup", [ ->
         restrict: "E"
         replace: true
@@ -264,6 +291,7 @@ directive("inputGroup", [ ->
             size: "@size"
             theme: "@theme"
             inputType: "@inputType"
+            asClick: "=asClick"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             CleanUp $scope
@@ -273,11 +301,11 @@ directive("inputGroup", [ ->
         template: """
         <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
             <!-- Left Span Add-on -->
-            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'">
+            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'" data-ng-click="{{asClick}}">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Left Button Add-on -->
-            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'">
+            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'" data-ng-click="{{asClick}}">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
@@ -287,11 +315,11 @@ directive("inputGroup", [ ->
             <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
 
             <!-- Right Span Add-on -->
-            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'">
+            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'" data-ng-click="{{asClick}}">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Right Button Add-on -->
-            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'">
+            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'" data-ng-click="{{asClick}}">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
@@ -329,16 +357,10 @@ directive("navbarDropdown", [ ->
         replace: true
         transclude: true
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             title: "@title"
 
-        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
-            CleanUp $scope
-        ]
-
         template: """
-        <li class="dropdown {{asClass}}" id="{{asId}}">
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
             <ul class="dropdown-menu" data-ng-transclude></ul>
         </li>
@@ -373,8 +395,6 @@ directive("navbarList", [ ->
         transclude: true
         template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             side: "@side"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
@@ -417,8 +437,6 @@ directive("navbar", ["AsRandom", (AsRandom) ->
         transclude: true
 
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             theme: "@theme"
             title: "@title"
             titleHref: "@titleHref"
@@ -426,7 +444,7 @@ directive("navbar", ["AsRandom", (AsRandom) ->
             center: "=center"
 
         template: """
-        <nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation">
+        <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">
             <div class="{{container}}">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}">
@@ -456,25 +474,5 @@ directive("navbar", ["AsRandom", (AsRandom) ->
             # Remove possible trailing spaces in class attribute
             CleanUp $scope
         ]
-    ]
-).
-
-service('AsRandom', [ ->
-        return (x) ->
-            s = ""
-            while s.length < x and x > 0
-                r = Math.random()
-                s += ((if r < 0.1 then ~~(r * 100) else String.fromCharCode(~~(r * 26) + ((if r > 0.5 then 97 else 65)))))
-            return s
-    ]
-).
-
-service('CleanUp', ['$timeout', ($timeout) ->
-        return (scope) ->
-            $timeout ->
-                if scope.asId
-                    classes = $('#' + scope.asId).attr 'class'
-                    $('#' + scope.asId).attr 'class', classes.trim()
-            , 0
     ]
 )

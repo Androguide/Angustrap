@@ -1,6 +1,4 @@
-angular.module("Angustrap", [])
-
-.service('AsRandom', [ ->
+service('AsRandom', [ ->
         return (x) ->
             s = ""
             while s.length < x and x > 0

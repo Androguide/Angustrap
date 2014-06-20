@@ -1,6 +1,6 @@
 # ### Mutable Dropdown
 # #### Attributes:
-#  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#  * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
 #       * `primary`
 #       * `success`
@@ -8,21 +8,23 @@
 #       * `warning`
 #       * `danger`
 #
-#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#   * `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 #
-#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#   * `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
 #     Possible choice are:
 #       * `lg`
 #       * `sm`
 #       * `xs`
 #
-#   * title: the string to display inside the action button of the split dropdown
+#   * `title`: the string to display inside the action button of the split dropdown
 #
-#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+#   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
 #   If set to false or not specified, the element will drop _down_
 #
-#   * type: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
+#   * `type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
+#
+#   * `as-click`: **only relevant for split dropdowns**<br/> a piece of JavaScript to execute when the left button is clicked
 #
 # **Example**:<br/>
 # ```html
@@ -60,7 +62,7 @@ directive("dropdown", [ ->
 
             template: """
             <div class="{{btnGroup}} {{directionClass}}">
-                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}">
+                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}" data-ng-click="{{asClick}}">
                     <glyph icon="{{icon}}" ng-show="isSplit" style="font-size: 0.95em"></glyph>
                     <glyph icon="{{icon}}" ng-hide="isSplit"></glyph>
                      {{title}}

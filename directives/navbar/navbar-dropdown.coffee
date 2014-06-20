@@ -26,16 +26,10 @@ directive("navbarDropdown", [ ->
         replace: true
         transclude: true
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             title: "@title"
 
-        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
-            CleanUp $scope
-        ]
-
         template: """
-        <li class="dropdown {{asClass}}" id="{{asId}}">
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
             <ul class="dropdown-menu" data-ng-transclude></ul>
         </li>
