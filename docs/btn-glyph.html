@@ -19,28 +19,18 @@
           <div id="jump_page">
             
               
-              <a class="source" href="btn-dropdown.html">
-                btn-dropdown.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-divider.html">
-                dropdown-divider.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-item.html">
-                dropdown-item.coffee
-              </a>
-            
-              
               <a class="source" href="dropdown.html">
                 dropdown.coffee
               </a>
             
               
-              <a class="source" href="split-dropdown.html">
-                split-dropdown.coffee
+              <a class="source" href="list-divider.html">
+                list-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="list-item.html">
+                list-item.coffee
               </a>
             
               
@@ -93,27 +83,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h2 id="glyphicons">Glyphicons</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>Shortcut directives for Bootstrap’s glyphicons.<br/><br/>
-<strong>Examples</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">glyph</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"heart"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">glyph</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">glyph</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span>&gt;</span>Sign-In<span class="hljs-tag">&lt;/<span class="hljs-title">glyph</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">btn-glyph</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"heart-empty"</span>&gt;</span>Angustrap<span class="hljs-tag">&lt;/<span class="hljs-title">glyph</span>&gt;</span>
-</code></pre>
-<p><br/></p>
-<h3 id="button-glyphicon">Button glyphicon</h3>
+              <h3 id="button-glyphicon">Button glyphicon</h3>
 <p><strong>Attributes</strong>:</p>
 <ul>
 <li><p><code>icon</code>: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).</p>
@@ -121,41 +91,48 @@
 </code></pre></li>
 <li><p><code>theme</code>: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).</p>
 <pre><code>     The stock ones are as follows, but you can create your own <span class="hljs-keyword">in</span> your stylesheet <span class="hljs-keyword">if</span> you <span class="hljs-attribute">want</span>:
-       * _primary_
-       * _success_
-       * _info_
-       * _warning_
-       * _danger_
+       * `<span class="javascript">primary</span>`
+       * `<span class="javascript">success</span>`
+       * `<span class="javascript">info</span>`
+       * `<span class="javascript">warning</span>`
+       * `<span class="javascript">danger</span>`
 
     _**Note**: If <span class="hljs-literal">no</span> `<span class="javascript">theme</span>` attribute <span class="hljs-keyword">is</span> specified, Angustrap will <span class="hljs-reserved">default</span>-back to Bootstrap<span class="hljs-string">'s `.btn-default` class_</span>
 </code></pre></li>
 <li><p><code>size</code>: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).</p>
 <pre><code>    Possible choice <span class="hljs-attribute">are</span>:
-      * _lg_
-      * _sm_
-      * _xs_
+      * `<span class="javascript">lg_
+      * </span>`sm`<span class="javascript">
+      * </span>`xs`<span class="javascript"></span>
 </code></pre></li>
 </ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"Angustrap"</span>, [])</span>.<span class="hljs-title">directive</span><span class="hljs-params">(<span class="hljs-string">"btnGlyph"</span>, ($timeout) -&gt;
-    defObj =
-        restrict: <span class="hljs-string">"E"</span>
-        replace: <span class="hljs-literal">true</span>
-        transclude: <span class="hljs-literal">true</span>
-        templateUrl: <span class="hljs-string">"templates/dropdowns/btn-glyph.html"</span>
-        scope:
-            icon: <span class="hljs-string">"@icon"</span>
-            theme: <span class="hljs-string">"@theme"</span>
-            size: <span class="hljs-string">"@size"</span>
-        link: (scope, el, attrs) -&gt;
-            <span class="hljs-built_in">console</span>.log el
-            attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
+            <div class="content"><div class='highlight'><pre>directive<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"btnGlyph"</span>, [($timeout) -&gt;
+        defObj =
+            restrict: <span class="hljs-string">"E"</span>
+            replace: <span class="hljs-literal">true</span>
+            transclude: <span class="hljs-literal">true</span>
+            scope:
+                icon: <span class="hljs-string">"@icon"</span>
+                theme: <span class="hljs-string">"@theme"</span>
+                size: <span class="hljs-string">"@size"</span>
+                asClick: <span class="hljs-string">"=asClick"</span>
 
-    <span class="hljs-keyword">return</span>  defObj
+            link: (scope, el, attrs) -&gt;
+                attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
+
+            template: <span class="hljs-string">"""
+        &lt;button type="button" class="btn btn-{{theme}} btn-{{size}}" data-ng-click="{{asClick}}"&gt;
+            &lt;span class="glyphicon glyphicon-{{icon}}"&gt;&lt;/span&gt;
+            &lt;span data-ng-transclude&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        """</span>
+
+        <span class="hljs-keyword">return</span>  defObj
+    ]
 )</span>
-
 </span></pre></div></div>
             
         </li>

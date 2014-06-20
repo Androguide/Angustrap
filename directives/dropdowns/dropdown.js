@@ -8,7 +8,7 @@
         replace: true,
         transclude: true,
         scope: {
-          type: "@type",
+          asType: "@asType",
           theme: "@theme",
           icon: "@icon",
           size: "@size",
@@ -27,11 +27,11 @@
             } else {
               $scope.directionClass = "";
             }
-            if ($scope.type === "split") {
+            if ($scope.asType === "split") {
               $scope.isSplit = true;
               $scope.dataToggle = "";
               $scope.btnGroup = "btn-group";
-            } else if ($scope.type === "btn" || !$scope.type) {
+            } else if ($scope.asType === "btn" || !$scope.asType) {
               $scope.isSplit = false;
               $scope.dataToggle = "dropdown";
               $scope.btnGroup = "";

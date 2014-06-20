@@ -22,26 +22,26 @@
 #   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
 #   If set to false or not specified, the element will drop _down_
 #
-#   * `type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
+#   * `as-type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
 #
 #   * `as-click`: **only relevant for split dropdowns**<br/> a piece of JavaScript to execute when the left button is clicked
 #
 # **Example**:<br/>
 # ```html
 # <!-- Button Dropdown -->
-# <dropdown type="btn" title="Button Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
+# <dropdown as-type="btn" title="Button Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 #
 # <!-- Split Dropdown -->
-# <dropdown type="split" title="Split Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
+# <dropdown as-type="split" title="Split Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 #
 # <!-- Dropup -->
-# <dropdown type="btn" title="Button Dropup" theme="warning" id="test" size="sm" icon="qrcode" dropup="true">
+# <dropdown as-type="btn" title="Button Dropup" theme="warning" id="test" size="sm" icon="qrcode" dropup="true">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
@@ -52,7 +52,7 @@ directive("dropdown", [ ->
             replace: true
             transclude: true
             scope:
-                type: "@type"
+                asType: "@asType"
                 theme: "@theme"
                 icon: "@icon"
                 size: "@size"
@@ -79,12 +79,12 @@ directive("dropdown", [ ->
             controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
                 $scope.size = "" unless $scope.size
                 if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = ""
-                if $scope.type == "split"
+                if $scope.asType == "split"
                     $scope.isSplit = true
                     $scope.dataToggle = ""
                     $scope.btnGroup = "btn-group"
 
-                else if $scope.type == "btn" or !$scope.type
+                else if $scope.asType == "btn" or !$scope.asType
                     $scope.isSplit = false
                     $scope.dataToggle = "dropdown"
                     $scope.btnGroup = ""

@@ -19,28 +19,18 @@
           <div id="jump_page">
             
               
-              <a class="source" href="btn-dropdown.html">
-                btn-dropdown.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-divider.html">
-                dropdown-divider.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-item.html">
-                dropdown-item.coffee
-              </a>
-            
-              
               <a class="source" href="dropdown.html">
                 dropdown.coffee
               </a>
             
               
-              <a class="source" href="split-dropdown.html">
-                split-dropdown.coffee
+              <a class="source" href="list-divider.html">
+                list-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="list-item.html">
+                list-item.coffee
               </a>
             
               
@@ -133,20 +123,19 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>)
-.directive(<span class="hljs-string">"navbarList"</span>,<span class="hljs-function"> -&gt;</span>
-    <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
-    <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-    <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-    <span class="hljs-attribute">template</span>: <span class="hljs-string">"&lt;ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude&gt;&lt;/ul&gt;"</span>
-    <span class="hljs-attribute">scope</span>:
-        <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
-        <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
-        <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+            <div class="content"><div class='highlight'><pre>directive(<span class="hljs-string">"navbarList"</span>, [<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+        <span class="hljs-attribute">template</span>: <span class="hljs-string">"""&lt;ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude&gt;&lt;/ul&gt;"""</span>
+        <span class="hljs-attribute">scope</span>:
+            <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
 
-    <span class="hljs-attribute">controller</span>: <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
-        <span class="hljs-keyword">if</span> $scope.side <span class="hljs-keyword">then</span> $scope.wildcard = <span class="hljs-string">"navbar-"</span> <span class="hljs-keyword">else</span> $scope.wildcard = <span class="hljs-string">""</span>
-        CleanUp $scope
+        <span class="hljs-attribute">controller</span>: [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'CleanUp'</span>, <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
+            <span class="hljs-keyword">if</span> $scope.side <span class="hljs-keyword">then</span> $scope.wildcard = <span class="hljs-string">"navbar-"</span> <span class="hljs-keyword">else</span> $scope.wildcard = <span class="hljs-string">""</span>
+            CleanUp $scope
+        ]
+    ]
 )</pre></div></div>
             
         </li>

@@ -19,28 +19,18 @@
           <div id="jump_page">
             
               
-              <a class="source" href="btn-dropdown.html">
-                btn-dropdown.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-divider.html">
-                dropdown-divider.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-item.html">
-                dropdown-item.coffee
-              </a>
-            
-              
               <a class="source" href="dropdown.html">
                 dropdown.coffee
               </a>
             
               
-              <a class="source" href="split-dropdown.html">
-                split-dropdown.coffee
+              <a class="source" href="list-divider.html">
+                list-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="list-item.html">
+                list-item.coffee
               </a>
             
               
@@ -150,47 +140,45 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"Angustrap"</span>)</span>.<span class="hljs-title">directive</span><span class="hljs-params">(<span class="hljs-string">"navbar"</span>, [<span class="hljs-string">"AsRandom"</span>, (AsRandom) -&gt;
-    restrict: <span class="hljs-string">"E"</span>
-    replace: <span class="hljs-literal">true</span>
-    transclude: <span class="hljs-literal">true</span>
+            <div class="content"><div class='highlight'><pre>directive<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">"navbar"</span>, [<span class="hljs-string">"AsRandom"</span>, (AsRandom) -&gt;
+        restrict: <span class="hljs-string">"E"</span>
+        replace: <span class="hljs-literal">true</span>
+        transclude: <span class="hljs-literal">true</span>
 
-    scope:
-        asId: <span class="hljs-string">"@asId"</span>
-        asClass: <span class="hljs-string">"@asClass"</span>
-        theme: <span class="hljs-string">"@theme"</span>
-        title: <span class="hljs-string">"@title"</span>
-        titleHref: <span class="hljs-string">"@titleHref"</span>
-        fixed: <span class="hljs-string">"@fixed"</span>
-        center: <span class="hljs-string">"=center"</span>
+        scope:
+            theme: <span class="hljs-string">"@theme"</span>
+            title: <span class="hljs-string">"@title"</span>
+            titleHref: <span class="hljs-string">"@titleHref"</span>
+            fixed: <span class="hljs-string">"@fixed"</span>
+            center: <span class="hljs-string">"=center"</span>
 
-    template: <span class="hljs-string">"""
-    &lt;nav id="{{asId}}" class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}} {{asClass}}" role="navigation"&gt;
-        &lt;div class="{{container}}"&gt;
-            &lt;div class="navbar-header"&gt;
-                &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}"&gt;
-                    &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
-                    &lt;span class="icon-bar"&gt;&lt;/span&gt;
-                    &lt;span class="icon-bar"&gt;&lt;/span&gt;
-                    &lt;span class="icon-bar"&gt;&lt;/span&gt;
-                &lt;/button&gt;
-                &lt;a class="navbar-brand" ng-href="{{titleHref}}"&gt;{{title}}&lt;/a&gt;
+        template: <span class="hljs-string">"""
+        &lt;nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation"&gt;
+            &lt;div class="{{container}}"&gt;
+                &lt;div class="navbar-header"&gt;
+                    &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}"&gt;
+                        &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+                        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;a class="navbar-brand" ng-href="{{titleHref}}"&gt;{{title}}&lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class="collapse navbar-collapse" id="{{random}}"&gt;
+                    &lt;div class="{{center &amp;&amp; 'container' || '' }}" data-ng-transclude&gt;&lt;/div&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div class="collapse navbar-collapse" id="{{random}}"&gt;
-                &lt;div class="{{center &amp;&amp; 'container' || '' }}" data-ng-transclude&gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/nav&gt;
-    """</span>
+        &lt;/nav&gt;
+        """</span>
 
-    controller: ($scope, $timeout, CleanUp) -&gt;
-        $scope.random = <span class="hljs-string">"#"</span> + AsRandom <span class="hljs-number">12</span>
-        $scope.hashRandom = <span class="hljs-string">"#"</span> + $scope.random
-        $scope.container = <span class="hljs-string">"container"</span>
-        <span class="hljs-keyword">if</span> !$scope.center <span class="hljs-keyword">then</span> $scope.container = <span class="hljs-string">"container-fluid"</span>
-        <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
-        <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
-        <span class="hljs-keyword">if</span> !$scope.fixed <span class="hljs-keyword">or</span> scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"static"</span> <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-static-top"</span>
+        controller: [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'$timeout'</span>, <span class="hljs-string">'CleanUp'</span>, ($scope, $timeout, CleanUp) -&gt;
+            $scope.random = <span class="hljs-string">"#"</span> + AsRandom <span class="hljs-number">12</span>
+            $scope.hashRandom = <span class="hljs-string">"#"</span> + $scope.random
+            $scope.container = <span class="hljs-string">"container"</span>
+            <span class="hljs-keyword">if</span> !$scope.center <span class="hljs-keyword">then</span> $scope.container = <span class="hljs-string">"container-fluid"</span>
+            <span class="hljs-keyword">if</span> !$scope.theme <span class="hljs-keyword">then</span>  $scope.theme = <span class="hljs-string">"default"</span>
+            <span class="hljs-keyword">if</span> $scope.fixed <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-fixed-"</span>
+            <span class="hljs-keyword">if</span> !$scope.fixed <span class="hljs-keyword">or</span> scope.fixed <span class="hljs-keyword">is</span> <span class="hljs-string">"static"</span> <span class="hljs-keyword">then</span> $scope.fixedWildcard = <span class="hljs-string">"navbar-static-top"</span>
 
 </span></span></pre></div></div>
             
@@ -207,8 +195,10 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        CleanUp $scope
-])</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            CleanUp $scope
+        ]
+    ]
+)</pre></div></div>
             
         </li>
         

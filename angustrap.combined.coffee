@@ -45,26 +45,26 @@ service('CleanUp', ['$timeout', ($timeout) ->
 #   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
 #   If set to false or not specified, the element will drop _down_
 #
-#   * `type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
+#   * `as-type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
 #
 #   * `as-click`: **only relevant for split dropdowns**<br/> a piece of JavaScript to execute when the left button is clicked
 #
 # **Example**:<br/>
 # ```html
 # <!-- Button Dropdown -->
-# <dropdown type="btn" title="Button Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
+# <dropdown as-type="btn" title="Button Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 #
 # <!-- Split Dropdown -->
-# <dropdown type="split" title="Split Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
+# <dropdown as-type="split" title="Split Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 #
 # <!-- Dropup -->
-# <dropdown type="btn" title="Button Dropup" theme="warning" id="test" size="sm" icon="qrcode" dropup="true">
+# <dropdown as-type="btn" title="Button Dropup" theme="warning" id="test" size="sm" icon="qrcode" dropup="true">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
@@ -75,7 +75,7 @@ directive("dropdown", [ ->
             replace: true
             transclude: true
             scope:
-                type: "@type"
+                asType: "@asType"
                 theme: "@theme"
                 icon: "@icon"
                 size: "@size"
@@ -102,12 +102,12 @@ directive("dropdown", [ ->
             controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
                 $scope.size = "" unless $scope.size
                 if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = ""
-                if $scope.type == "split"
+                if $scope.asType == "split"
                     $scope.isSplit = true
                     $scope.dataToggle = ""
                     $scope.btnGroup = "btn-group"
 
-                else if $scope.type == "btn" or !$scope.type
+                else if $scope.asType == "btn" or !$scope.asType
                     $scope.isSplit = false
                     $scope.dataToggle = "dropdown"
                     $scope.btnGroup = ""
@@ -245,20 +245,20 @@ directive("glyph", [ ->
 # # ####Examples:
 # ```html
 # <!-- Left-aligned large <span> add-on with text input -->
-# <input-group title="@" type="span" size="lg" side="left" input-type="text"></input-group>
+# <input-group title="@" as-type="span" size="lg" side="left" type="text"></input-group>
 #
 # <!-- Right-aligned blue <button> add-on with email input -->
-# <input-group title="@" type="btn" side="right" input-type="email" theme="primary"></input-group>
+# <input-group title="@" as-type="btn" side="right" type="email" theme="primary"></input-group>
 # ```
 #
 # #### Attributes:
 # * `title`: The text to display inside of the input add-on (span, button... depending on the `type` attribute)
 #
-# * `type`: The type of the add-on. Can be on of the following:
+# * `as-type`: The type of the add-on. Can be on of the following:
 #   * `span`: Will result in a `<span>` add-on
 #   * `btn`: Will result in a `<button>` add-on
 #
-# * `input-type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
+# * `type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
 #
 # * `side`: Whether the add-on should be on the `left` or on the `right` of the `<input>`
 #
@@ -267,7 +267,7 @@ directive("glyph", [ ->
 #   * `sm`
 #  If none is specified, the default size is used.
 #
-# * `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._
+# * `theme`: _Only valid for button input-groups (`<input-group as-type="btn">`)._
 #     The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
 #     * `primary`
@@ -285,12 +285,12 @@ directive("inputGroup", [ ->
             asId: "@asId"
             asClass: "@asClass"
             title: "@title"
-            type: "@type"
+            asType: "@asType"
             side: "@side"
             icon: "@icon"
             size: "@size"
             theme: "@theme"
-            inputType: "@inputType"
+            type: "@type"
             asClick: "=asClick"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
@@ -301,25 +301,25 @@ directive("inputGroup", [ ->
         template: """
         <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
             <!-- Left Span Add-on -->
-            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'left'" data-ng-click="{{asClick}}">
+            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'" data-ng-click="{{asClick}}">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Left Button Add-on -->
-            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'left'" data-ng-click="{{asClick}}">
+            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'" data-ng-click="{{asClick}}">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
             </span>
 
             <!-- The input -->
-            <input type="{{inputType}}" class="form-control" placeholder="{{placeholder}}">
+            <input type="{{type}}" class="form-control" placeholder="{{placeholder}}">
 
             <!-- Right Span Add-on -->
-            <span class="input-group-addon" data-ng-show="type == 'span' && side == 'right'" data-ng-click="{{asClick}}">
+            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'" data-ng-click="{{asClick}}">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Right Button Add-on -->
-            <span class="input-group-btn" data-ng-show="type == 'btn' && side == 'right'" data-ng-click="{{asClick}}">
+            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'" data-ng-click="{{asClick}}">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>dropdown-item.coffee</title>
+  <title>list-divider.coffee</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -19,28 +19,18 @@
           <div id="jump_page">
             
               
-              <a class="source" href="btn-dropdown.html">
-                btn-dropdown.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-divider.html">
-                dropdown-divider.coffee
-              </a>
-            
-              
-              <a class="source" href="dropdown-item.html">
-                dropdown-item.coffee
-              </a>
-            
-              
               <a class="source" href="dropdown.html">
                 dropdown.coffee
               </a>
             
               
-              <a class="source" href="split-dropdown.html">
-                split-dropdown.coffee
+              <a class="source" href="list-divider.html">
+                list-divider.coffee
+              </a>
+            
+              
+              <a class="source" href="list-item.html">
+                list-item.coffee
               </a>
             
               
@@ -81,7 +71,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>dropdown-item.coffee</h1>
+                  <h1>list-divider.coffee</h1>
               </div>
           </li>
         
@@ -121,29 +111,20 @@ Bootstrap’s <a href="http://getbootstrap.com/components/#dropdowns">dropdown</
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h3 id="dropdown-item">Dropdown Item</h3>
-<p>This is the <code>&lt;dropdown-item&gt;</code> directive used through transclusion by the other dropdown directives.
-<br/>
-<strong>Attributes</strong>:</p>
-<ul>
-<li><code>asHref</code>: the url this dropdown-item should point to
-_Note that you can still pass the usual <code>.disabled</code> class to disable an item</li>
-</ul>
+              <h3 id="dropdown-divider">Dropdown Divider</h3>
+<p>The <code>&lt;dropdown-divider&gt;</code> directive used through transclusion by the other dropdown directives</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>, []).directive(<span class="hljs-string">"dropdownItem"</span>,<span class="hljs-function"> -&gt;</span>
-    defObj =
-        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
-        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">"templates/dropdowns/dropdown-item.html"</span>
-        <span class="hljs-attribute">scope</span>:
-            <span class="hljs-attribute">asHref</span>: <span class="hljs-string">"@asHref"</span>
-            <span class="hljs-attribute">asId</span>: <span class="hljs-string">"@asId"</span>
-            <span class="hljs-attribute">asClass</span>: <span class="hljs-string">"@asClass"</span>
+            <div class="content"><div class='highlight'><pre>directive(<span class="hljs-string">"listDivider"</span>, [<span class="hljs-function"> -&gt;</span>
+        defObj =
+            <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+            <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+            <span class="hljs-attribute">scope</span>: {}
+            <span class="hljs-attribute">template</span>: <span class="hljs-string">"""&lt;li role="presentation" class="divider"&gt;&lt;/li&gt;"""</span>
 
-    <span class="hljs-keyword">return</span> defObj
+        <span class="hljs-keyword">return</span> defObj
+    ]
 )</pre></div></div>
             
         </li>

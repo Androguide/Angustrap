@@ -38,10 +38,12 @@ _For the list of all available icons, see http://getbootstrap.com/components/#gl
      * _sm_
      * _xs_
 
+  - `as-click`: a piece of JavaScript code to execute when the button is clicked
+
 #####Example:
 ```html
 <!-- A large orange button with a heart in it -->
-<btn-glyph icon="heart" theme="warning" size="lg"></glyph>
+<btn-glyph icon="heart" theme="warning" size="lg" as-click="alert('Button Clicked!')"></glyph>
 ```
 
 
@@ -68,13 +70,13 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components
 
 #####Single-button dropdown
 ```html
-<dropdown type="btn" theme="danger" size="lg" icon="heart" title="Dropdown">
+<dropdown as-type="btn" theme="danger" size="lg" icon="heart" title="Dropdown">
     <dropdown-item as-href="http://google.com">Google</dropdown-item>
     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 </dropdown>
 
 <!-- Drop up -->
-<dropdown type="btn" theme="success" size="sm" icon="qrcode"  dropup="true" title="Dropup">
+<dropdown as-type="btn" theme="success" size="sm" icon="qrcode"  dropup="true" title="Dropup">
     <dropdown-item as-href="http://google.com">Google</dropdown-item>
     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 </dropdown>
@@ -84,13 +86,13 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components
 
 #####Split-button dropdown
 ```html
-<dropdown type="split" theme="danger" size="lg" icon="heart" title="Sign-In">
+<dropdown as-type="split" theme="danger" size="lg" icon="heart" title="Sign-In">
     <dropdown-item as-href="http://google.com">Google</dropdown-item>
     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 </dropdown>
 
 <!-- Drop up -->
-<dropdown type="split" theme="info" size="xs" icon="qrcode" title="Sign-In" dropup="true">
+<dropdown as-type="split" theme="info" size="xs" icon="qrcode" title="Sign-In" dropup="true">
     <dropdown-item as-href="http://google.com">Google</dropdown-item>
     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 </dropdown>
@@ -99,7 +101,7 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components
 &nbsp;
 
 ####Attributes:
-  * `type`: the type of the dropdown. can be either `btn` or `split`
+  * `as-type`: the type of the dropdown. can be either `btn` or `split`
    &nbsp;
 
   * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
@@ -124,6 +126,8 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components
   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
   If set to false or not specified, the element will drop _down_
 
+  * `as-click`: **Only relevant for split dropdowns**<br/>A piece of JavaScript code to execute when the left button is clicked
+
 &nbsp;
 
 =======
@@ -137,6 +141,8 @@ This is the `<list-item>` directive used through transclusion by the dropdown & 
 #####Attributes:
   - `asHref`: the url this dropdown-item should point to
 _Note that you can still pass the usual `.disabled` class to disable an item
+
+ - `as-click`: A piece of JavaScript code to execute when the input add-on is clicked
 <br/>
 
 &nbsp;
@@ -222,10 +228,10 @@ A single directive to abstract all of Bootstrap's input-group components.
 ####Examples:
 ```html
 <!-- Left-aligned large <span> add-on with text input -->
-<input-group title="@" type="span" size="lg" side="left" input-type="text"></input-group>
+<input-group title="@" as-type="span" size="lg" side="left" type="text"></input-group>
 
 <!-- Right-aligned blue <button> add-on with email input -->
-<input-group title="@" type="btn" side="right" input-type="email" theme="primary"></input-group>
+<input-group title="@" as-type="btn" side="right" type="email" theme="primary"></input-group>
 ```
 
 &nbsp;
@@ -233,11 +239,11 @@ A single directive to abstract all of Bootstrap's input-group components.
 ####Attributes:
 * `title`: The text to display inside of the input add-on (span, button... depending on the `type` attribute)
 
-* `type`: The type of the add-on. Can be on of the following:
+* `as-type`: The type of the add-on. Can be on of the following:
   * `span`: Will result in a `<span>` add-on
   * `btn`: Will result in a `<button>` add-on
 
-* `input-type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
+* `type`: The HTML5 `type` attribute of the `<input>` ("text", "tel", "number", "email", etc...)
 
 * `side`: Whether the add-on should be on the `left` or on the `right` of the `<input>`
 
@@ -246,7 +252,7 @@ A single directive to abstract all of Bootstrap's input-group components.
   * `sm`
   If none is specified, the medium size will be used.
 
-* `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._
+* `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._<br/>
     The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
     * `primary`
@@ -254,3 +260,5 @@ A single directive to abstract all of Bootstrap's input-group components.
     * `info`
     * `warning`
     * `danger`
+
+* `as-click`: A piece of JavaScript code to execute when the input add-on is clicked
