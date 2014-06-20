@@ -8,10 +8,9 @@
         replace: true,
         transclude: true,
         scope: {
-          asHref: "@asHref",
-          asClick: "=asClick"
+          asHref: "@asHref"
         },
-        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-click=\"{{asClick}}\" data-ng-transclude></a>\n</li>"
+        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-transclude></a>\n</li>"
       };
       return defObj;
     }

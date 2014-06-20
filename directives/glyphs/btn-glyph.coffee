@@ -27,13 +27,12 @@ directive("btnGlyph", [($timeout) ->
                 icon: "@icon"
                 theme: "@theme"
                 size: "@size"
-                asClick: "=asClick"
 
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"
 
             template: """
-        <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-ng-click="{{asClick}}">
+        <button type="button" class="btn btn-{{theme}} btn-{{size}}">
             <span class="glyphicon glyphicon-{{icon}}"></span>
             <span data-ng-transclude></span>
         </button>

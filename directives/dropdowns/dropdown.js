@@ -8,7 +8,7 @@
         replace: true,
         transclude: true,
         scope: {
-          asType: "@asType",
+          type: "@type",
           theme: "@theme",
           icon: "@icon",
           size: "@size",
@@ -16,22 +16,19 @@
           dropup: "=dropup",
           asClick: "=asClick"
         },
-        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" ng-show=\"isSplit\" style=\"font-size: 0.95em\"></glyph>\n        <glyph icon=\"{{icon}}\" ng-hide=\"isSplit\"></glyph>\n         {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
+        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\">\n        <glyph icon=\"{{icon}}\"></glyph> {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
-            if (!$scope.size) {
-              $scope.size = "";
-            }
             if ($scope.dropup) {
               $scope.directionClass = "dropup";
             } else {
-              $scope.directionClass = "";
+              $scope.directionClass = "dropdown";
             }
-            if ($scope.asType === "split") {
+            if ($scope.type === "split") {
               $scope.isSplit = true;
               $scope.dataToggle = "";
               $scope.btnGroup = "btn-group";
-            } else if ($scope.asType === "btn" || !$scope.asType) {
+            } else if ($scope.type === "btn" || !$scope.type) {
               $scope.isSplit = false;
               $scope.dataToggle = "dropdown";
               $scope.btnGroup = "";

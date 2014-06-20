@@ -35,8 +35,6 @@
 #     * `info`
 #     * `warning`
 #     * `danger`
-#
-# * `as-click`: A piece of JavaScript to execute when the input add-on is clicked
 directive("inputGroup", [ ->
         restrict: "E"
         replace: true
@@ -51,7 +49,6 @@ directive("inputGroup", [ ->
             size: "@size"
             theme: "@theme"
             type: "@type"
-            asClick: "=asClick"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             CleanUp $scope
@@ -61,11 +58,11 @@ directive("inputGroup", [ ->
         template: """
         <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
             <!-- Left Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'" data-ng-click="{{asClick}}">
+            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Left Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'" data-ng-click="{{asClick}}">
+            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
@@ -75,11 +72,11 @@ directive("inputGroup", [ ->
             <input type="{{type}}" class="form-control" placeholder="{{placeholder}}">
 
             <!-- Right Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'" data-ng-click="{{asClick}}">
+            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Right Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'" data-ng-click="{{asClick}}">
+            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>

@@ -23,7 +23,7 @@ service('CleanUp', ['$timeout', ($timeout) ->
 
 # ### Mutable Dropdown
 # #### Attributes:
-#  * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
 #       * `primary`
 #       * `success`
@@ -31,40 +31,38 @@ service('CleanUp', ['$timeout', ($timeout) ->
 #       * `warning`
 #       * `danger`
 #
-#   * `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
+#   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 #
-#   * `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
 #     Possible choice are:
 #       * `lg`
 #       * `sm`
 #       * `xs`
 #
-#   * `title`: the string to display inside the action button of the split dropdown
+#   * title: the string to display inside the action button of the split dropdown
 #
-#   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
+#   * dropup: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
 #   If set to false or not specified, the element will drop _down_
 #
-#   * `as-type`: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
-#
-#   * `as-click`: **only relevant for split dropdowns**<br/> a piece of JavaScript to execute when the left button is clicked
+#   * type: the type of your dropdown, either `btn` for a button dropdown or `split` for a split dropdown<br/>
 #
 # **Example**:<br/>
 # ```html
 # <!-- Button Dropdown -->
-# <dropdown as-type="btn" title="Button Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
+# <dropdown type="btn" title="Button Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 #
 # <!-- Split Dropdown -->
-# <dropdown as-type="split" title="Split Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
+# <dropdown type="split" title="Split Dropdown" theme="warning" id="test" size="sm" icon="qrcode">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 #
 # <!-- Dropup -->
-# <dropdown as-type="btn" title="Button Dropup" theme="warning" id="test" size="sm" icon="qrcode" dropup="true">
+# <dropdown type="btn" title="Button Dropup" theme="warning" id="test" size="sm" icon="qrcode" dropup="true">
 #     <dropdown-item as-href="http://google.com">Google</dropdown-item>
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
@@ -75,7 +73,7 @@ directive("dropdown", [ ->
             replace: true
             transclude: true
             scope:
-                asType: "@asType"
+                type: "@type"
                 theme: "@theme"
                 icon: "@icon"
                 size: "@size"
@@ -85,10 +83,8 @@ directive("dropdown", [ ->
 
             template: """
             <div class="{{btnGroup}} {{directionClass}}">
-                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}" data-ng-click="{{asClick}}">
-                    <glyph icon="{{icon}}" ng-show="isSplit" style="font-size: 0.95em"></glyph>
-                    <glyph icon="{{icon}}" ng-hide="isSplit"></glyph>
-                     {{title}}
+                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}">
+                    <glyph icon="{{icon}}"></glyph> {{title}}
                     <span class="caret" data-ng-hide="isSplit"></span>
                 </button>
                 <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">
@@ -100,14 +96,13 @@ directive("dropdown", [ ->
             """
 
             controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
-                $scope.size = "" unless $scope.size
-                if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = ""
-                if $scope.asType == "split"
+                if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = "dropdown"
+                if $scope.type == "split"
                     $scope.isSplit = true
                     $scope.dataToggle = ""
                     $scope.btnGroup = "btn-group"
 
-                else if $scope.asType == "btn" or !$scope.asType
+                else if $scope.type == "btn" or !$scope.type
                     $scope.isSplit = false
                     $scope.dataToggle = "dropdown"
                     $scope.btnGroup = ""
@@ -143,7 +138,6 @@ directive("listDivider", [ ->
 # <br/>
 # **Attributes**:
 #   - `as-href`: the url this dropdown-item should point to
-#   - `as-click`: a piece of JavaScript code to execute when the link is clicked
 #
 # _Note that you can still pass Bootstrap's usual `.disabled` class to disable an item
 directive("listItem", [ ->
@@ -153,11 +147,10 @@ directive("listItem", [ ->
         transclude: true
         scope:
             asHref: "@asHref"
-            asClick: "=asClick"
 
         template: """
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-click="{{asClick}}" data-ng-transclude></a>
+          <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a>
         </li>
         """
 
@@ -194,13 +187,12 @@ directive("btnGlyph", [($timeout) ->
                 icon: "@icon"
                 theme: "@theme"
                 size: "@size"
-                asClick: "=asClick"
 
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"
 
             template: """
-        <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-ng-click="{{asClick}}">
+        <button type="button" class="btn btn-{{theme}} btn-{{size}}">
             <span class="glyphicon glyphicon-{{icon}}"></span>
             <span data-ng-transclude></span>
         </button>
@@ -275,8 +267,6 @@ directive("glyph", [ ->
 #     * `info`
 #     * `warning`
 #     * `danger`
-#
-# * `as-click`: A piece of JavaScript to execute when the input add-on is clicked
 directive("inputGroup", [ ->
         restrict: "E"
         replace: true
@@ -291,7 +281,6 @@ directive("inputGroup", [ ->
             size: "@size"
             theme: "@theme"
             type: "@type"
-            asClick: "=asClick"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             CleanUp $scope
@@ -301,11 +290,11 @@ directive("inputGroup", [ ->
         template: """
         <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
             <!-- Left Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'" data-ng-click="{{asClick}}">
+            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Left Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'" data-ng-click="{{asClick}}">
+            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
@@ -315,11 +304,11 @@ directive("inputGroup", [ ->
             <input type="{{type}}" class="form-control" placeholder="{{placeholder}}">
 
             <!-- Right Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'" data-ng-click="{{asClick}}">
+            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Right Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'" data-ng-click="{{asClick}}">
+            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>

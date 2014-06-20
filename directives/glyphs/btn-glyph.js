@@ -10,13 +10,12 @@
         scope: {
           icon: "@icon",
           theme: "@theme",
-          size: "@size",
-          asClick: "=asClick"
+          size: "@size"
         },
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
         },
-        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-ng-click=\"{{asClick}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
+        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
       };
       return defObj;
     }

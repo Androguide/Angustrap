@@ -31,7 +31,7 @@
         replace: true,
         transclude: true,
         scope: {
-          asType: "@asType",
+          type: "@type",
           theme: "@theme",
           icon: "@icon",
           size: "@size",
@@ -39,22 +39,19 @@
           dropup: "=dropup",
           asClick: "=asClick"
         },
-        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" ng-show=\"isSplit\" style=\"font-size: 0.95em\"></glyph>\n        <glyph icon=\"{{icon}}\" ng-hide=\"isSplit\"></glyph>\n         {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
+        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\">\n        <glyph icon=\"{{icon}}\"></glyph> {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
-            if (!$scope.size) {
-              $scope.size = "";
-            }
             if ($scope.dropup) {
               $scope.directionClass = "dropup";
             } else {
-              $scope.directionClass = "";
+              $scope.directionClass = "dropdown";
             }
-            if ($scope.asType === "split") {
+            if ($scope.type === "split") {
               $scope.isSplit = true;
               $scope.dataToggle = "";
               $scope.btnGroup = "btn-group";
-            } else if ($scope.asType === "btn" || !$scope.asType) {
+            } else if ($scope.type === "btn" || !$scope.type) {
               $scope.isSplit = false;
               $scope.dataToggle = "dropdown";
               $scope.btnGroup = "";
@@ -84,10 +81,9 @@
         replace: true,
         transclude: true,
         scope: {
-          asHref: "@asHref",
-          asClick: "=asClick"
+          asHref: "@asHref"
         },
-        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-click=\"{{asClick}}\" data-ng-transclude></a>\n</li>"
+        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-transclude></a>\n</li>"
       };
       return defObj;
     }
@@ -101,13 +97,12 @@
         scope: {
           icon: "@icon",
           theme: "@theme",
-          size: "@size",
-          asClick: "=asClick"
+          size: "@size"
         },
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
         },
-        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-ng-click=\"{{asClick}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
+        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
       };
       return defObj;
     }
@@ -139,15 +134,14 @@
           icon: "@icon",
           size: "@size",
           theme: "@theme",
-          type: "@type",
-          asClick: "=asClick"
+          type: "@type"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
             return CleanUp($scope);
           }
         ],
-        template: "<div id=\"{{asId}}\" class=\"input-group {{sizeWildcard}}{{size}} {{asClass}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"asType == 'span' && side == 'left'\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"asType == 'btn' && side == 'left'\" data-ng-click=\"{{asClick}}\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{type}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"asType == 'span' && side == 'right'\" data-ng-click=\"{{asClick}}\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"asType == 'btn' && side == 'right'\" data-ng-click=\"{{asClick}}\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
+        template: "<div id=\"{{asId}}\" class=\"input-group {{sizeWildcard}}{{size}} {{asClass}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"asType == 'span' && side == 'left'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"asType == 'btn' && side == 'left'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{type}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"asType == 'span' && side == 'right'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"asType == 'btn' && side == 'right'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
       };
     }
   ]).directive("navbarDropdown", [
