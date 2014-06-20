@@ -89,7 +89,6 @@
 <strong>Attributes</strong>:</p>
 <ul>
 <li><code>as-href</code>: the url this dropdown-item should point to</li>
-<li><code>as-click</code>: a piece of JavaScript code to execute when the link is clicked</li>
 </ul>
 <p>_Note that you can still pass Bootstrap’s usual <code>.disabled</code> class to disable an item</p>
 
@@ -102,11 +101,10 @@
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">scope</span>:
             <span class="hljs-attribute">asHref</span>: <span class="hljs-string">"@asHref"</span>
-            <span class="hljs-attribute">asClick</span>: <span class="hljs-string">"=asClick"</span>
 
         <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
         &lt;li role="presentation"&gt;
-          &lt;a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-click="{{asClick}}" data-ng-transclude&gt;&lt;/a&gt;
+          &lt;a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude&gt;&lt;/a&gt;
         &lt;/li&gt;
         """</span>
 

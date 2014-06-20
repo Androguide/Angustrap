@@ -136,8 +136,6 @@ If none is specified, the default size is used.</li>
 <li><code>danger</code></li>
 </ul>
 </li>
-<li><p><code>as-click</code>: A piece of JavaScript to execute when the input add-on is clicked</p>
-</li>
 </ul>
 
             </div>
@@ -156,7 +154,6 @@ If none is specified, the default size is used.</li>
             <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
             <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
             <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
-            <span class="hljs-attribute">asClick</span>: <span class="hljs-string">"=asClick"</span>
 
         <span class="hljs-attribute">controller</span>: [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'CleanUp'</span>, <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
             CleanUp $scope
@@ -166,11 +163,11 @@ If none is specified, the default size is used.</li>
         <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
         &lt;div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}"&gt;
             &lt;!-- Left Span Add-on --&gt;
-            &lt;span class="input-group-addon" data-ng-show="asType == 'span' &amp;&amp; side == 'left'" data-ng-click="{{asClick}}"&gt;
+            &lt;span class="input-group-addon" data-ng-show="asType == 'span' &amp;&amp; side == 'left'"&gt;
                 &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
             &lt;/span&gt;
             &lt;!-- Left Button Add-on --&gt;
-            &lt;span class="input-group-btn" data-ng-show="asType == 'btn' &amp;&amp; side == 'left'" data-ng-click="{{asClick}}"&gt;
+            &lt;span class="input-group-btn" data-ng-show="asType == 'btn' &amp;&amp; side == 'left'"&gt;
                 &lt;button class="btn btn-{{theme}}" type="button"&gt;
                     &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
                 &lt;/button&gt;
@@ -180,11 +177,11 @@ If none is specified, the default size is used.</li>
             &lt;input type="{{type}}" class="form-control" placeholder="{{placeholder}}"&gt;
 
             &lt;!-- Right Span Add-on --&gt;
-            &lt;span class="input-group-addon" data-ng-show="asType == 'span' &amp;&amp; side == 'right'" data-ng-click="{{asClick}}"&gt;
+            &lt;span class="input-group-addon" data-ng-show="asType == 'span' &amp;&amp; side == 'right'"&gt;
                 &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
             &lt;/span&gt;
             &lt;!-- Right Button Add-on --&gt;
-            &lt;span class="input-group-btn" data-ng-show="asType == 'btn' &amp;&amp; side == 'right'" data-ng-click="{{asClick}}"&gt;
+            &lt;span class="input-group-btn" data-ng-show="asType == 'btn' &amp;&amp; side == 'right'"&gt;
                 &lt;button class="btn btn-{{theme}}" type="button"&gt;
                     &lt;glyph icon="{{icon}}" data-ng-show="icon"&gt;&lt;/glyph&gt; {{title}}
                 &lt;/button&gt;

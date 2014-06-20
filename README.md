@@ -38,12 +38,10 @@ _For the list of all available icons, see http://getbootstrap.com/components/#gl
      * _sm_
      * _xs_
 
-  - `as-click`: a piece of JavaScript code to execute when the button is clicked
-
 #####Example:
 ```html
 <!-- A large orange button with a heart in it -->
-<btn-glyph icon="heart" theme="warning" size="lg" as-click="alert('Button Clicked!')"></glyph>
+<btn-glyph icon="heart" theme="warning" size="lg"></glyph>
 ```
 
 
@@ -126,8 +124,6 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components
   * `dropup`: (_Boolean_) If set to true, the dropdown will effectively drop _up_ and the caret direction will be inverted.
   If set to false or not specified, the element will drop _down_
 
-  * `as-click`: **Only relevant for split dropdowns**<br/>A piece of JavaScript code to execute when the left button is clicked
-
 &nbsp;
 
 =======
@@ -141,8 +137,6 @@ This is the `<list-item>` directive used through transclusion by the dropdown & 
 #####Attributes:
   - `asHref`: the url this dropdown-item should point to
 _Note that you can still pass the usual `.disabled` class to disable an item
-
- - `as-click`: A piece of JavaScript code to execute when the input add-on is clicked
 <br/>
 
 &nbsp;
@@ -260,5 +254,3 @@ A single directive to abstract all of Bootstrap's input-group components.
     * `info`
     * `warning`
     * `danger`
-
-* `as-click`: A piece of JavaScript code to execute when the input add-on is clicked

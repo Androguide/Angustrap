@@ -86,7 +86,7 @@
               <h3 id="mutable-dropdown">Mutable Dropdown</h3>
 <h4 id="attributes-">Attributes:</h4>
 <ul>
-<li><p><code>theme</code>: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
+<li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
  The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
 <ul>
 <li><code>primary</code></li>
@@ -96,10 +96,10 @@
 <li><code>danger</code></li>
 </ul>
 <ul>
-<li><p><code>icon</code>: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).
+<li><p>icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).
 See <a href="http://getbootstrap.com/components/#glyphicons-glyphs">here</a> for the full list.</p>
 </li>
-<li><p><code>size</code>: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).
+<li><p>size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the ‘btn-‘ prefix).
 Possible choice are:</p>
 <ul>
 <li><code>lg</code></li>
@@ -107,33 +107,31 @@ Possible choice are:</p>
 <li><code>xs</code></li>
 </ul>
 </li>
-<li><p><code>title</code>: the string to display inside the action button of the split dropdown</p>
+<li><p>title: the string to display inside the action button of the split dropdown</p>
 </li>
-<li><p><code>dropup</code>: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
+<li><p>dropup: (<em>Boolean</em>) If set to true, the dropdown will effectively drop <em>up</em> and the caret direction will be inverted.
 If set to false or not specified, the element will drop <em>down</em></p>
 </li>
-<li><p><code>as-type</code>: the type of your dropdown, either <code>btn</code> for a button dropdown or <code>split</code> for a split dropdown<br/></p>
-</li>
-<li><p><code>as-click</code>: <strong>only relevant for split dropdowns</strong><br/> a piece of JavaScript to execute when the left button is clicked</p>
+<li><p>type: the type of your dropdown, either <code>btn</code> for a button dropdown or <code>split</code> for a split dropdown<br/></p>
 </li>
 </ul>
 </li>
 </ul>
 <p><strong>Example</strong>:<br/></p>
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Button Dropdown --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Button Dropdown"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"warning"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"test"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"sm"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Button Dropdown"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"warning"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"test"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"sm"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- Split Dropdown --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-type</span>=<span class="hljs-value">"split"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Split Dropdown"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"warning"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"test"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"sm"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"split"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Split Dropdown"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"warning"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"test"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"sm"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- Dropup --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">as-type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Button Dropup"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"warning"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"test"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"sm"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span> <span class="hljs-attribute">dropup</span>=<span class="hljs-value">"true"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">dropdown</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"btn"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Button Dropup"</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"warning"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"test"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"sm"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span> <span class="hljs-attribute">dropup</span>=<span class="hljs-value">"true"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://google.com"</span>&gt;</span>Google<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">dropdown-item</span> <span class="hljs-attribute">as-href</span>=<span class="hljs-value">"http://twitter.com"</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">dropdown-item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">dropdown</span>&gt;</span>
@@ -147,7 +145,7 @@ If set to false or not specified, the element will drop <em>down</em></p>
             <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
             <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
             <span class="hljs-attribute">scope</span>:
-                <span class="hljs-attribute">asType</span>: <span class="hljs-string">"@asType"</span>
+                <span class="hljs-attribute">type</span>: <span class="hljs-string">"@type"</span>
                 <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@theme"</span>
                 <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
                 <span class="hljs-attribute">size</span>: <span class="hljs-string">"@size"</span>
@@ -157,10 +155,8 @@ If set to false or not specified, the element will drop <em>down</em></p>
 
             <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
             &lt;div class="{{btnGroup}} {{directionClass}}"&gt;
-                &lt;button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}" data-ng-click="{{asClick}}"&gt;
-                    &lt;glyph icon="{{icon}}" ng-show="isSplit" style="font-size: 0.95em"&gt;&lt;/glyph&gt;
-                    &lt;glyph icon="{{icon}}" ng-hide="isSplit"&gt;&lt;/glyph&gt;
-                     {{title}}
+                &lt;button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}"&gt;
+                    &lt;glyph icon="{{icon}}"&gt;&lt;/glyph&gt; {{title}}
                     &lt;span class="caret" data-ng-hide="isSplit"&gt;&lt;/span&gt;
                 &lt;/button&gt;
                 &lt;button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit"&gt;
@@ -172,14 +168,13 @@ If set to false or not specified, the element will drop <em>down</em></p>
             """</span>
 
             <span class="hljs-attribute">controller</span>: [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'CleanUp'</span>, <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
-                $scope.size = <span class="hljs-string">""</span> <span class="hljs-keyword">unless</span> $scope.size
-                <span class="hljs-keyword">if</span> $scope.dropup <span class="hljs-keyword">then</span> $scope.directionClass = <span class="hljs-string">"dropup"</span> <span class="hljs-keyword">else</span> $scope.directionClass = <span class="hljs-string">""</span>
-                <span class="hljs-keyword">if</span> $scope.asType == <span class="hljs-string">"split"</span>
+                <span class="hljs-keyword">if</span> $scope.dropup <span class="hljs-keyword">then</span> $scope.directionClass = <span class="hljs-string">"dropup"</span> <span class="hljs-keyword">else</span> $scope.directionClass = <span class="hljs-string">"dropdown"</span>
+                <span class="hljs-keyword">if</span> $scope.type == <span class="hljs-string">"split"</span>
                     $scope.isSplit = <span class="hljs-literal">true</span>
                     $scope.dataToggle = <span class="hljs-string">""</span>
                     $scope.btnGroup = <span class="hljs-string">"btn-group"</span>
 
-                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> $scope.asType == <span class="hljs-string">"btn"</span> <span class="hljs-keyword">or</span> !$scope.asType
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> $scope.type == <span class="hljs-string">"btn"</span> <span class="hljs-keyword">or</span> !$scope.type
                     $scope.isSplit = <span class="hljs-literal">false</span>
                     $scope.dataToggle = <span class="hljs-string">"dropdown"</span>
                     $scope.btnGroup = <span class="hljs-string">""</span>

@@ -118,13 +118,12 @@
                 icon: <span class="hljs-string">"@icon"</span>
                 theme: <span class="hljs-string">"@theme"</span>
                 size: <span class="hljs-string">"@size"</span>
-                asClick: <span class="hljs-string">"=asClick"</span>
 
             link: (scope, el, attrs) -&gt;
                 attrs.theme = attrs.theme <span class="hljs-keyword">or</span> <span class="hljs-string">"default"</span>
 
             template: <span class="hljs-string">"""
-        &lt;button type="button" class="btn btn-{{theme}} btn-{{size}}" data-ng-click="{{asClick}}"&gt;
+        &lt;button type="button" class="btn btn-{{theme}} btn-{{size}}"&gt;
             &lt;span class="glyphicon glyphicon-{{icon}}"&gt;&lt;/span&gt;
             &lt;span data-ng-transclude&gt;&lt;/span&gt;
         &lt;/button&gt;
