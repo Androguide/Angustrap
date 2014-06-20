@@ -19,18 +19,19 @@
 # ###Navbar List
 # ##### Attributes:
 # * side: whether this list should be aligned to the `left` or to the `right` inside its parent `<navbar>`
-angular.module("Angustrap")
-.directive("navbarList", ->
-    restrict: "E"
-    replace: true
-    transclude: true
-    template: "<ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude></ul>"
-    scope:
-        asId: "@asId"
-        asClass: "@asClass"
-        side: "@side"
+directive("navbarList", [ ->
+        restrict: "E"
+        replace: true
+        transclude: true
+        template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
+        scope:
+            asId: "@asId"
+            asClass: "@asClass"
+            side: "@side"
 
-    controller: ($scope, CleanUp) ->
-        if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""
-        CleanUp $scope
+        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+            if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""
+            CleanUp $scope
+        ]
+    ]
 )

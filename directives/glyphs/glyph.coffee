@@ -9,20 +9,21 @@
 # ```
 # <br/>
 # _For the list of all available icons, see http://getbootstrap.com/components/#glyphicons-glyphs_
-#
+
 # ### Simple glyph icon (span)
 # **Attributes**:
 #   - icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #           See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
-angular.module("Angustrap", []).directive("glyph", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
-        scope:
-            icon: "@icon"
-            asId: "@asId"
-            asClass: "@asClass"
+directive("glyph", [ ->
+        defObj =
+            restrict: "E"
+            replace: window.replace
+            template: "<span id=\"{{asId}}\" class=\"glyphicon glyphicon-{{icon}} {{asClass}}\"></span>"
+            scope:
+                icon: "@icon"
+                asId: "@asId"
+                asClass: "@asClass"
 
-    return defObj
+        return defObj
+    ]
 )

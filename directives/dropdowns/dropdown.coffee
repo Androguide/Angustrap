@@ -44,37 +44,52 @@
 #     <dropdown-item as-href="http://twitter.com">Twitter</dropdown-item>
 # </dropdown>
 # ```
-angular.module('Angustrap', []).directive "dropdown", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        transclude: true
-        templateUrl: "templates/dropdowns/dropdown.html"
-        scope:
-            type: "@type"
-            theme: "@theme"
-            icon: "@icon"
-            size: "@size"
-            title: "@title"
-            dropup: "=dropup"
-            asClick: "=asClick"
+directive("dropdown", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            scope:
+                type: "@type"
+                theme: "@theme"
+                icon: "@icon"
+                size: "@size"
+                title: "@title"
+                dropup: "=dropup"
+                asClick: "=asClick"
 
-        link:
-            pre: (scope) ->
-                if scope.dropup then scope.directionClass = "dropup" else scope.directionClass = "dropdown"
-                console.log "type: ", scope.type
-                if scope.type == "split"
-                    scope.isSplit = true
-                    scope.btnGroup = "btn-group"
+            template: """
+            <div class="{{btnGroup}} {{directionClass}}">
+                <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}">
+                    <glyph icon="{{icon}}" ng-show="isSplit" style="font-size: 0.95em"></glyph>
+                    <glyph icon="{{icon}}" ng-hide="isSplit"></glyph>
+                     {{title}}
+                    <span class="caret" data-ng-hide="isSplit"></span>
+                </button>
+                <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">
+                    <span class="caret"></span>
+                    <span class="sr-only" style="position: relative"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
+            </div>
+            """
 
-                else if scope.type == "btn"
-                    scope.isSplit = false
-                    scope.srOnly = ""
-                    scope.btnGroup = ""
+            controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+                $scope.size = "" unless $scope.size
+                if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = ""
+                if $scope.type == "split"
+                    $scope.isSplit = true
+                    $scope.dataToggle = ""
+                    $scope.btnGroup = "btn-group"
 
-                else if !scope.type
-                    scope.srOnly = "sr-only"
-                    scope.isSplit = false
-                    scope.btnGroup = ""
+                else if $scope.type == "btn" or !$scope.type
+                    $scope.isSplit = false
+                    $scope.dataToggle = "dropdown"
+                    $scope.btnGroup = ""
 
-    return defObj
+                CleanUp $scope
+            ]
+
+        return defObj
+    ]
+)

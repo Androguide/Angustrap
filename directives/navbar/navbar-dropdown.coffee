@@ -17,27 +17,28 @@
 # ```
 
 # NavbarDropdown `<navbar-dropdown>`
-# -----------------
+# ----------------------------------
 #
 # #### Attributes:
 # * `title`: The title of the dropdown list item. Has the same appearance as a `<list-item>`
-angular.module("Angustrap").directive("navbarDropdown", ->
-    restrict: "E"
-    replace: true
-    transclude: true
-    scope:
-        asId: "@asId"
-        asClass: "@asClass"
-        title: "@title"
+directive("navbarDropdown", [ ->
+        restrict: "E"
+        replace: true
+        transclude: true
+        scope:
+            asId: "@asId"
+            asClass: "@asClass"
+            title: "@title"
 
-    controller: ($scope, CleanUp) ->
-        CleanUp $scope
+        controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
+            CleanUp $scope
+        ]
 
-    template: """
+        template: """
         <li class="dropdown {{asClass}}" id="{{asId}}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
             <ul class="dropdown-menu" data-ng-transclude></ul>
         </li>
         """
+    ]
 )
-

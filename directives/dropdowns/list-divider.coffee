@@ -6,12 +6,13 @@
 
 # ### Dropdown Divider
 # The `<dropdown-divider>` directive used through transclusion by the other dropdown directives
-angular.module("Angustrap", []).directive("dropdownDivider", ->
-    defObj =
-        restrict: "E"
-        replace: true
-        scope: {}
-        template: "<li role=\"presentation\" class=\"divider\"></li>"
+directive("listDivider", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            scope: {}
+            template: """<li role="presentation" class="divider"></li>"""
 
-    return defObj
+        return defObj
+    ]
 )

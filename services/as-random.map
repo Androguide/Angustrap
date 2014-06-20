@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "as-random.js",
+  "sourceRoot": "",
+  "sources": [
+    "as-random.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,IAAA,CAAO,GAAP,CAAA;GAEuB,EAAA,IAAA;CACf,EAAO,MAAC,IAAD;CACH,GAAA,QAAA;CAAA,CAAA,CAAI,KAAJ;CACA,EAAiB,CAAM,EAAjB,SAAA;CACF,EAAI,CAAI,EAAJ,IAAJ;AACwB,CADxB,CAC8D,CAAhD,CAAR,EAAwC,IAA9C,EAAwC;CAH5C,QACA;CAGA,cAAO;CALX,MAAO;CADM,IAAE;CAFvB,GAAA;CAAA"
+}

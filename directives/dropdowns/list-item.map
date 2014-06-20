@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "list-item.js",
+  "sourceRoot": "",
+  "sources": [
+    "list-item.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAMA;CAAA,CAAA,OAAA,CAAA;GAAwB,EAAA,IAAA;CACpB,KAAA,IAAA;CAAA,EACI,GADJ;CACI,CAAU,CAAV,KAAA;CAAA,CACS,EADT,GACA,CAAA;CADA,CAEY,EAFZ,IAEA,EAAA;CAFA,CAII,GADJ,GAAA;CACI,CAAQ,IAAR,GAAA,CAAA;UAJJ;CAAA,CAMU,MAAV,+GANA;CADJ,OAAA;CAaA,KAAA,OAAO;CAdW,IAAE;CAAxB,GAAA;CAAA"
+}

@@ -25,7 +25,8 @@
   "homepage": "https://github.com/Androguide/Angustrap",
   "devDependencies": {
     "docco": "^0.6.3",
-    "grunt-contrib-watch": "~0.6.1"
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-concat": "~0.4.0"
   },
   "directories": {
     "doc": "docs"
