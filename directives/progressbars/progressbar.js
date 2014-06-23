@@ -11,10 +11,9 @@
           currValue: "@",
           minValue: "@",
           maxValue: "@",
-          asWidth: "@",
           asTitle: "@"
         },
-        template: "<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-{{theme}}\" role=\"progressbar\" aria-valuenow=\"{{currValue}}\" aria-valuemin=\"{{minValue}}\" aria-valuemax=\"{{maxValue}}\" style=\"width: {{asWidth}}%\">\n    <span class=\"sr-only\">{{asTitle}}</span>\n  </div>\n</div>"
+        template: "<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-{{theme}}\" role=\"progressbar\" aria-valuenow=\"{{currValue}}\" aria-valuemin=\"{{minValue}}\" aria-valuemax=\"{{maxValue}}\" style=\"width: {{currValue}}%\">\n    <span class=\"sr-only\">{{asTitle}}</span>\n  </div>\n</div>"
       };
     }
   ]);
