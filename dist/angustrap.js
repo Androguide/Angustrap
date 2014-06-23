@@ -214,6 +214,23 @@
         ]
       };
     }
+  ]).directive("progressBar", [
+    function() {
+      return {
+        restrict: "E",
+        transclude: false,
+        replace: true,
+        scope: {
+          theme: "@",
+          currValue: "@",
+          minValue: "@",
+          maxValue: "@",
+          asWidth: "@",
+          asTitle: "@"
+        },
+        template: "<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-{{theme}}\" role=\"progressbar\" aria-valuenow=\"{{currValue}}\" aria-valuemin=\"{{minValue}}\" aria-valuemax=\"{{maxValue}}\" style=\"width: {{asWidth}}%\">\n    <span class=\"sr-only\">{{asTitle}}</span>\n  </div>\n</div>"
+      };
+    }
   ]);
 
 }).call(this);

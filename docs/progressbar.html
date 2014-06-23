@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>list-item.coffee</title>
+  <title>progressbar.coffee</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -76,7 +76,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>list-item.coffee</h1>
+                  <h1>progressbar.coffee</h1>
               </div>
           </li>
         
@@ -88,32 +88,27 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h3 id="list-item">List Item</h3>
-<p>This is the <code>&lt;dropdown-item&gt;</code> directive used through transclusion by the other dropdown directives.
-<br/>
-<strong>Attributes</strong>:</p>
-<ul>
-<li><code>as-href</code>: the url this dropdown-item should point to</li>
-</ul>
-<p>_Note that you can still pass Bootstrap’s usual <code>.disabled</code> class to disable an item</p>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre>directive(<span class="hljs-string">"listItem"</span>, [<span class="hljs-function"> -&gt;</span>
-    defObj =
-        <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
-        <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
-        <span class="hljs-attribute">scope</span>:
-            <span class="hljs-attribute">asHref</span>: <span class="hljs-string">"@asHref"</span>
-
-        <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
-        &lt;li role="presentation"&gt;
-          &lt;a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude&gt;&lt;/a&gt;
-        &lt;/li&gt;
-        """</span>
-
-    <span class="hljs-keyword">return</span> defObj
+            <div class="content"><div class='highlight'><pre>angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"Angustrap"</span>).directive(<span class="hljs-string">"progressBar"</span>, [<span class="hljs-function">  -&gt;</span>
+    <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
+    <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">false</span>
+    <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attribute">scope</span>:
+        <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">currValue</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">minValue</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">maxValue</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">asWidth</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">asTitle</span>: <span class="hljs-string">"@"</span>
+    <span class="hljs-attribute">template</span>: <span class="hljs-string">"""
+    &lt;div class="progress"&gt;
+      &lt;div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{asWidth}}%"&gt;
+        &lt;span class="sr-only"&gt;{{asTitle}}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    """</span>
 ])</pre></div></div>
             
         </li>
