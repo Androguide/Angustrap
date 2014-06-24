@@ -272,8 +272,6 @@ directive("inputGroup", [ ->
         replace: true
         transclude: true
         scope:
-            asId: "@asId"
-            asClass: "@asClass"
             title: "@title"
             asType: "@asType"
             side: "@side"
@@ -288,7 +286,7 @@ directive("inputGroup", [ ->
 
 
         template: """
-        <div id="{{asId}}" class="input-group {{sizeWildcard}}{{size}} {{asClass}}">
+        <div class="input-group {{sizeWildcard}}{{size}}">
             <!-- Left Span Add-on -->
             <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
@@ -475,11 +473,10 @@ directive("progressBar", [  ->
         currValue: "@"
         minValue: "@"
         maxValue: "@"
-        asWidth: "@"
         asTitle: "@"
     template: """
     <div class="progress">
-      <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{asWidth}}%">
+      <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{currValue}}%">
         <span class="sr-only">{{asTitle}}</span>
       </div>
     </div>
