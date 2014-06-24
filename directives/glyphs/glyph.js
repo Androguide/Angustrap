@@ -6,7 +6,7 @@
       defObj = {
         restrict: "E",
         replace: true,
-        template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>",
+        template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>',
         scope: {
           icon: "@icon"
         }

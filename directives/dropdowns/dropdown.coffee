@@ -58,7 +58,7 @@ directive("dropdown", [ ->
                 dropup: "=dropup"
                 asClick: "=asClick"
 
-            template: """
+            template: '
             <div class="{{btnGroup}} {{directionClass}}">
                 <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}">
                     <glyph icon="{{icon}}"></glyph> {{title}}
@@ -69,8 +69,7 @@ directive("dropdown", [ ->
                     <span class="sr-only" style="position: relative"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
-            </div>
-            """
+            </div>'
 
             controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
                 if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = "dropdown"

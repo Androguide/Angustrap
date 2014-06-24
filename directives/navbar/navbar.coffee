@@ -37,7 +37,7 @@ directive("navbar", ["AsRandom", (AsRandom) ->
             fixed: "@fixed"
             center: "=center"
 
-        template: """
+        template: '
         <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">
             <div class="{{container}}">
                 <div class="navbar-header">
@@ -50,11 +50,10 @@ directive("navbar", ["AsRandom", (AsRandom) ->
                     <a class="navbar-brand" ng-href="{{titleHref}}">{{title}}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="{{random}}">
-                    <div class="{{center && 'container' || '' }}" data-ng-transclude></div>
+                    <div class="{{center && \'container\' || \'\'}}" data-ng-transclude></div>
                 </div>
             </div>
-        </nav>
-        """
+        </nav>'
 
         controller: ['$scope', '$timeout', 'CleanUp', ($scope, $timeout, CleanUp) ->
             $scope.random = "#" + AsRandom 12

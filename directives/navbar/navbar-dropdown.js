@@ -9,7 +9,7 @@
         scope: {
           title: "@title"
         },
-        template: "<li class=\"dropdown\">\n    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{title}} <b class=\"caret\"></b></a>\n    <ul class=\"dropdown-menu\" data-ng-transclude></ul>\n</li>"
+        template: '<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a> <ul class="dropdown-menu" data-ng-transclude></ul> </li>'
       };
     }
   ]);

@@ -7,7 +7,7 @@
         restrict: "E",
         replace: true,
         scope: {},
-        template: "<li role=\"presentation\" class=\"divider\"></li>"
+        template: '<li role="presentation" class="divider"></li>'
       };
       return defObj;
     }

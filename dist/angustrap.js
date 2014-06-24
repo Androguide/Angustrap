@@ -39,7 +39,7 @@
           dropup: "=dropup",
           asClick: "=asClick"
         },
-        template: "<div class=\"{{btnGroup}} {{directionClass}}\">\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\" data-toggle=\"{{dataToggle}}\">\n        <glyph icon=\"{{icon}}\"></glyph> {{title}}\n        <span class=\"caret\" data-ng-hide=\"isSplit\"></span>\n    </button>\n    <button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}} dropdown-toggle\" data-toggle=\"dropdown\" data-ng-show=\"isSplit\">\n        <span class=\"caret\"></span>\n        <span class=\"sr-only\" style=\"position: relative\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" role=\"menu\" data-ng-transclude></ul>\n</div>",
+        template: '<div class="{{btnGroup}} {{directionClass}}"> <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}"> <glyph icon="{{icon}}"></glyph> {{title}} <span class="caret" data-ng-hide="isSplit"></span> </button> <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit"> <span class="caret"></span> <span class="sr-only" style="position: relative"></span> </button> <ul class="dropdown-menu" role="menu" data-ng-transclude></ul> </div>',
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
             if ($scope.dropup) {
@@ -69,7 +69,7 @@
         restrict: "E",
         replace: true,
         scope: {},
-        template: "<li role=\"presentation\" class=\"divider\"></li>"
+        template: '<li role="presentation" class="divider"></li>'
       };
       return defObj;
     }
@@ -83,7 +83,7 @@
         scope: {
           asHref: "@asHref"
         },
-        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-transclude></a>\n</li>"
+        template: '<li role="presentation"> <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a> </li>'
       };
       return defObj;
     }
@@ -102,7 +102,7 @@
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
         },
-        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
+        template: '<button type="button" class="btn btn-{{theme}} btn-{{size}}"> <span class="glyphicon glyphicon-{{icon}}"></span> <span data-ng-transclude></span> </button>'
       };
       return defObj;
     }
@@ -112,7 +112,7 @@
       defObj = {
         restrict: "E",
         replace: true,
-        template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>",
+        template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>',
         scope: {
           icon: "@icon"
         }
@@ -139,7 +139,7 @@
             return CleanUp($scope);
           }
         ],
-        template: "<div class=\"input-group {{sizeWildcard}}{{size}}\">\n    <!-- Left Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"asType == 'span' && side == 'left'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Left Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"asType == 'btn' && side == 'left'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n\n    <!-- The input -->\n    <input type=\"{{type}}\" class=\"form-control\" placeholder=\"{{placeholder}}\">\n\n    <!-- Right Span Add-on -->\n    <span class=\"input-group-addon\" data-ng-show=\"asType == 'span' && side == 'right'\">\n        <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n    </span>\n    <!-- Right Button Add-on -->\n    <span class=\"input-group-btn\" data-ng-show=\"asType == 'btn' && side == 'right'\">\n        <button class=\"btn btn-{{theme}}\" type=\"button\">\n            <glyph icon=\"{{icon}}\" data-ng-show=\"icon\"></glyph> {{title}}\n        </button>\n    </span>\n</div>"
+        template: '<div class="input-group {{sizeWildcard}}{{size}}"> <!-- Left Span Add-on --> <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'left\'"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </span> <!-- Left Button Add-on --> <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'left\'"> <button class="btn btn-{{theme}}" type="button"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </button> </span> <!-- The input --> <input type="{{type}}" class="form-control" placeholder="{{placeholder}}"> <!-- Right Span Add-on --> <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'right\'"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </span> <!-- Right Button Add-on --> <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'right\'"> <button class="btn btn-{{theme}}" type="button"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </button> </span> </div>'
       };
     }
   ]).directive("navbarDropdown", [
@@ -151,7 +151,7 @@
         scope: {
           title: "@title"
         },
-        template: "<li class=\"dropdown\">\n    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{title}} <b class=\"caret\"></b></a>\n    <ul class=\"dropdown-menu\" data-ng-transclude></ul>\n</li>"
+        template: '<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a> <ul class="dropdown-menu" data-ng-transclude></ul> </li>'
       };
     }
   ]).directive("navbarList", [
@@ -160,7 +160,7 @@
         restrict: "E",
         replace: true,
         transclude: true,
-        template: "<ul class=\"nav navbar-nav {{wildcard}}{{side}}\" data-ng-transclude></ul>",
+        template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>',
         scope: {
           side: "@side"
         },
@@ -189,7 +189,7 @@
           fixed: "@fixed",
           center: "=center"
         },
-        template: "<nav class=\"navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}\" role=\"navigation\">\n    <div class=\"{{container}}\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"{{hashRandom}}\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" ng-href=\"{{titleHref}}\">{{title}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"{{random}}\">\n            <div class=\"{{center && 'container' || '' }}\" data-ng-transclude></div>\n        </div>\n    </div>\n</nav>",
+        template: '<nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation"> <div class="{{container}}"> <div class="navbar-header"> <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" ng-href="{{titleHref}}">{{title}}</a> </div> <div class="collapse navbar-collapse" id="{{random}}"> <div class="{{center && \'container\' || \'\'}}" data-ng-transclude></div> </div> </div> </nav>',
         controller: [
           '$scope', '$timeout', 'CleanUp', function($scope, $timeout, CleanUp) {
             $scope.random = "#" + AsRandom(12);
@@ -225,7 +225,7 @@
           maxValue: "@",
           asTitle: "@"
         },
-        template: "<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-{{theme}}\" role=\"progressbar\" aria-valuenow=\"{{currValue}}\" aria-valuemin=\"{{minValue}}\" aria-valuemax=\"{{maxValue}}\" style=\"width: {{currValue}}%\">\n    <span class=\"sr-only\">{{asTitle}}</span>\n  </div>\n</div>"
+        template: '<div class="progress"> <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{currValue}}%"> <span class="sr-only">{{asTitle}}</span> </div> </div'
       };
     }
   ]);

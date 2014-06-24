@@ -13,7 +13,7 @@
           maxValue: "@",
           asTitle: "@"
         },
-        template: "<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-{{theme}}\" role=\"progressbar\" aria-valuenow=\"{{currValue}}\" aria-valuemin=\"{{minValue}}\" aria-valuemax=\"{{maxValue}}\" style=\"width: {{currValue}}%\">\n    <span class=\"sr-only\">{{asTitle}}</span>\n  </div>\n</div>"
+        template: '<div class="progress"> <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{currValue}}%"> <span class="sr-only">{{asTitle}}</span> </div> </div'
       };
     }
   ]);

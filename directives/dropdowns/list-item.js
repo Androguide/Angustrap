@@ -10,7 +10,7 @@
         scope: {
           asHref: "@asHref"
         },
-        template: "<li role=\"presentation\">\n  <a role=\"menuitem\" tabindex=\"-1\" href=\"{{asHref}}\" data-ng-transclude></a>\n</li>"
+        template: '<li role="presentation"> <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a> </li>'
       };
       return defObj;
     }

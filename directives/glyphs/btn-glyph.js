@@ -15,7 +15,7 @@
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
         },
-        template: "<button type=\"button\" class=\"btn btn-{{theme}} btn-{{size}}\">\n    <span class=\"glyphicon glyphicon-{{icon}}\"></span>\n    <span data-ng-transclude></span>\n</button>"
+        template: '<button type="button" class="btn btn-{{theme}} btn-{{size}}"> <span class="glyphicon glyphicon-{{icon}}"></span> <span data-ng-transclude></span> </button>'
       };
       return defObj;
     }

@@ -81,7 +81,7 @@ directive("dropdown", [ ->
                 dropup: "=dropup"
                 asClick: "=asClick"
 
-            template: """
+            template: '
             <div class="{{btnGroup}} {{directionClass}}">
                 <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}">
                     <glyph icon="{{icon}}"></glyph> {{title}}
@@ -92,8 +92,7 @@ directive("dropdown", [ ->
                     <span class="sr-only" style="position: relative"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" data-ng-transclude></ul>
-            </div>
-            """
+            </div>'
 
             controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
                 if $scope.dropup then $scope.directionClass = "dropup" else $scope.directionClass = "dropdown"
@@ -127,7 +126,7 @@ directive("listDivider", [ ->
             restrict: "E"
             replace: true
             scope: {}
-            template: """<li role="presentation" class="divider"></li>"""
+            template: '<li role="presentation" class="divider"></li>'
 
         return defObj
     ]
@@ -148,11 +147,10 @@ directive("listItem", [ ->
         scope:
             asHref: "@asHref"
 
-        template: """
+        template: '
         <li role="presentation">
           <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a>
-        </li>
-        """
+        </li>'
 
     return defObj
 ])
@@ -191,12 +189,11 @@ directive("btnGlyph", [($timeout) ->
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"
 
-            template: """
-        <button type="button" class="btn btn-{{theme}} btn-{{size}}">
-            <span class="glyphicon glyphicon-{{icon}}"></span>
-            <span data-ng-transclude></span>
-        </button>
-        """
+            template: '
+            <button type="button" class="btn btn-{{theme}} btn-{{size}}">
+                <span class="glyphicon glyphicon-{{icon}}"></span>
+                <span data-ng-transclude></span>
+            </button>'
 
         return  defObj
     ]
@@ -222,7 +219,7 @@ directive("glyph", [ ->
         defObj =
             restrict: "E"
             replace: true
-            template: "<span class=\"glyphicon glyphicon-{{icon}}\"></span>"
+            template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>'
             scope:
                 icon: "@icon"
 
@@ -285,14 +282,14 @@ directive("inputGroup", [ ->
         ]
 
 
-        template: """
+        template: '
         <div class="input-group {{sizeWildcard}}{{size}}">
             <!-- Left Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'">
+            <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'left\'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Left Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'">
+            <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'left\'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
@@ -302,17 +299,16 @@ directive("inputGroup", [ ->
             <input type="{{type}}" class="form-control" placeholder="{{placeholder}}">
 
             <!-- Right Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'">
+            <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'right\'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Right Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'">
+            <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'right\'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
             </span>
-        </div>
-        """
+        </div>'
     ]
 ).
 
@@ -346,12 +342,11 @@ directive("navbarDropdown", [ ->
         scope:
             title: "@title"
 
-        template: """
+        template: '
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
             <ul class="dropdown-menu" data-ng-transclude></ul>
-        </li>
-        """
+        </li>'
     ]
 ).
 
@@ -380,7 +375,7 @@ directive("navbarList", [ ->
         restrict: "E"
         replace: true
         transclude: true
-        template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
+        template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>'
         scope:
             side: "@side"
 
@@ -430,7 +425,7 @@ directive("navbar", ["AsRandom", (AsRandom) ->
             fixed: "@fixed"
             center: "=center"
 
-        template: """
+        template: '
         <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">
             <div class="{{container}}">
                 <div class="navbar-header">
@@ -443,11 +438,10 @@ directive("navbar", ["AsRandom", (AsRandom) ->
                     <a class="navbar-brand" ng-href="{{titleHref}}">{{title}}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="{{random}}">
-                    <div class="{{center && 'container' || '' }}" data-ng-transclude></div>
+                    <div class="{{center && \'container\' || \'\'}}" data-ng-transclude></div>
                 </div>
             </div>
-        </nav>
-        """
+        </nav>'
 
         controller: ['$scope', '$timeout', 'CleanUp', ($scope, $timeout, CleanUp) ->
             $scope.random = "#" + AsRandom 12
@@ -474,11 +468,10 @@ directive("progressBar", [  ->
         minValue: "@"
         maxValue: "@"
         asTitle: "@"
-    template: """
+    template: '
     <div class="progress">
       <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{currValue}}%">
         <span class="sr-only">{{asTitle}}</span>
       </div>
-    </div>
-    """
+    </div'
 ])

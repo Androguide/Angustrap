@@ -28,11 +28,10 @@ directive("navbarDropdown", [ ->
         scope:
             title: "@title"
 
-        template: """
+        template: '
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
             <ul class="dropdown-menu" data-ng-transclude></ul>
-        </li>
-        """
+        </li>'
     ]
 )

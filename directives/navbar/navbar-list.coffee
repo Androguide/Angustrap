@@ -23,7 +23,7 @@ directive("navbarList", [ ->
         restrict: "E"
         replace: true
         transclude: true
-        template: """<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>"""
+        template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>'
         scope:
             side: "@side"
 

@@ -53,14 +53,14 @@ directive("inputGroup", [ ->
         ]
 
 
-        template: """
+        template: '
         <div class="input-group {{sizeWildcard}}{{size}}">
             <!-- Left Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'left'">
+            <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'left\'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Left Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'left'">
+            <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'left\'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
@@ -70,16 +70,15 @@ directive("inputGroup", [ ->
             <input type="{{type}}" class="form-control" placeholder="{{placeholder}}">
 
             <!-- Right Span Add-on -->
-            <span class="input-group-addon" data-ng-show="asType == 'span' && side == 'right'">
+            <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'right\'">
                 <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
             </span>
             <!-- Right Button Add-on -->
-            <span class="input-group-btn" data-ng-show="asType == 'btn' && side == 'right'">
+            <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'right\'">
                 <button class="btn btn-{{theme}}" type="button">
                     <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}}
                 </button>
             </span>
-        </div>
-        """
+        </div>'
     ]
 )

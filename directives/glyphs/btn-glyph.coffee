@@ -31,12 +31,11 @@ directive("btnGlyph", [($timeout) ->
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"
 
-            template: """
-        <button type="button" class="btn btn-{{theme}} btn-{{size}}">
-            <span class="glyphicon glyphicon-{{icon}}"></span>
-            <span data-ng-transclude></span>
-        </button>
-        """
+            template: '
+            <button type="button" class="btn btn-{{theme}} btn-{{size}}">
+                <span class="glyphicon glyphicon-{{icon}}"></span>
+                <span data-ng-transclude></span>
+            </button>'
 
         return  defObj
     ]

@@ -13,11 +13,10 @@ directive("listItem", [ ->
         scope:
             asHref: "@asHref"
 
-        template: """
+        template: '
         <li role="presentation">
           <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a>
-        </li>
-        """
+        </li>'
 
     return defObj
 ])
