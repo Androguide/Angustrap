@@ -1,0 +1,66 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/directives/inputs/input-group.js" />
+        <item url="file://$PROJECT_DIR$/directives/panels/panels.js" />
+        <item url="file://$PROJECT_DIR$/angustrap.combined.js" />
+        <item url="file://$PROJECT_DIR$/directives/glyphs/glyph.js" />
+        <item url="file://$PROJECT_DIR$/directives/panels/dropdown.js" />
+        <item url="file://$PROJECT_DIR$/directives/glyphs/btn-glyph.js" />
+        <item url="file://$PROJECT_DIR$/services/as-random.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/express/node_modules/proxy-addr/node_modules/ipaddr.js/test/ipaddr.test.js" />
+        <item url="file://$PROJECT_DIR$/services/cleanup.js" />
+        <item url="file://$PROJECT_DIR$/directives/dropdowns/list-item.js" />
+        <item url="file://$PROJECT_DIR$/directives/alerts/alerts.js" />
+        <item url="file://$PROJECT_DIR$/directives/dropdowns/dropdown.js" />
+        <item url="file://$PROJECT_DIR$/directives/module.js" />
+        <item url="file://$PROJECT_DIR$/directives/dropdowns/list-divider.js" />
+        <item url="file://$PROJECT_DIR$/directives/progressbars/progressbar.js" />
+        <item url="file://$PROJECT_DIR$/directives/navbar/navbar-dropdown.js" />
+        <item url="file://$PROJECT_DIR$/lib/rainbow-log.js" />
+        <item url="file://$PROJECT_DIR$/directives/navbar/navbar.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/express/node_modules/proxy-addr/node_modules/ipaddr.js/src/ipaddr.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/grunt-cli/node_modules/resolve/test/resolver/cup.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/grunt-cli/node_modules/resolve/test/resolver/mug.js" />
+        <item url="file://$PROJECT_DIR$/directives/navbar/navbar-list.js" />
+        <item url="file://$PROJECT_DIR$/server.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/angustrap.js" />
+      <root url="file://$PROJECT_DIR$/angustrap.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/split-dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/btn-dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/split-dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/btn-dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/services/as-random.js" />
+      <root url="file://$PROJECT_DIR$/directives/services/cleanup.js" />
+      <root url="file://$PROJECT_DIR$/directives/panels/dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/inputs/input-group.js" />
+      <root url="file://$PROJECT_DIR$/directives/panels/panels.js" />
+      <root url="file://$PROJECT_DIR$/angustrap.combined.js" />
+      <root url="file://$PROJECT_DIR$/directives/panels/dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/glyphs/glyph.js" />
+      <root url="file://$PROJECT_DIR$/directives/glyphs/btn-glyph.js" />
+      <root url="file://$PROJECT_DIR$/services/as-random.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/express/node_modules/proxy-addr/node_modules/ipaddr.js/test/ipaddr.test.js" />
+      <root url="file://$PROJECT_DIR$/services/cleanup.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/list-item.js" />
+      <root url="file://$PROJECT_DIR$/directives/alerts/alerts.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/dropdown.js" />
+      <root url="file://$PROJECT_DIR$/directives/module.js" />
+      <root url="file://$PROJECT_DIR$/directives/progressbars/progressbar.js" />
+      <root url="file://$PROJECT_DIR$/directives/dropdowns/list-divider.js" />
+      <root url="file://$PROJECT_DIR$/directives/navbar/navbar-dropdown.js" />
+      <root url="file://$PROJECT_DIR$/lib/rainbow-log.js" />
+      <root url="file://$PROJECT_DIR$/directives/navbar/navbar.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/express/node_modules/proxy-addr/node_modules/ipaddr.js/src/ipaddr.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/grunt-cli/node_modules/resolve/test/resolver/cup.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/grunt-cli/node_modules/resolve/test/resolver/mug.js" />
+      <root url="file://$PROJECT_DIR$/server.js" />
+      <root url="file://$PROJECT_DIR$/directives/navbar/navbar-list.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
