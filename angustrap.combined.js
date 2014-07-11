@@ -46,7 +46,7 @@
                     <glyph icon="{{icon}}"></glyph> {{title}}\
                     <span class="caret" data-ng-hide="isSplit"></span>\
                 </button>\
-                <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit">\
+                <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit" style="height: {{caretHeight}}px">\
                     <span class="caret"></span>\
                     <span class="sr-only" style="position: relative"></span>\
                 </button>\
@@ -54,10 +54,16 @@
             </div>',
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
+            $scope.caretHeight = 34;
             if ($scope.dropup) {
               $scope.directionClass = "dropup";
             } else {
               $scope.directionClass = "dropdown";
+            }
+            if ($scope.size === "lg") {
+              $scope.caretHeight = 46;
+            } else if ($scope.size === "sm") {
+              $scope.caretHeight = 30;
             }
             if ($scope.type === "split") {
               $scope.isSplit = true;
