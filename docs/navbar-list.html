@@ -19,6 +19,11 @@
           <div id="jump_page">
             
               
+              <a class="source" href="alerts.html">
+                alerts.coffee
+              </a>
+            
+              
               <a class="source" href="dropdown.html">
                 dropdown.coffee
               </a>
@@ -139,7 +144,7 @@
         <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
         <span class="hljs-attribute">template</span>: <span class="hljs-string">'&lt;ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude&gt;&lt;/ul&gt;'</span>
         <span class="hljs-attribute">scope</span>:
-            <span class="hljs-attribute">side</span>: <span class="hljs-string">"@side"</span>
+            <span class="hljs-attribute">side</span>: <span class="hljs-string">"@"</span>
 
         <span class="hljs-attribute">controller</span>: [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'CleanUp'</span>, <span class="hljs-function"><span class="hljs-params">($scope, CleanUp)</span> -&gt;</span>
             <span class="hljs-keyword">if</span> $scope.side <span class="hljs-keyword">then</span> $scope.wildcard = <span class="hljs-string">"navbar-"</span> <span class="hljs-keyword">else</span> $scope.wildcard = <span class="hljs-string">""</span>

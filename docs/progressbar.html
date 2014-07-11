@@ -19,6 +19,11 @@
           <div id="jump_page">
             
               
+              <a class="source" href="alerts.html">
+                alerts.coffee
+              </a>
+            
+              
               <a class="source" href="dropdown.html">
                 dropdown.coffee
               </a>
@@ -93,23 +98,48 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <h3 id="progress-bars">Progress Bars</h3>
+<h4 id="attributes-">Attributes:</h4>
+<ul>
+<li><p><code>theme</code>: <em>(String)</em> the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
+ The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
+<ul>
+<li><code>primary</code></li>
+<li><code>success</code></li>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>danger</code></li>
+</ul>
+</li>
+<li><p><code>current</code>: <em>(Integer)</em> the current progress percentage</p>
+</li>
+<li><p><code>title</code>: <em>(String)</em> the label to display inside the progressbar (optional)</p>
+</li>
+</ul>
+<h4 id="examples-">Examples:</h4>
+<pre><code>&lt;!-- Green Progress Bar -<span class="hljs-function">-&gt;</span>
+&lt;progress-bar theme=<span class="hljs-string">"success"</span> current=<span class="hljs-string">"95"</span>&gt;&lt;/progress-bar&gt;
+
+&lt;!-- Red Progress Bar <span class="hljs-reserved">with</span> label -<span class="hljs-function">-&gt;</span>
+ &lt;progress-bar theme=<span class="hljs-string">"danger"</span> title=<span class="hljs-string">"Angustrap"</span> current=<span class="hljs-string">"75"</span>&gt;&lt;/progress-bar&gt;
+</code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>directive(<span class="hljs-string">"progressBar"</span>, [<span class="hljs-function">  -&gt;</span>
+            <div class="content"><div class='highlight'><pre>
+directive(<span class="hljs-string">"progressBar"</span>, [<span class="hljs-function">  -&gt;</span>
     <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
     <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">false</span>
     <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
     <span class="hljs-attribute">scope</span>:
         <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@"</span>
-        <span class="hljs-attribute">currValue</span>: <span class="hljs-string">"@"</span>
-        <span class="hljs-attribute">minValue</span>: <span class="hljs-string">"@"</span>
-        <span class="hljs-attribute">maxValue</span>: <span class="hljs-string">"@"</span>
-        <span class="hljs-attribute">asTitle</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">current</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">title</span>: <span class="hljs-string">"@"</span>
+
     <span class="hljs-attribute">template</span>: <span class="hljs-string">'
     &lt;div class="progress"&gt;
-      &lt;div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{currValue}}%"&gt;
-        &lt;span class="sr-only"&gt;{{asTitle}}&lt;/span&gt;
+      &lt;div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{current}}" aria-valuemin="0" aria-valuemax="100" style="width: {{current}}%"&gt;
+        &lt;span class="sr-only"&gt;{{title}}&lt;/span&gt;
+        {{title}}
       &lt;/div&gt;
     &lt;/div'</span>
 ])</pre></div></div>
