@@ -79,11 +79,10 @@ directive("alert", [ ->
 #   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 #
-#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#   * size: the variable part of the Bootstrap 3.x well size classes (i.e without the 'btn-' prefix).
 #     Possible choice are:
 #       * `lg`
 #       * `sm`
-#       * `xs`
 #
 #   * title: the string to display inside the action button of the split dropdown
 #
@@ -661,4 +660,38 @@ directive("progressBar", [  ->
     link: (scope, el, attrs) ->
         if attrs.striped is "" then attrs.striped = true
         if attrs.animated is "" then attrs.animated = true
-])
+]).
+
+# Wells
+# ----------
+# Shortcut directives for Bootstrap's wells.<br/><br/>
+# **Examples**:<br/>
+# ```html
+# <well size="lg">Help! I fell in the big well!</as-label>
+# ```
+# <br/>
+
+# **Attributes**:
+#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#     Possible choice are:
+#       * `lg`
+#       * `sm`
+#       * `xs`
+#
+#   _**Note:** if no size attribute is specified, Angustrap will fallback to Bootstrap's default well size_
+
+directive("well", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            template: '<div class="well well-{{size}}" data-ng-transclude></div>'
+            scope:
+                size: "@"
+
+            link: (scope, el, attrs) ->
+                if !attrs.size then attrs.size = "md"
+
+        return defObj
+    ]
+)

@@ -309,6 +309,25 @@
         }
       };
     }
+  ]).directive("well", [
+    function() {
+      var defObj;
+      defObj = {
+        restrict: "E",
+        replace: true,
+        transclude: true,
+        template: '<div class="well well-{{size}}" data-ng-transclude></div>',
+        scope: {
+          size: "@"
+        },
+        link: function(scope, el, attrs) {
+          if (!attrs.size) {
+            return attrs.size = "md";
+          }
+        }
+      };
+      return defObj;
+    }
   ]);
 
 }).call(this);

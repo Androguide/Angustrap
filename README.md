@@ -412,3 +412,35 @@ A shortcut directive for Bootstrap's label component.
     * `info`
     * `warning`
     * `danger`
+
+&nbsp;
+
+Wells
+============
+
+Well `<well>`
+--------------------------
+A shortcut directive for Bootstrap's well component.
+
+####Examples:
+```html
+<!-- Large well -->
+<well size="lg">Large Well</as-label>
+
+<!-- Default well -->
+<well>Default Well</well>
+
+<!-- Small well -->
+<well size="sm">Small Well</well>
+```
+
+&nbsp;
+
+####Attributes:
+* `theme`: The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`

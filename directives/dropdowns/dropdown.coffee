@@ -11,11 +11,10 @@
 #   * icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
 #     See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list.
 #
-#   * size: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
+#   * size: the variable part of the Bootstrap 3.x well size classes (i.e without the 'btn-' prefix).
 #     Possible choice are:
 #       * `lg`
 #       * `sm`
-#       * `xs`
 #
 #   * title: the string to display inside the action button of the split dropdown
 #
