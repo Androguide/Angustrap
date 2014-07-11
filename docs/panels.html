@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>glyph.coffee</title>
+  <title>panels.coffee</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -81,7 +81,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>glyph.coffee</h1>
+                  <h1>panels.coffee</h1>
               </div>
           </li>
         
@@ -93,55 +93,51 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h2 id="glyphicons">Glyphicons</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>Shortcut directives for Bootstrap’s glyphicons.<br/><br/>
-<strong>Examples</strong>:<br/></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">glyph</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"heart"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">glyph</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">glyph</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"qrcode"</span>&gt;</span>Sign-In<span class="hljs-tag">&lt;/<span class="hljs-title">glyph</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">btn-glyph</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"heart-empty"</span>&gt;</span>Angustrap<span class="hljs-tag">&lt;/<span class="hljs-title">glyph</span>&gt;</span>
-</code></pre>
-<p><br/>
-<em>For the list of all available icons, see <a href="http://getbootstrap.com/components/#glyphicons-glyphs">http://getbootstrap.com/components/#glyphicons-glyphs</a></em></p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <h3 id="simple-glyph-icon-span-">Simple glyph icon (span)</h3>
-<p><strong>Attributes</strong>:</p>
+              <h3 id="panels">Panels</h3>
+<h4 id="attributes-">Attributes:</h4>
 <ul>
-<li>icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the ‘glyphicon-‘ prefix).<pre><code>  See [here](<span class="hljs-attribute">http</span>:<span class="hljs-regexp">//g</span>etbootstrap.com<span class="hljs-regexp">/components/</span><span class="hljs-comment">#glyphicons-glyphs) for the full list.</span>
-</code></pre></li>
+<li><p>theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
+ The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
+<ul>
+<li><code>primary</code></li>
+<li><code>success</code></li>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>danger</code></li>
+</ul>
+</li>
+<li><p>title: the string to display inside the action button of the split dropdown</p>
+</li>
+<li><p>footer: whether the panel’s heading should be at the bottom or top</p>
+</li>
 </ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>directive(<span class="hljs-string">"glyph"</span>, [<span class="hljs-function"> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>
+
+directive(<span class="hljs-string">"asPanel"</span>, [<span class="hljs-function"> -&gt;</span>
         defObj =
             <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
             <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
-            <span class="hljs-attribute">template</span>: <span class="hljs-string">'&lt;span class=\"glyphicon glyphicon-{{icon}}\"&gt;&lt;/span&gt;'</span>
+            <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
             <span class="hljs-attribute">scope</span>:
-                <span class="hljs-attribute">icon</span>: <span class="hljs-string">"@icon"</span>
+                <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@"</span>
+                <span class="hljs-attribute">title</span>: <span class="hljs-string">"@"</span>
+                <span class="hljs-attribute">footer</span>: <span class="hljs-string">"@"</span>
+
+            <span class="hljs-attribute">template</span>: <span class="hljs-string">'
+            &lt;div class="panel panel-{{theme}}"&gt;
+              &lt;div class="panel-heading" data-ng-hide="footer"&gt;
+                &lt;h3 class="panel-title"&gt;{{title}}&lt;/h3&gt;
+              &lt;/div&gt;
+              &lt;div class="panel-body" data-ng-transclude&gt;&lt;/div&gt;
+              &lt;div class="panel-footer" data-ng-show="footer"&gt;{{title}}&lt;/div&gt;
+            &lt;/div&gt;'</span>
+
+            <span class="hljs-attribute">controller</span>: [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-params">($scope)</span> -&gt;</span>
+               <span class="hljs-keyword">unless</span> $scope.theme <span class="hljs-keyword">then</span> $scope.theme = <span class="hljs-string">"default"</span>
+            ]
 
         <span class="hljs-keyword">return</span> defObj
     ]

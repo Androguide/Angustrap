@@ -254,3 +254,45 @@ A single directive to abstract all of Bootstrap's input-group components.
     * `info`
     * `warning`
     * `danger`
+
+
+Panels
+============
+
+Panel `<panel>`
+--------------------------
+A directive to abstract Bootstrap's panel component.
+
+####Examples:
+```html
+<!-- Default panel -->
+<panel title="My Panel">
+    ...
+</panel>
+
+<!-- Themed panel -->
+<panel title="My Panel" theme="primary">
+    ...
+</panel>
+
+<!-- Panel with footer -->
+<panel title="My Panel" theme="primary" footer="true">
+    ...
+</panel>
+```
+
+&nbsp;
+
+####Attributes:
+* `title`: The text to display inside of the input add-on (span, button... depending on the `type` attribute)
+
+* `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._<br/>
+    The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`
+
+* `footer`: _(Boolean)_ Whether the panel title should be placed at the bottom of the panel or not

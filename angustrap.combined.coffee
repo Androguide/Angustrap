@@ -21,6 +21,48 @@ service('CleanUp', ['$timeout', ($timeout) ->
 )
 .
 
+# ### Alerts
+# #### Attributes:
+#  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+#       * `primary`
+#       * `success`
+#       * `info`
+#       * `warning`
+#       * `danger`
+#
+#  * title: the string to display inside the action button of the split dropdown
+#
+#  * footer: whether the panel's heading should be at the bottom or top
+
+
+directive("asAlert", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            scope:
+                theme: "@"
+                title: "@"
+                footer: "@"
+
+            template: '
+            <div class="panel panel-{{theme}}">
+              <div class="panel-heading" data-ng-hide="footer">
+                <h3 class="panel-title">{{title}}</h3>
+              </div>
+              <div class="panel-body" data-ng-transclude></div>
+              <div class="panel-footer" data-ng-show="footer">{{title}}</div>
+            </div>'
+
+            controller: ['$scope', ($scope) ->
+               unless $scope.theme then $scope.theme = "default"
+            ]
+
+        return defObj
+    ]
+).
+
 # ### Mutable Dropdown
 # #### Attributes:
 #  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
@@ -461,6 +503,48 @@ directive("navbar", ["AsRandom", (AsRandom) ->
             # Remove possible trailing spaces in class attribute
             CleanUp $scope
         ]
+    ]
+).
+
+# ### Panels
+# #### Attributes:
+#  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+#       * `primary`
+#       * `success`
+#       * `info`
+#       * `warning`
+#       * `danger`
+#
+#  * title: the string to display inside the action button of the split dropdown
+#
+#  * footer: whether the panel's heading should be at the bottom or top
+
+
+directive("panel", [ ->
+        defObj =
+            restrict: "E"
+            replace: true
+            transclude: true
+            scope:
+                theme: "@"
+                title: "@"
+                footer: "@"
+
+            template: '
+            <div class="panel panel-{{theme}}">
+              <div class="panel-heading" data-ng-hide="footer">
+                <h3 class="panel-title">{{title}}</h3>
+              </div>
+              <div class="panel-body" data-ng-transclude></div>
+              <div class="panel-footer" data-ng-show="footer">{{title}}</div>
+            </div>'
+
+            controller: ['$scope', ($scope) ->
+               unless $scope.theme then $scope.theme = "default"
+            ]
+
+        return defObj
     ]
 ).
 

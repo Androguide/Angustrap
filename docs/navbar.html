@@ -64,6 +64,11 @@
               </a>
             
               
+              <a class="source" href="panels.html">
+                panels.coffee
+              </a>
+            
+              
               <a class="source" href="progressbar.html">
                 progressbar.coffee
               </a>
@@ -157,7 +162,7 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
             fixed: <span class="hljs-string">"@fixed"</span>
             center: <span class="hljs-string">"=center"</span>
 
-        template: <span class="hljs-string">"""
+        template: <span class="hljs-string">'
         &lt;nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation"&gt;
             &lt;div class="{{container}}"&gt;
                 &lt;div class="navbar-header"&gt;
@@ -170,11 +175,10 @@ If this attribute is not specified or set to <code>static</code>, the navbar wil
                     &lt;a class="navbar-brand" ng-href="{{titleHref}}"&gt;{{title}}&lt;/a&gt;
                 &lt;/div&gt;
                 &lt;div class="collapse navbar-collapse" id="{{random}}"&gt;
-                    &lt;div class="{{center &amp;&amp; 'container' || '' }}" data-ng-transclude&gt;&lt;/div&gt;
+                    &lt;div class="{{center &amp;&amp; \'container\' || \'\'}}" data-ng-transclude&gt;&lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
-        &lt;/nav&gt;
-        """</span>
+        &lt;/nav&gt;'</span>
 
         controller: [<span class="hljs-string">'$scope'</span>, <span class="hljs-string">'$timeout'</span>, <span class="hljs-string">'CleanUp'</span>, ($scope, $timeout, CleanUp) -&gt;
             $scope.random = <span class="hljs-string">"#"</span> + AsRandom <span class="hljs-number">12</span>
