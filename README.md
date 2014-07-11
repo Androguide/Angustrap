@@ -315,6 +315,9 @@ A directive to abstract Bootstrap's alert component.
 
 <!-- Green alert -->
 <alert theme="success">Props! You did it!</alert>
+
+<!-- Dismissible blue alert -->
+<alert theme="info" dismissible>Props! You did it!</alert>
 ```
 
 &nbsp;
@@ -327,3 +330,5 @@ A directive to abstract Bootstrap's alert component.
     * `info`
     * `warning`
     * `danger`
+
+* `dismissible`: Whether the alert should be dismissible via a close button at its top-right corner

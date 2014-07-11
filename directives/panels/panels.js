@@ -26,7 +26,12 @@
               return $scope.theme = "default";
             }
           }
-        ]
+        ],
+        link: function(scope, el, attrs) {
+          if (attrs.footer) {
+            return scope.footer = true;
+          }
+        }
       };
       return defObj;
     }

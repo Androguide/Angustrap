@@ -25,7 +25,7 @@
 # </panel>
 #
 # <!-- Panel with footer -->
-# <panel title="My Panel" theme="primary" footer="true">
+# <panel title="My Panel" theme="primary" footer>
 # ...
 # </panel>
 # ```
@@ -52,6 +52,9 @@ directive("panel", [ ->
             controller: ['$scope', ($scope) ->
                unless $scope.theme then $scope.theme = "default"
             ]
+
+            link: (scope, el, attrs) ->
+                if attrs.footer then scope.footer = true
 
         return defObj
     ]

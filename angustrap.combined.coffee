@@ -23,7 +23,7 @@ service('CleanUp', ['$timeout', ($timeout) ->
 
 # ### Alerts
 # #### Attributes:
-#  * theme: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
+#  * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
 #     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
 #       * `primary`
 #       * `success`
@@ -31,10 +31,15 @@ service('CleanUp', ['$timeout', ($timeout) ->
 #       * `warning`
 #       * `danger`
 #
+#  * `dismissible`: Whether the alert should be dismissible via a close button at its top-right corner
+#
 # #### Examples:
 # ```
+# <!-- Simple alert -->
 # <alert theme="danger">Something ain't right!</alert>
-# <alert theme="success">Props! You did it!</alert>
+#
+# <!-- Dismissible alert -->
+# <alert theme="success" dismissible>Props! You did it!</alert>
 # ```
 
 directive("alert", [ ->
@@ -44,8 +49,18 @@ directive("alert", [ ->
             transclude: true
             scope:
                 theme: "@"
+                dismissible: "="
 
-            template: '<div class="alert alert-{{theme}}" role="alert" data-ng-transclude></div>'
+            template: '<div class="alert alert-{{theme}} {{dismissible ? alert-dismissible : \'\' }}" role="alert">
+                           <button type="button" class="close" data-dismiss="alert" data-ng-show="dismissible">
+                               <span aria-hidden="true">&times;</span>
+                               <span class="sr-only">Close</span>
+                           </button>
+                           <div data-ng-transclude></div>
+                       </div>'
+
+            link: (scope, el, attrs) ->
+                if attrs.dismissible then scope.dismissible = true
 
         return defObj
     ]
@@ -521,7 +536,7 @@ directive("navbar", ["AsRandom", (AsRandom) ->
 # </panel>
 #
 # <!-- Panel with footer -->
-# <panel title="My Panel" theme="primary" footer="true">
+# <panel title="My Panel" theme="primary" footer>
 # ...
 # </panel>
 # ```
@@ -548,6 +563,9 @@ directive("panel", [ ->
             controller: ['$scope', ($scope) ->
                unless $scope.theme then $scope.theme = "default"
             ]
+
+            link: (scope, el, attrs) ->
+                if attrs.footer then scope.footer = true
 
         return defObj
     ]

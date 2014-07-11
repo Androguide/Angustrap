@@ -32,9 +32,21 @@
         replace: true,
         transclude: true,
         scope: {
-          theme: "@"
+          theme: "@",
+          dismissible: "="
         },
-        template: '<div class="alert alert-{{theme}}" role="alert" data-ng-transclude></div>'
+        template: '<div class="alert alert-{{theme}} {{dismissible ? alert-dismissible : \'\' }}" role="alert">\
+                           <button type="button" class="close" data-dismiss="alert" data-ng-show="dismissible">\
+                               <span aria-hidden="true">&times;</span>\
+                               <span class="sr-only">Close</span>\
+                           </button>\
+                           <div data-ng-transclude></div>\
+                       </div>',
+        link: function(scope, el, attrs) {
+          if (attrs.dismissible) {
+            return scope.dismissible = true;
+          }
+        }
       };
       return defObj;
     }
@@ -323,7 +335,12 @@
               return $scope.theme = "default";
             }
           }
-        ]
+        ],
+        link: function(scope, el, attrs) {
+          if (attrs.footer) {
+            return scope.footer = true;
+          }
+        }
       };
       return defObj;
     }
