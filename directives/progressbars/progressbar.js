@@ -9,15 +9,25 @@
         scope: {
           theme: "@",
           current: "@",
-          title: "@"
+          title: "@",
+          striped: "@",
+          animated: "@"
         },
         template: '\
     <div class="progress">\
-      <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{current}}" aria-valuemin="0" aria-valuemax="100" style="width: {{current}}%">\
+      <div class="progress-bar progress-bar-{{theme}} {{striped ? \'progress-bar-striped\' : \'\'}} {{animated ? \'active\' : \'\'}}" role="progressbar" aria-valuenow="{{current}}" aria-valuemin="0" aria-valuemax="100" style="width: {{current}}%">\
         <span class="sr-only">{{title}}</span>\
         {{title}}\
       </div>\
-    </div'
+    </div',
+        link: function(scope, el, attrs) {
+          if (attrs.striped === "") {
+            attrs.striped = true;
+          }
+          if (attrs.animated === "") {
+            return attrs.animated = true;
+          }
+        }
       };
     }
   ]);

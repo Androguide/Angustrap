@@ -115,6 +115,10 @@
 </li>
 <li><p><code>title</code>: <em>(String)</em> the label to display inside the progressbar (optional)</p>
 </li>
+<li><p><code>striped</code>: <em>(Boolean)</em> whether the progress-bar should be striped or not</p>
+</li>
+<li><p><code>animated</code>: <em>(Boolean)</em> if the progress bar is <code>striped</code>, defined whether the progress-bar stripes should be animated</p>
+</li>
 </ul>
 <h4 id="examples-">Examples:</h4>
 <pre><code>&lt;!-- Green Progress Bar -<span class="hljs-function">-&gt;</span>
@@ -122,6 +126,12 @@
 
 &lt;!-- Red Progress Bar <span class="hljs-reserved">with</span> label -<span class="hljs-function">-&gt;</span>
  &lt;progress-bar theme=<span class="hljs-string">"danger"</span> title=<span class="hljs-string">"Angustrap"</span> current=<span class="hljs-string">"75"</span>&gt;&lt;/progress-bar&gt;
+
+&lt;!-- Orange Striped Progress Bar <span class="hljs-reserved">with</span> label -<span class="hljs-function">-&gt;</span>
+ &lt;progress-bar theme=<span class="hljs-string">"warning"</span> current=<span class="hljs-string">"75"</span> striped&gt;&lt;/progress-bar&gt;
+
+&lt;!-- Blue Animated Progress Bar <span class="hljs-reserved">with</span> label -<span class="hljs-function">-&gt;</span>
+ &lt;progress-bar theme=<span class="hljs-string">"warning"</span> title=<span class="hljs-string">"Angustrap"</span> current=<span class="hljs-string">"75"</span> striped animated&gt;&lt;/progress-bar&gt;
 </code></pre>
             </div>
             
@@ -134,14 +144,20 @@ directive(<span class="hljs-string">"progressBar"</span>, [<span class="hljs-fun
         <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@"</span>
         <span class="hljs-attribute">current</span>: <span class="hljs-string">"@"</span>
         <span class="hljs-attribute">title</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">striped</span>: <span class="hljs-string">"@"</span>
+        <span class="hljs-attribute">animated</span>: <span class="hljs-string">"@"</span>
 
     <span class="hljs-attribute">template</span>: <span class="hljs-string">'
     &lt;div class="progress"&gt;
-      &lt;div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{current}}" aria-valuemin="0" aria-valuemax="100" style="width: {{current}}%"&gt;
+      &lt;div class="progress-bar progress-bar-{{theme}} {{striped ? \'progress-bar-striped\' : \'\'}} {{animated ? \'active\' : \'\'}}" role="progressbar" aria-valuenow="{{current}}" aria-valuemin="0" aria-valuemax="100" style="width: {{current}}%"&gt;
         &lt;span class="sr-only"&gt;{{title}}&lt;/span&gt;
         {{title}}
       &lt;/div&gt;
     &lt;/div'</span>
+
+    <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span>
+        <span class="hljs-keyword">if</span> attrs.striped <span class="hljs-keyword">is</span> <span class="hljs-string">""</span> <span class="hljs-keyword">then</span> attrs.striped = <span class="hljs-literal">true</span>
+        <span class="hljs-keyword">if</span> attrs.animated <span class="hljs-keyword">is</span> <span class="hljs-string">""</span> <span class="hljs-keyword">then</span> attrs.animated = <span class="hljs-literal">true</span>
 ])</pre></div></div>
             
         </li>

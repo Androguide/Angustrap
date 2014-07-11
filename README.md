@@ -7,7 +7,7 @@ _For the list of all available icons, see http://getbootstrap.com/components/#gl
 
 ###Simple glyph icon (span) `<glyph>`
 #####Attributes:
-  - icon: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).<br/>
+  - `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).<br/>
   _See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list._
   
 #####Example:
@@ -24,19 +24,19 @@ _For the list of all available icons, see http://getbootstrap.com/components/#gl
 
   - `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
     The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
-   * _primary_
-   * _success_
-   * _info_
-   * _warning_
-   * _danger_<br/>
+   * `primary`
+   * `success`
+   * `info`
+   * `warning`
+   * `danger`<br/>
 
   _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `.btn-default` class_
 
   - `size`: the variable part of the Bootstrap 3.x buttons size classes (i.e without the 'btn-' prefix).
    Possible choices are:
-     * _lg_
-     * _sm_
-     * _xs_
+     * `lg`
+     * `sm`
+     * `xs`
 
 #####Example:
 ```html
@@ -278,7 +278,7 @@ A directive to abstract Bootstrap's panel component.
 </panel>
 
 <!-- Panel with footer -->
-<panel title="My Panel" theme="primary" footer="true">
+<panel title="My Panel" theme="primary" footer>
     ...
 </panel>
 ```
@@ -350,6 +350,12 @@ A directive to abstract Bootstrap's progress bar component.
 
 <!-- Red Progress Bar with label -->
 <progress-bar theme="danger" title="Angustrap" current="75"></progress-bar>
+
+<!-- Orange Striped Progress Bar with label -->
+<progress-bar theme="warning" current="75" striped></progress-bar>
+
+<!-- Blue Animated Progress Bar with label -->
+<progress-bar theme="warning" title="Angustrap" current="75" striped animated></progress-bar>
 ```
 
 &nbsp;
@@ -368,3 +374,7 @@ A directive to abstract Bootstrap's progress bar component.
 * `current`: _(Integer)_ the current progress percentage
 
 * `title`: _(String)_ the label to display inside the progressbar (optional)
+
+* `striped`: _(Boolean)_ whether the progress-bar should be striped or not
+
+* `animated`: _(Boolean)_ if the progress bar is `striped`, defined whether the progress-bar stripes should be animated
