@@ -600,7 +600,7 @@ directive("panel", [ ->
             ]
 
             link: (scope, el, attrs) ->
-                if attrs.footer then scope.footer = true
+                if attrs.footer is "" then attrs.footer = true
 
         return defObj
     ]

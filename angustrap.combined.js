@@ -356,8 +356,8 @@
           }
         ],
         link: function(scope, el, attrs) {
-          if (attrs.footer) {
-            return scope.footer = true;
+          if (attrs.footer === "") {
+            return attrs.footer = true;
           }
         }
       };
