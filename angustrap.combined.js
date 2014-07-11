@@ -219,6 +219,25 @@
         </div>'
       };
     }
+  ]).directive("asLabel", [
+    function() {
+      var defObj;
+      defObj = {
+        restrict: "E",
+        replace: true,
+        transclude: true,
+        template: '<span class="label label-{{theme}}" data-ng-transclude></span>',
+        scope: {
+          theme: "@"
+        },
+        link: function(scope, el, attrs) {
+          if (!attrs.theme) {
+            return attrs.theme = "default";
+          }
+        }
+      };
+      return defObj;
+    }
   ]).directive("navbarDropdown", [
     function() {
       return {

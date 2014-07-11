@@ -168,6 +168,25 @@
         template: '<div class="input-group {{sizeWildcard}}{{size}}"> <!-- Left Span Add-on --> <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'left\'"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </span> <!-- Left Button Add-on --> <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'left\'"> <button class="btn btn-{{theme}}" type="button"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </button> </span> <!-- The input --> <input type="{{type}}" class="form-control" placeholder="{{placeholder}}"> <!-- Right Span Add-on --> <span class="input-group-addon" data-ng-show="asType == \'span\' && side == \'right\'"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </span> <!-- Right Button Add-on --> <span class="input-group-btn" data-ng-show="asType == \'btn\' && side == \'right\'"> <button class="btn btn-{{theme}}" type="button"> <glyph icon="{{icon}}" data-ng-show="icon"></glyph> {{title}} </button> </span> </div>'
       };
     }
+  ]).directive("asLabel", [
+    function() {
+      var defObj;
+      defObj = {
+        restrict: "E",
+        replace: true,
+        transclude: true,
+        template: '<span class="label label-{{theme}}" data-ng-transclude></span>',
+        scope: {
+          theme: "@"
+        },
+        link: function(scope, el, attrs) {
+          if (!attrs.theme) {
+            return attrs.theme = "default";
+          }
+        }
+      };
+      return defObj;
+    }
   ]).directive("navbarDropdown", [
     function() {
       return {

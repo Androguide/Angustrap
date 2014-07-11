@@ -300,6 +300,7 @@ A directive to abstract Bootstrap's panel component.
 
 * `footer`: _(Boolean)_ Whether the panel title should be placed at the bottom of the panel or not
 
+&nbsp;
 
 Alerts
 ============
@@ -335,6 +336,7 @@ A directive to abstract Bootstrap's alert component.
 
   _**Note:** when using links inside an `<alert>`, remember to use the `.alert-link` class to provide matching colors on the link. ([example](http://getbootstrap.com/components/#alerts-links))_
 
+&nbsp;
 
 Progress Bars
 ============
@@ -378,3 +380,35 @@ A directive to abstract Bootstrap's progress bar component.
 * `striped`: _(Boolean)_ whether the progress-bar should be striped or not
 
 * `animated`: _(Boolean)_ if the progress bar is `striped`, defined whether the progress-bar stripes should be animated
+
+&nbsp;
+
+Labels
+============
+
+AsLabel `<as-label>`
+--------------------------
+A shortcut directive for Bootstrap's label component.
+
+####Examples:
+```html
+<!-- Default label -->
+<as-label>My Label</as-label>
+
+<!-- Green label -->
+<as-label theme="success">Success Label</as-label>
+
+<!-- Blue label -->
+<as-label theme="info">Info Label</as-label>
+```
+
+&nbsp;
+
+####Attributes:
+* `theme`: The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`

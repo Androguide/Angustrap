@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>alerts.coffee</title>
+  <title>label.coffee</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -91,7 +91,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>alerts.coffee</h1>
+                  <h1>label.coffee</h1>
               </div>
           </li>
         
@@ -103,12 +103,41 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h3 id="alerts">Alerts</h3>
-<h4 id="attributes-">Attributes:</h4>
+              <h2 id="labels">Labels</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Shortcut directives for Bootstrap’s labels.<br/><br/>
+<strong>Examples</strong>:<br/></p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">as-label</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"success"</span>&gt;</span>Yeehaaa!<span class="hljs-tag">&lt;/<span class="hljs-title">as-label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">as-label</span> <span class="hljs-attribute">theme</span>=<span class="hljs-value">"danger"</span>&gt;</span>Booo!<span class="hljs-tag">&lt;/<span class="hljs-title">as-label</span>&gt;</span>
+</code></pre>
+<p><br/></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p><strong>Attributes</strong>:</p>
 <ul>
-<li><p><code>theme</code>: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).
- The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:</p>
-<ul>
+<li><code>theme</code>: The variable part of the Bootstrap 3.x buttons theme classes (i.e without the ‘btn-‘ prefix).<br/>
+The stock ones are as follows <em>(but you can create your own in your stylesheet if you want using the <code>btn-</code> prefix)</em>:<ul>
 <li><code>primary</code></li>
 <li><code>success</code></li>
 <li><code>info</code></li>
@@ -116,38 +145,22 @@
 <li><code>danger</code></li>
 </ul>
 </li>
-<li><p><code>dismissible</code>: Whether the alert should be dismissible via a close button at its top-right corner</p>
-</li>
 </ul>
-<h4 id="examples-">Examples:</h4>
-<pre><code>&lt;!-- Simple alert -<span class="hljs-function">-&gt;</span>
-&lt;alert theme=<span class="hljs-string">"danger"</span>&gt;Something ain<span class="hljs-string">'t right!&lt;/alert&gt;
 
-&lt;!-- Dismissible alert --&gt;
-&lt;alert theme="success" dismissible&gt;Props! You did it!&lt;/alert&gt;</span>
-</code></pre>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-directive(<span class="hljs-string">"alert"</span>, [<span class="hljs-function"> -&gt;</span>
+directive(<span class="hljs-string">"asLabel"</span>, [<span class="hljs-function"> -&gt;</span>
         defObj =
             <span class="hljs-attribute">restrict</span>: <span class="hljs-string">"E"</span>
             <span class="hljs-attribute">replace</span>: <span class="hljs-literal">true</span>
             <span class="hljs-attribute">transclude</span>: <span class="hljs-literal">true</span>
+            <span class="hljs-attribute">template</span>: <span class="hljs-string">'&lt;span class="label label-{{theme}}" data-ng-transclude&gt;&lt;/span&gt;'</span>
             <span class="hljs-attribute">scope</span>:
                 <span class="hljs-attribute">theme</span>: <span class="hljs-string">"@"</span>
-                <span class="hljs-attribute">dismissible</span>: <span class="hljs-string">"@"</span>
-
-            <span class="hljs-attribute">template</span>: <span class="hljs-string">'&lt;div class="alert alert-{{theme}} {{dismissible ? alert-dismissible : \'\' }}" role="alert"&gt;
-                           &lt;button type="button" class="close" data-dismiss="alert" data-ng-show="dismissible"&gt;
-                               &lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;
-                               &lt;span class="sr-only"&gt;Close&lt;/span&gt;
-                           &lt;/button&gt;
-                           &lt;div data-ng-transclude&gt;&lt;/div&gt;
-                       &lt;/div&gt;'</span>
 
             <span class="hljs-attribute">link</span>: <span class="hljs-function"><span class="hljs-params">(scope, el, attrs)</span> -&gt;</span>
-                <span class="hljs-keyword">if</span> attrs.dismissible <span class="hljs-keyword">is</span> <span class="hljs-string">""</span> <span class="hljs-keyword">then</span> attrs.dismissible = <span class="hljs-literal">true</span>
+                <span class="hljs-keyword">if</span> !attrs.theme <span class="hljs-keyword">then</span> attrs.theme = <span class="hljs-string">"default"</span>
 
         <span class="hljs-keyword">return</span> defObj
     ]
