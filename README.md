@@ -332,3 +332,5 @@ A directive to abstract Bootstrap's alert component.
     * `danger`
 
 * `dismissible`: Whether the alert should be dismissible via a close button at its top-right corner
+
+  _**Note:** when using links inside an `<alert>`, remember to use the `.alert-link` class to provide matching colors on the link. ([example](http://getbootstrap.com/components/#alerts-links))_

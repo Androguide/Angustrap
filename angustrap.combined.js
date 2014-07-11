@@ -58,13 +58,13 @@
         replace: true,
         transclude: true,
         scope: {
-          type: "@type",
-          theme: "@theme",
-          icon: "@icon",
-          size: "@size",
-          title: "@title",
-          dropup: "=dropup",
-          asClick: "=asClick"
+          type: "@",
+          theme: "@",
+          icon: "@",
+          size: "@",
+          title: "@",
+          dropup: "=",
+          asClick: "="
         },
         template: '\
             <div class="{{btnGroup}} {{directionClass}}">\
@@ -125,7 +125,7 @@
         replace: true,
         transclude: true,
         scope: {
-          asHref: "@asHref"
+          asHref: "@"
         },
         template: '\
         <li role="presentation">\
@@ -142,9 +142,9 @@
         replace: true,
         transclude: true,
         scope: {
-          icon: "@icon",
-          theme: "@theme",
-          size: "@size"
+          icon: "@",
+          theme: "@",
+          size: "@"
         },
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
@@ -165,7 +165,7 @@
         replace: true,
         template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>',
         scope: {
-          icon: "@icon"
+          icon: "@"
         }
       };
       return defObj;
@@ -177,13 +177,13 @@
         replace: true,
         transclude: true,
         scope: {
-          title: "@title",
-          asType: "@asType",
-          side: "@side",
-          icon: "@icon",
-          size: "@size",
-          theme: "@theme",
-          type: "@type"
+          title: "@",
+          asType: "@",
+          side: "@",
+          icon: "@",
+          size: "@",
+          theme: "@",
+          type: "@"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
@@ -226,7 +226,7 @@
         replace: true,
         transclude: true,
         scope: {
-          title: "@title"
+          title: "@"
         },
         template: '\
         <li class="dropdown">\
@@ -243,7 +243,7 @@
         transclude: true,
         template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>',
         scope: {
-          side: "@side"
+          side: "@"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
@@ -264,11 +264,11 @@
         replace: true,
         transclude: true,
         scope: {
-          theme: "@theme",
-          title: "@title",
-          titleHref: "@titleHref",
-          fixed: "@fixed",
-          center: "=center"
+          theme: "@",
+          title: "@",
+          titleHref: "@",
+          fixed: "@",
+          center: "="
         },
         template: '\
         <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">\
