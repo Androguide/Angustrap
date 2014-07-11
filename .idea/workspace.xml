@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2445eca2-07ad-4934-be6b-f2a6e2fe10b6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angustrap.js" afterPath="$PROJECT_DIR$/angustrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angustrap.min.js" afterPath="$PROJECT_DIR$/angustrap.min.js" />
     </list>
     <ignored path="Angustrap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/angustrap.min.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
-              <caret line="1" column="7122" selection-start-line="1" selection-start-column="7122" selection-end-line="1" selection-end-column="7122" />
+              <caret line="1" column="7126" selection-start-line="1" selection-start-column="7126" selection-end-line="1" selection-end-column="7126" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -48,26 +48,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="angustrap.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="angustrap.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/angustrap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4972" max-vertical-offset="5742">
-              <caret line="313" column="14" selection-start-line="313" selection-start-column="14" selection-end-line="313" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.76347303" vertical-offset="4548" max-vertical-offset="5742">
+              <caret line="281" column="36" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
               <folding>
-                <marker date="1405092975739" expanded="false" signature="2627:2652" placeholder="..." />
-                <marker date="1405092975739" expanded="false" signature="2712:2730" placeholder="..." />
-                <marker date="1405092975739" expanded="false" signature="13212:13231" placeholder="..." />
+                <marker date="1405093405138" expanded="false" signature="2627:2652" placeholder="..." />
+                <marker date="1405093405138" expanded="false" signature="2712:2730" placeholder="..." />
+                <marker date="1405093405138" expanded="false" signature="13219:13238" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65789473" vertical-offset="2880" max-vertical-offset="4266">
-              <caret line="185" column="63" selection-start-line="185" selection-start-column="63" selection-end-line="185" selection-end-column="63" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -110,7 +100,6 @@
         <option value="$PROJECT_DIR$/templates/inputs/input-group.html" />
         <option value="$PROJECT_DIR$/templates/dropdowns/btn-dropdown.html" />
         <option value="$PROJECT_DIR$/directives/panels/dropdown.coffee" />
-        <option value="$PROJECT_DIR$/directives/panels/panels.coffee" />
         <option value="$PROJECT_DIR$/directives/dropdowns/dropdown.coffee" />
         <option value="$PROJECT_DIR$/directives/dropdowns/list-item.coffee" />
         <option value="$PROJECT_DIR$/directives/glyphs/btn-glyph.coffee" />
@@ -125,13 +114,14 @@
         <option value="$PROJECT_DIR$/directives/glyphs/label.coffee" />
         <option value="$PROJECT_DIR$/directives/inputs/input-group.coffee" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/directives/labels/label.coffee" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/directives/panels/panels.coffee" />
+        <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/angustrap.min.js" />
         <option value="$PROJECT_DIR$/angustrap.js" />
-        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -322,7 +312,7 @@
     <entry file="file://$PROJECT_DIR$/angustrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
-          <caret line="1" column="7122" selection-start-line="1" selection-start-column="7122" selection-end-line="1" selection-end-column="7122" />
+          <caret line="1" column="7126" selection-start-line="1" selection-start-column="7126" selection-end-line="1" selection-end-column="7126" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -331,21 +321,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/angustrap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4972" max-vertical-offset="5742">
-          <caret line="313" column="14" selection-start-line="313" selection-start-column="14" selection-end-line="313" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.76347303" vertical-offset="4548" max-vertical-offset="5742">
+          <caret line="281" column="36" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
           <folding>
-            <marker date="1405092975739" expanded="false" signature="2627:2652" placeholder="..." />
-            <marker date="1405092975739" expanded="false" signature="2712:2730" placeholder="..." />
-            <marker date="1405092975739" expanded="false" signature="13212:13231" placeholder="..." />
+            <marker date="1405093405138" expanded="false" signature="2627:2652" placeholder="..." />
+            <marker date="1405093405138" expanded="false" signature="2712:2730" placeholder="..." />
+            <marker date="1405093405138" expanded="false" signature="13219:13238" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65789473" vertical-offset="2880" max-vertical-offset="4266">
-          <caret line="185" column="63" selection-start-line="185" selection-start-column="63" selection-end-line="185" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
