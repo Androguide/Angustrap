@@ -118,13 +118,13 @@ directive("dropdown", [ ->
             replace: true
             transclude: true
             scope:
-                type: "@type"
-                theme: "@theme"
-                icon: "@icon"
-                size: "@size"
-                title: "@title"
-                dropup: "=dropup"
-                asClick: "=asClick"
+                type: "@"
+                theme: "@"
+                icon: "@"
+                size: "@"
+                title: "@"
+                dropup: "="
+                asClick: "="
 
             template: '
             <div class="{{btnGroup}} {{directionClass}}">
@@ -196,7 +196,7 @@ directive("listItem", [ ->
         replace: true
         transclude: true
         scope:
-            asHref: "@asHref"
+            asHref: "@"
 
         template: '
         <li role="presentation">
@@ -233,9 +233,9 @@ directive("btnGlyph", [($timeout) ->
             replace: true
             transclude: true
             scope:
-                icon: "@icon"
-                theme: "@theme"
-                size: "@size"
+                icon: "@"
+                theme: "@"
+                size: "@"
 
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"
@@ -272,7 +272,7 @@ directive("glyph", [ ->
             replace: true
             template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>'
             scope:
-                icon: "@icon"
+                icon: "@"
 
         return defObj
     ]
@@ -320,13 +320,13 @@ directive("inputGroup", [ ->
         replace: true
         transclude: true
         scope:
-            title: "@title"
-            asType: "@asType"
-            side: "@side"
-            icon: "@icon"
-            size: "@size"
-            theme: "@theme"
-            type: "@type"
+            title: "@"
+            asType: "@"
+            side: "@"
+            icon: "@"
+            size: "@"
+            theme: "@"
+            type: "@"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             CleanUp $scope
@@ -391,7 +391,7 @@ directive("navbarDropdown", [ ->
         replace: true
         transclude: true
         scope:
-            title: "@title"
+            title: "@"
 
         template: '
         <li class="dropdown">
@@ -428,7 +428,7 @@ directive("navbarList", [ ->
         transclude: true
         template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>'
         scope:
-            side: "@side"
+            side: "@"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""
@@ -470,11 +470,11 @@ directive("navbar", ["AsRandom", (AsRandom) ->
         transclude: true
 
         scope:
-            theme: "@theme"
-            title: "@title"
-            titleHref: "@titleHref"
-            fixed: "@fixed"
-            center: "=center"
+            theme: "@"
+            title: "@"
+            titleHref: "@"
+            fixed: "@"
+            center: "="
 
         template: '
         <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">

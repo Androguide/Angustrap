@@ -20,7 +20,7 @@ directive("glyph", [ ->
             replace: true
             template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>'
             scope:
-                icon: "@icon"
+                icon: "@"
 
         return defObj
     ]

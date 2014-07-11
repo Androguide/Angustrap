@@ -8,7 +8,7 @@
         transclude: true,
         template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>',
         scope: {
-          side: "@side"
+          side: "@"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {

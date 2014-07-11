@@ -51,13 +51,13 @@
         replace: true,
         transclude: true,
         scope: {
-          type: "@type",
-          theme: "@theme",
-          icon: "@icon",
-          size: "@size",
-          title: "@title",
-          dropup: "=dropup",
-          asClick: "=asClick"
+          type: "@",
+          theme: "@",
+          icon: "@",
+          size: "@",
+          title: "@",
+          dropup: "=",
+          asClick: "="
         },
         template: '<div class="{{btnGroup}} {{directionClass}}"> <button type="button" class="btn btn-{{theme}} btn-{{size}}" data-toggle="{{dataToggle}}"> <glyph icon="{{icon}}"></glyph> {{title}} <span class="caret" data-ng-hide="isSplit"></span> </button> <button type="button" class="btn btn-{{theme}} btn-{{size}} dropdown-toggle" data-toggle="dropdown" data-ng-show="isSplit" style="height: {{caretHeight}}px"> <span class="caret"></span> <span class="sr-only" style="position: relative"></span> </button> <ul class="dropdown-menu" role="menu" data-ng-transclude></ul> </div>',
         controller: [
@@ -107,7 +107,7 @@
         replace: true,
         transclude: true,
         scope: {
-          asHref: "@asHref"
+          asHref: "@"
         },
         template: '<li role="presentation"> <a role="menuitem" tabindex="-1" href="{{asHref}}" data-ng-transclude></a> </li>'
       };
@@ -121,9 +121,9 @@
         replace: true,
         transclude: true,
         scope: {
-          icon: "@icon",
-          theme: "@theme",
-          size: "@size"
+          icon: "@",
+          theme: "@",
+          size: "@"
         },
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";
@@ -140,7 +140,7 @@
         replace: true,
         template: '<span class=\"glyphicon glyphicon-{{icon}}\"></span>',
         scope: {
-          icon: "@icon"
+          icon: "@"
         }
       };
       return defObj;
@@ -152,13 +152,13 @@
         replace: true,
         transclude: true,
         scope: {
-          title: "@title",
-          asType: "@asType",
-          side: "@side",
-          icon: "@icon",
-          size: "@size",
-          theme: "@theme",
-          type: "@type"
+          title: "@",
+          asType: "@",
+          side: "@",
+          icon: "@",
+          size: "@",
+          theme: "@",
+          type: "@"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
@@ -175,7 +175,7 @@
         replace: true,
         transclude: true,
         scope: {
-          title: "@title"
+          title: "@"
         },
         template: '<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a> <ul class="dropdown-menu" data-ng-transclude></ul> </li>'
       };
@@ -188,7 +188,7 @@
         transclude: true,
         template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>',
         scope: {
-          side: "@side"
+          side: "@"
         },
         controller: [
           '$scope', 'CleanUp', function($scope, CleanUp) {
@@ -209,11 +209,11 @@
         replace: true,
         transclude: true,
         scope: {
-          theme: "@theme",
-          title: "@title",
-          titleHref: "@titleHref",
-          fixed: "@fixed",
-          center: "=center"
+          theme: "@",
+          title: "@",
+          titleHref: "@",
+          fixed: "@",
+          center: "="
         },
         template: '<nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation"> <div class="{{container}}"> <div class="navbar-header"> <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="{{hashRandom}}"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" ng-href="{{titleHref}}">{{title}}</a> </div> <div class="collapse navbar-collapse" id="{{random}}"> <div class="{{center && \'container\' || \'\'}}" data-ng-transclude></div> </div> </div> </nav>',
         controller: [

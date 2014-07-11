@@ -8,9 +8,9 @@
         replace: true,
         transclude: true,
         scope: {
-          icon: "@icon",
-          theme: "@theme",
-          size: "@size"
+          icon: "@",
+          theme: "@",
+          size: "@"
         },
         link: function(scope, el, attrs) {
           return attrs.theme = attrs.theme || "default";

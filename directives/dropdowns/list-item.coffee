@@ -11,7 +11,7 @@ directive("listItem", [ ->
         replace: true
         transclude: true
         scope:
-            asHref: "@asHref"
+            asHref: "@"
 
         template: '
         <li role="presentation">

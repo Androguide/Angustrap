@@ -50,13 +50,13 @@ directive("dropdown", [ ->
             replace: true
             transclude: true
             scope:
-                type: "@type"
-                theme: "@theme"
-                icon: "@icon"
-                size: "@size"
-                title: "@title"
-                dropup: "=dropup"
-                asClick: "=asClick"
+                type: "@"
+                theme: "@"
+                icon: "@"
+                size: "@"
+                title: "@"
+                dropup: "="
+                asClick: "="
 
             template: '
             <div class="{{btnGroup}} {{directionClass}}">

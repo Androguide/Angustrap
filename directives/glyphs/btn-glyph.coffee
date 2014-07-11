@@ -24,9 +24,9 @@ directive("btnGlyph", [($timeout) ->
             replace: true
             transclude: true
             scope:
-                icon: "@icon"
-                theme: "@theme"
-                size: "@size"
+                icon: "@"
+                theme: "@"
+                size: "@"
 
             link: (scope, el, attrs) ->
                 attrs.theme = attrs.theme or "default"

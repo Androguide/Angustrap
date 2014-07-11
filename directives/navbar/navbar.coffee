@@ -31,11 +31,11 @@ directive("navbar", ["AsRandom", (AsRandom) ->
         transclude: true
 
         scope:
-            theme: "@theme"
-            title: "@title"
-            titleHref: "@titleHref"
-            fixed: "@fixed"
-            center: "=center"
+            theme: "@"
+            title: "@"
+            titleHref: "@"
+            fixed: "@"
+            center: "="
 
         template: '
         <nav class="navbar navbar-{{theme}} {{fixedWildcard}}{{fixed}}" role="navigation">

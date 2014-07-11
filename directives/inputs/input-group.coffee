@@ -40,13 +40,13 @@ directive("inputGroup", [ ->
         replace: true
         transclude: true
         scope:
-            title: "@title"
-            asType: "@asType"
-            side: "@side"
-            icon: "@icon"
-            size: "@size"
-            theme: "@theme"
-            type: "@type"
+            title: "@"
+            asType: "@"
+            side: "@"
+            icon: "@"
+            size: "@"
+            theme: "@"
+            type: "@"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             CleanUp $scope

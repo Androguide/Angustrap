@@ -25,7 +25,7 @@ directive("navbarList", [ ->
         transclude: true
         template: '<ul class="nav navbar-nav {{wildcard}}{{side}}" data-ng-transclude></ul>'
         scope:
-            side: "@side"
+            side: "@"
 
         controller: ['$scope', 'CleanUp', ($scope, CleanUp) ->
             if $scope.side then $scope.wildcard = "navbar-" else $scope.wildcard = ""

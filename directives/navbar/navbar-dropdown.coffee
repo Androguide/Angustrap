@@ -26,7 +26,7 @@ directive("navbarDropdown", [ ->
         replace: true
         transclude: true
         scope:
-            title: "@title"
+            title: "@"
 
         template: '
         <li class="dropdown">
