@@ -22,8 +22,8 @@ _For the list of all available icons, see http://getbootstrap.com/components/#gl
   - `icon`: the variable part of the Bootstrap 3.x glyphicons classes (i.e without the 'glyphicon-' prefix).
   _See [here](http://getbootstrap.com/components/#glyphicons-glyphs) for the full list._
 
-  - `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-  The stock ones are as follows, but you can create your own in your stylesheet if you want:
+  - `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
    * _primary_
    * _success_
    * _info_
@@ -103,7 +103,7 @@ Bootstrap's [dropdown](http://getbootstrap.com/components/#dropdowns) components
    &nbsp;
 
   * `theme`: the variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
     * `primary`
     * `success`
     * `info`
@@ -247,13 +247,15 @@ A single directive to abstract all of Bootstrap's input-group components.
   If none is specified, the medium size will be used.
 
 * `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._<br/>
-    The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+    The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
     * `primary`
     * `success`
     * `info`
     * `warning`
     * `danger`
+
+    _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `.btn-default` class_
 
 
 Panels
@@ -286,13 +288,42 @@ A directive to abstract Bootstrap's panel component.
 ####Attributes:
 * `title`: The text to display inside of the input add-on (span, button... depending on the `type` attribute)
 
-* `theme`: _Only valid for button input-groups (`<input-group type="btn">`)._<br/>
-    The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).
-    The stock ones are as follows _(but you can create your own in your stylesheet if you want using the `btn-` prefix)_:
+* `theme`: The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
     * `primary`
     * `success`
     * `info`
     * `warning`
     * `danger`
 
+    _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `.btn-default` class_
+
 * `footer`: _(Boolean)_ Whether the panel title should be placed at the bottom of the panel or not
+
+
+Alerts
+============
+
+Alert `<alert>`
+--------------------------
+A directive to abstract Bootstrap's alert component.
+
+####Examples:
+```html
+<!-- Red alert -->
+<alert theme="danger">Something ain't right!</alert>
+
+<!-- Green alert -->
+<alert theme="success">Props! You did it!</alert>
+```
+
+&nbsp;
+
+####Attributes:
+* `theme`: The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`

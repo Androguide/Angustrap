@@ -23,7 +23,7 @@
         }, 0);
       };
     }
-  ]).directive("asAlert", [
+  ]).directive("alert", [
     function() {
       var defObj;
       defObj = {
@@ -31,18 +31,9 @@
         replace: true,
         transclude: true,
         scope: {
-          theme: "@",
-          title: "@",
-          footer: "@"
+          theme: "@"
         },
-        template: '<div class="panel panel-{{theme}}"> <div class="panel-heading" data-ng-hide="footer"> <h3 class="panel-title">{{title}}</h3> </div> <div class="panel-body" data-ng-transclude></div> <div class="panel-footer" data-ng-show="footer">{{title}}</div> </div>',
-        controller: [
-          '$scope', function($scope) {
-            if (!$scope.theme) {
-              return $scope.theme = "default";
-            }
-          }
-        ]
+        template: '<div class="alert alert-{{theme}}" role="alert" data-ng-transclude></div>'
       };
       return defObj;
     }

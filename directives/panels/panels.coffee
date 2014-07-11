@@ -11,7 +11,24 @@
 #  * title: the string to display inside the action button of the split dropdown
 #
 #  * footer: whether the panel's heading should be at the bottom or top
-
+#
+# #### Examples:
+# ```
+# <!-- Default panel -->
+# <panel title="My Panel">
+#    ...
+# </panel>
+#
+# <!-- Themed panel -->
+# <panel title="My Panel" theme="primary">
+#    ...
+# </panel>
+#
+# <!-- Panel with footer -->
+# <panel title="My Panel" theme="primary" footer="true">
+# ...
+# </panel>
+# ```
 
 directive("panel", [ ->
         defObj =

@@ -24,6 +24,20 @@
         }, 0);
       };
     }
+  ]).directive("alert", [
+    function() {
+      var defObj;
+      defObj = {
+        restrict: "E",
+        replace: true,
+        transclude: true,
+        scope: {
+          theme: "@"
+        },
+        template: '<div class="alert alert-{{theme}}" role="alert" data-ng-transclude></div>'
+      };
+      return defObj;
+    }
   ]).directive("dropdown", [
     function() {
       var defObj;
@@ -283,7 +297,7 @@
         ]
       };
     }
-  ]).directive("asPanel", [
+  ]).directive("panel", [
     function() {
       var defObj;
       defObj = {

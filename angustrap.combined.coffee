@@ -31,33 +31,21 @@ service('CleanUp', ['$timeout', ($timeout) ->
 #       * `warning`
 #       * `danger`
 #
-#  * title: the string to display inside the action button of the split dropdown
-#
-#  * footer: whether the panel's heading should be at the bottom or top
+# #### Examples:
+# ```
+# <alert theme="danger">Something ain't right!</alert>
+# <alert theme="success">Props! You did it!</alert>
+# ```
 
-
-directive("asAlert", [ ->
+directive("alert", [ ->
         defObj =
             restrict: "E"
             replace: true
             transclude: true
             scope:
                 theme: "@"
-                title: "@"
-                footer: "@"
 
-            template: '
-            <div class="panel panel-{{theme}}">
-              <div class="panel-heading" data-ng-hide="footer">
-                <h3 class="panel-title">{{title}}</h3>
-              </div>
-              <div class="panel-body" data-ng-transclude></div>
-              <div class="panel-footer" data-ng-show="footer">{{title}}</div>
-            </div>'
-
-            controller: ['$scope', ($scope) ->
-               unless $scope.theme then $scope.theme = "default"
-            ]
+            template: '<div class="alert alert-{{theme}}" role="alert" data-ng-transclude></div>'
 
         return defObj
     ]
@@ -519,7 +507,24 @@ directive("navbar", ["AsRandom", (AsRandom) ->
 #  * title: the string to display inside the action button of the split dropdown
 #
 #  * footer: whether the panel's heading should be at the bottom or top
-
+#
+# #### Examples:
+# ```
+# <!-- Default panel -->
+# <panel title="My Panel">
+#    ...
+# </panel>
+#
+# <!-- Themed panel -->
+# <panel title="My Panel" theme="primary">
+#    ...
+# </panel>
+#
+# <!-- Panel with footer -->
+# <panel title="My Panel" theme="primary" footer="true">
+# ...
+# </panel>
+# ```
 
 directive("panel", [ ->
         defObj =
