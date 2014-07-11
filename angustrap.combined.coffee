@@ -49,7 +49,7 @@ directive("alert", [ ->
             transclude: true
             scope:
                 theme: "@"
-                dismissible: "="
+                dismissible: "@"
 
             template: '<div class="alert alert-{{theme}} {{dismissible ? alert-dismissible : \'\' }}" role="alert">
                            <button type="button" class="close" data-dismiss="alert" data-ng-show="dismissible">
@@ -60,7 +60,7 @@ directive("alert", [ ->
                        </div>'
 
             link: (scope, el, attrs) ->
-                if attrs.dismissible then scope.dismissible = true
+                if attrs.dismissible is "" then attrs.dismissible = true
 
         return defObj
     ]

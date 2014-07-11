@@ -9,7 +9,7 @@
         transclude: true,
         scope: {
           theme: "@",
-          dismissible: "="
+          dismissible: "@"
         },
         template: '<div class="alert alert-{{theme}} {{dismissible ? alert-dismissible : \'\' }}" role="alert">\
                            <button type="button" class="close" data-dismiss="alert" data-ng-show="dismissible">\
@@ -19,8 +19,8 @@
                            <div data-ng-transclude></div>\
                        </div>',
         link: function(scope, el, attrs) {
-          if (attrs.dismissible) {
-            return scope.dismissible = true;
+          if (attrs.dismissible === "") {
+            return attrs.dismissible = true;
           }
         }
       };
