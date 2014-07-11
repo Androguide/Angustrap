@@ -8,15 +8,14 @@
         replace: true,
         scope: {
           theme: "@",
-          currValue: "@",
-          minValue: "@",
-          maxValue: "@",
-          asTitle: "@"
+          current: "@",
+          title: "@"
         },
         template: '\
     <div class="progress">\
-      <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{currValue}}" aria-valuemin="{{minValue}}" aria-valuemax="{{maxValue}}" style="width: {{currValue}}%">\
-        <span class="sr-only">{{asTitle}}</span>\
+      <div class="progress-bar progress-bar-{{theme}}" role="progressbar" aria-valuenow="{{current}}" aria-valuemin="0" aria-valuemax="100" style="width: {{current}}%">\
+        <span class="sr-only">{{title}}</span>\
+        {{title}}\
       </div>\
     </div'
       };

@@ -296,7 +296,7 @@ A directive to abstract Bootstrap's panel component.
     * `warning`
     * `danger`
 
-    _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `.btn-default` class_
+    _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `default` theme_
 
 * `footer`: _(Boolean)_ Whether the panel title should be placed at the bottom of the panel or not
 
@@ -334,3 +334,37 @@ A directive to abstract Bootstrap's alert component.
 * `dismissible`: Whether the alert should be dismissible via a close button at its top-right corner
 
   _**Note:** when using links inside an `<alert>`, remember to use the `.alert-link` class to provide matching colors on the link. ([example](http://getbootstrap.com/components/#alerts-links))_
+
+
+Progress Bars
+============
+
+ProgressBar `<progress-bar>`
+--------------------------
+A directive to abstract Bootstrap's progress bar component.
+
+####Examples:
+```html
+<!-- Green Progress Bar -->
+<progress-bar theme="success" current="95"></progress-bar>
+
+<!-- Red Progress Bar with label -->
+<progress-bar theme="danger" title="Angustrap" current="75"></progress-bar>
+```
+
+&nbsp;
+
+####Attributes:
+* `theme`: The variable part of the Bootstrap 3.x buttons theme classes (i.e without the 'btn-' prefix).<br/>
+    The stock ones are as follows _(but you can create your own in your stylesheet using the `btn-` prefix)_:
+    * `primary`
+    * `success`
+    * `info`
+    * `warning`
+    * `danger`
+
+    _**Note**: If no `theme` attribute is specified, Angustrap will default-back to Bootstrap's `default` theme_
+
+* `current`: _(Integer)_ the current progress percentage
+
+* `title`: _(String)_ the label to display inside the progressbar (optional)

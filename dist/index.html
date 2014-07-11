@@ -33,21 +33,9 @@
     <blockquote>
         <h3>Glyphicons</h3>
     </blockquote>
-
-    <div class="row">
-        <div class="col-sm-2 text-center">
-            <glyph id="glyph-heart" icon="heart"></glyph>
-            <br/><br/>
-            <btn-glyph icon="heart-empty" theme="info" size="lg">Angustrap</btn-glyph>
-        </div>
-        <div class="col-sm-8">
-            <pre>
-&lt;glyph icon="heart"&gt;&lt;/glyph&gt;
-&lt;btn-glyph icon="heart-empty" theme="info" size="lg"&gt;Angustrap&lt;/btn-glyph&gt;
-            </pre>
-        </div>
-        <div class="hidden-xs col-sm-2"></div>
-    </div>
+    <glyph id="glyph-heart" icon="heart"></glyph>
+    <br/><br/>
+    <btn-glyph icon="heart-empty" theme="info" size="lg">Angustrap</btn-glyph>
 
     <br/><br/><br/><br/>
 
@@ -117,7 +105,7 @@
 
         <div class="col-sm-6 col-md-3">
             <!-- Dropups -->
-            <dropdown type="split" title="Small Dropup" theme="default" size="sm" icon="filter" dropup="true">
+            <dropdown type="split" title="Small Dropup" theme="danger" size="sm" icon="filter" dropup="true">
                 <list-item as-href="https://google.com">Google</list-item>
                 <list-divider></list-divider>
                 <list-item as-href="https://twitter.com">Twitter</list-item>
@@ -162,11 +150,13 @@
         </div>
         <div class="col-sm-4">
             <h4>Right &lt;button&gt; add-ons</h4>
-            <input-group title="LARGE" icon="tint" as-type="btn" size="lg" side="right" theme="warning" input-type="text"></input-group>
+            <input-group title="LARGE" icon="tint" as-type="btn" size="lg" side="right" theme="warning"
+                         input-type="text"></input-group>
             <br/>
             <input-group title="MEDIUM" as-type="btn" side="right" theme="primary" input-type="text"></input-group>
             <br/>
-            <input-group title="SMALL" as-type="btn" size="sm" side="right" theme="success" input-type="text"></input-group>
+            <input-group title="SMALL" as-type="btn" size="sm" side="right" theme="success"
+                         input-type="text"></input-group>
         </div>
         <div class="col-sm-4"></div>
     </div>
@@ -210,6 +200,17 @@
     <alert theme="warning">Maybe something's wrong, maybe not.</alert>
     <alert theme="info" dismissible>Just wanted to let you know that...</alert>
     <alert theme="success">Props! You did it!</alert>
+
+    <br/><br/><br/>
+
+    <!-- Progress Bars -->
+    <blockquote>
+        <h3>Progress Bars</h3>
+    </blockquote>
+    <progress-bar theme="success" title="AngularJS" current="95"></progress-bar>
+    <progress-bar theme="primary" title="Bootstrap" current="90"></progress-bar>
+    <progress-bar theme="warning" title="Polymer" current="60"></progress-bar>
+    <progress-bar theme="danger" title="C++" current="50"></progress-bar>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
